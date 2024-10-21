@@ -1,6 +1,6 @@
 site:
-  title: FIXME Course Title
-  start_page: REPLACEREPONAME::index.adoc
+  title: Getting Started with Red Hat Connectivity Link
+  start_page: rhcl-deploy::index.adoc
 
 content:
   sources:

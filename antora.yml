@@ -1,5 +1,5 @@
-name: REPLACEREPONAME
-title: FIXME Course Title
+name: rhcl-deploy
+title: Getting Started with Red Hat Connectivity Link
 version: 1
 nav:
 - modules/ROOT/nav.adoc
