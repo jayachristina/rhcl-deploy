@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Setup Route53 in AWS :: Getting Started with Red Hat Connectivity Link</title>
-    <link rel="prev" href="index.html">
-    <link rel="next" href="section2.html">
+    <title>Install Kuadrant on Red Hat OpenShift cluster :: Getting Started with Red Hat Connectivity Link</title>
+    <link rel="prev" href="section3.html">
+    <link rel="next" href="../chapter3/index.html">
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -73,7 +73,7 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="index.html">RHCL Environment Setup</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section1.html">Setup Route53 in AWS</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -82,7 +82,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section3.html">Install and configure Istio with Sail Operator</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="section4.html">Install Kuadrant on Red Hat OpenShift cluster</a>
   </li>
 </ul>
@@ -148,7 +148,7 @@
   <ul>
     <li><a href="../index.html">Getting Started with Red Hat Connectivity Link</a></li>
     <li><a href="index.html">RHCL Environment Setup</a></li>
-    <li><a href="section1.html">Setup Route53 in AWS</a></li>
+    <li><a href="section4.html">Install Kuadrant on Red Hat OpenShift cluster</a></li>
   </ul>
 </nav>
 </div>
@@ -157,35 +157,48 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Setup Route53 in AWS</h1>
+<h1 class="page">Install Kuadrant on Red Hat OpenShift cluster</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this lab exercise, you will configure Amazon Route 53 to manage DNS and direct traffic to your AWS resources effectively.</p>
+<p>In this lab, you install and setup Kuadrant Operator and trigger Kuadrant deployment.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Before installing the Kuadrant Operator, you must create the necessary namespace and set up the CatalogSource. Follow the steps below:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Access the AWS Lab Environment:</p>
+<p>Create the Namespace</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Log in to the newly created AWS lab environment using the provided credentials in your lab environment page.</p>
+<p>Run the following command to create the kuadrant-system namespace:</p>
+<div class="listingblock">
+<div class="content">
+<pre>[lab-user@bastion ~]$ <strong>oc create ns kuadrant-system</strong>
+namespace/kuadrant-system created</pre>
+</div>
+</div>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Follow the Video Instructions:</p>
+<p>Set Up the CatalogSource</p>
 <div class="ulist">
 <ul>
 <li>
-<p>The video provides a step-by-step guide to setting up Route 53. It covers creating a hosted zone, configuring DNS records, and associating Route 53 with an existing Virtual Private Cloud (VPC).</p>
-<div class="videoblock text-center">
+<p>Apply the CatalogSource by running the following command:</p>
+<div class="listingblock">
 <div class="content">
-<video src="_images/route53.mp4" width="640" height="480" controls>
-Your browser does not support the video tag.
-</video>
+<pre>[lab-user@bastion ~]$ <strong>oc apply -f <a href="https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-catalogsource.yaml" class="bare">https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-catalogsource.yaml</a></strong>
+catalogsource.operators.coreos.com/kuadrant-operator-catalog created</pre>
 </div>
 </div>
 </li>
@@ -193,6 +206,128 @@ Your browser does not support the video tag.
 </div>
 </li>
 </ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_install_the_kuadrant_operator"><a class="anchor" href="#_install_the_kuadrant_operator"></a>Install the Kuadrant Operator</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>To install the Kuadrant Operator, enter the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre>[lab-user@bastion ~]$ <strong>oc apply -f <a href="https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-subscription-operatorgroup.yaml" class="bare">https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-subscription-operatorgroup.yaml</a></strong>
+subscription.operators.coreos.com/kuadrant-operator created
+operatorgroup.operators.coreos.com/kuadrant created</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Wait for the Kuadrant Operators to be installed as follows:</p>
+<div class="listingblock">
+<div class="content">
+<pre>[lab-user@bastion ~]$ oc get installplan -n kuadrant-system -o=jsonpath='{.items[0].status.phase}'
+Complete</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After some time, this command should return complete.</p>
+</div>
+</li>
+<li>
+<p>Notice the kuadrant operator is installed along with it&#8217;s dependencies:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.kuadrant.io/latest/authorino-operator/#the-authorino-custom-resource-definition-crd">Authorino</a>(Enforcement Component for AuthPolicy)</p>
+</li>
+<li>
+<p><a href="https://docs.kuadrant.io/latest/limitador-operator/#features">Limitador (Enforcement Component for RateLimitPolicy)</a></p>
+</li>
+<li>
+<p>DNS Operator (Enforcement Component for DNSPOlicy)</p>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/kuad.png" alt="kuad">
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Configure AWS Access Key and Secret Key</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Now set up your AWS access credentials by exporting the access key ID and secret access key.
+Use the following commands in your terminal, replacing xxxxxxx with your actual keys that you can find in your lab environment section:</p>
+<div class="listingblock">
+<div class="content">
+<pre>[lab-user@bastion ~]$ export AWS_ACCESS_KEY_ID=XXXXXXX
+[lab-user@bastion ~]$ export AWS_SECRET_ACCESS_KEY=XXXXXX</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Set up a DNSProvider</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Next step is to create DNS secret Provider that would provide those DNS Provider details that we set in AWS. It is important the secret for the DNSProvider is setup in the same namespace as the gateway.</p>
+<div class="listingblock">
+<div class="content">
+<pre>[lab-user@bastion ~]$ <strong>oc create ns ingress-gateway</strong>
+namespace/ingress-gateway created
+
+[lab-user@bastion ~]$ <strong>oc -n ingress-gateway create secret generic aws-credentials \
+  --type=kuadrant.io/aws \
+  --from-literal=AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
+  --from-literal=AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY</strong>
+secret/aws-credentials created</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploy_kuadrant"><a class="anchor" href="#_deploy_kuadrant"></a>Deploy Kuadrant</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>To trigger your Kuadrant deployment, enter the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre>[lab-user@bastion ~]$ <strong>oc apply -f <a href="https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-resource.yaml" class="bare">https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-resource.yaml</a></strong>
+kuadrant.kuadrant.io/kuadrant created</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Wait for Kuadrant to be ready as follows:</p>
+<div class="listingblock">
+<div class="content">
+<pre>[lab-user@bastion ~]$ <strong>oc wait kuadrant/kuadrant --for="condition=Ready=true" -n kuadrant-system --timeout=300s</strong>
+kuadrant.kuadrant.io/kuadrant condition met</pre>
+</div>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -209,8 +344,8 @@ Your browser does not support the video tag.
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="index.html">RHCL Environment Setup</a></span>
-  <span class="next"><a href="section2.html">Install Cert-manager Operator</a></span>
+  <span class="prev"><a href="section3.html">Install and configure Istio with Sail Operator</a></span>
+  <span class="next"><a href="../chapter3/index.html">Platform Engineer Workflow</a></span>
 </nav>
 </article>
   </div>

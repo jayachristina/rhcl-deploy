@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Appendix :: Getting Started with Red Hat Connectivity Link</title>
-    <link rel="prev" href="../chapter3/section5.html">
+    <title>Install Cert-manager Operator :: Getting Started with Red Hat Connectivity Link</title>
+    <link rel="prev" href="section1.html">
+    <link rel="next" href="section3.html">
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -70,19 +71,19 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../chapter2/index.html">RHCL Environment Setup</a>
+    <a class="nav-link" href="index.html">RHCL Environment Setup</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter2/section1.html">Setup Route53 in AWS</a>
+    <a class="nav-link" href="section1.html">Setup Route53 in AWS</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="section2.html">Install Cert-manager Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter2/section2.html">Install Cert-manager Operator</a>
+    <a class="nav-link" href="section3.html">Install and configure Istio with Sail Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter2/section3.html">Install and configure Istio with Sail Operator</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter2/section4.html">Install Kuadrant on Red Hat OpenShift cluster</a>
+    <a class="nav-link" href="section4.html">Install Kuadrant on Red Hat OpenShift cluster</a>
   </li>
 </ul>
   </li>
@@ -112,8 +113,8 @@
   </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="appendix.html">Appendix</a>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../appendix/appendix.html">Appendix</a>
   </li>
 </ul>
   </li>
@@ -146,7 +147,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Getting Started with Red Hat Connectivity Link</a></li>
-    <li><a href="appendix.html">Appendix</a></li>
+    <li><a href="index.html">RHCL Environment Setup</a></li>
+    <li><a href="section2.html">Install Cert-manager Operator</a></li>
   </ul>
 </nav>
 </div>
@@ -155,12 +157,45 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Appendix</h1>
+<h1 class="page">Install Cert-manager Operator</h1>
 <div class="paragraph">
-<p>FIXME: Content for Appendix&#8230;&#8203;</p>
+<p>In this lab exercise, you will install cert-manager to manage TLS certificates for your Kuadrant gateways.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Before using Kuadrant, you must install <em>cert-manager</em> operator.</p>
+</li>
+<li>
+<p>Cert-manager is responsible for managing TLS certificates for your gateways in Kuadrant.</p>
+</li>
+<li>
+<p>To install the cert-manager Operator, first, access your Red Hat OpenShift console using the credentials provided in the lab environment section.</p>
+</li>
+<li>
+<p>Once logged in, navigate to Operators, type "cert-manager" in the search box, and select <em>cert-manager Operator for Red Hat OpenShift</em>, as shown in the image below:</p>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/certoperator.png" alt="certoperator">
+</div>
+</div>
+</li>
+<li>
+<p>Confirm all the options are same as image below and select install:</p>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/certinstall.png" alt="certinstall">
+</div>
+</div>
+</li>
+<li>
+<p>Once the installation is complete, proceed with next lab.</p>
+</li>
+</ul>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="../chapter3/section5.html">Create Auth Policy</a></span>
+  <span class="prev"><a href="section1.html">Setup Route53 in AWS</a></span>
+  <span class="next"><a href="section3.html">Install and configure Istio with Sail Operator</a></span>
 </nav>
 </article>
   </div>

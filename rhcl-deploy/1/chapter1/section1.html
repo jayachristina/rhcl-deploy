@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Section 1 :: Getting Started with Red Hat Connectivity Link</title>
+    <title>What is Red Hat Connectivity Link (RHCL)? :: Getting Started with Red Hat Connectivity Link</title>
     <link rel="prev" href="index.html">
     <link rel="next" href="section2.html">
     <meta name="generator" content="Antora 3.1.3">
@@ -55,16 +55,13 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Chapter 1</a>
+    <a class="nav-link" href="index.html">Overview of Red Hat Connectivity Link (RHCL)</a>
 <ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="section1.html">Section 1</a>
+    <a class="nav-link" href="section1.html">What is Red Hat Connectivity Link (RHCL)?</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section2.html">Section 2</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section3.html">Section 3</a>
+    <a class="nav-link" href="section2.html">What Red Hat Connectivity Link Can Do?</a>
   </li>
 </ul>
   </li>
@@ -74,10 +71,19 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../chapter2/index.html">Chapter 2</a>
+    <a class="nav-link" href="../chapter2/index.html">RHCL Environment Setup</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter2/section1.html">Section 1</a>
+    <a class="nav-link" href="../chapter2/section1.html">Setup Route53 in AWS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter2/section2.html">Install Cert-manager Operator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter2/section3.html">Install and configure Istio with Sail Operator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter2/section4.html">Install Kuadrant on Red Hat OpenShift cluster</a>
   </li>
 </ul>
   </li>
@@ -87,13 +93,19 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../chapter3/index.html">Chapter 3</a>
+    <a class="nav-link" href="../chapter3/index.html">Platform Engineer Workflow</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter3/section1.html">Section 1</a>
+    <a class="nav-link" href="../chapter3/section2.html">Create a gateway matching the DNS created on AWS</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter3/section2.html">Section 2</a>
+    <a class="nav-link" href="../chapter3/section3.html">Create DNS Policy</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter3/section4.html">Create TLS Policy</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter3/section5.html">Create Auth Policy</a>
   </li>
 </ul>
   </li>
@@ -135,8 +147,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Getting Started with Red Hat Connectivity Link</a></li>
-    <li><a href="index.html">Chapter 1</a></li>
-    <li><a href="section1.html">Section 1</a></li>
+    <li><a href="index.html">Overview of Red Hat Connectivity Link (RHCL)</a></li>
+    <li><a href="section1.html">What is Red Hat Connectivity Link (RHCL)?</a></li>
   </ul>
 </nav>
 </div>
@@ -145,26 +157,42 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Section 1</h1>
+<h1 class="page">What is Red Hat Connectivity Link (RHCL)?</h1>
 <div class="ulist">
 <ul>
 <li>
-<p>Create multiple copies of this section as needed.</p>
+<p>Red Hat Connectivity Link (RHCL) is a cloud-native, open-source solution designed for hybrid cloud environments.</p>
 </li>
 <li>
-<p>Remove any unnecessary sections or chapter pages.</p>
+<p>RHCL enables:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Seamless application connectivity</p>
 </li>
 <li>
-<p>Customize the section as appropriate.</p>
+<p>API management</p>
 </li>
 <li>
-<p>Ensure that each page contains a manageable amount of content.</p>
+<p>Policy management</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>RHCL works in both single and multi-cluster Kubernetes setups.</p>
+</li>
+<li>
+<p>RHCL is primarily based on the open source <a href="https://kuadrant.io/">Kuadrant</a> project and builds on the capabilities of Red Hat OpenShift.</p>
+</li>
+<li>
+<p>RHCL is used to simplify connecting, securing, and managing services across multiple clusters and environments, especially as hybrid cloud setups become more common and complex.</p>
 </li>
 </ul>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="index.html">Chapter 1</a></span>
-  <span class="next"><a href="section2.html">Section 2</a></span>
+  <span class="prev"><a href="index.html">Overview of Red Hat Connectivity Link (RHCL)</a></span>
+  <span class="next"><a href="section2.html">What Red Hat Connectivity Link Can Do?</a></span>
 </nav>
 </article>
   </div>
