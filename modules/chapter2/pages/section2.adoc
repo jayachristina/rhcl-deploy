@@ -1,0 +1,27 @@
+= Install Cert-manager Operator
+
+In this lab exercise, you will install cert-manager to manage TLS certificates for your Kuadrant gateways.
+
+* Before using Kuadrant, you must install _cert-manager_ operator.
+* Cert-manager is responsible for managing TLS certificates for your gateways in Kuadrant.
+* To install the cert-manager Operator, first, access your Red Hat OpenShift console using the credentials provided in the lab environment section.
+* Once logged in, navigate to Operators, type "cert-manager" in the search box, and select _cert-manager Operator for Red Hat OpenShift_, as shown in the image below:
++
+image::certoperator.png[align="center"]
+
+* Confirm all the options are same as image below and select install:
++
+image::certinstall.png[align="center"]
+
+* Once the installation is complete, proceed with next lab.
+
+
+
+
+
+
+
+
+
+
+

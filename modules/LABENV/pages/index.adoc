@@ -1,3 +1,16 @@
 = Lab Environment
 
-FIXME: Instructions for accessing the lab environment on the Demo platform, for this hands-on based training.
+Provision the lab environment https://demo.redhat.com/catalog?search=AWS+with+OpenShift+Open+Environment[AWS with OpenShift Open Environment] at https://demo.redhat.com/[demo.redhat.com].
+
+IMPORTANT: Please provision this lab with exact requirements as mentioned below:
+
+Select the following options:
+
+* Region: Choose your **closest region** and make a note of that. This will need to be used in the inventories file while running the Ansible script.
+* Control Plane Count = **1** [Note: we just need a single node OpenShift]
+* Control Plane Instance Type: **m6a.4xlarge**
+* OpenShift Version: **4.16**
+
+It can take upto 60 minutes to get the lab environment.
+
+This training includes detailed lab instructions for learners to follow.

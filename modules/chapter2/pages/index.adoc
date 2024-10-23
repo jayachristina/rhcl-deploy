@@ -1,7 +1,10 @@
-= Chapter 2
+= RHCL Environment Setup
 
-In this section, we cover... FIXME
+In this hands-on lab, you install and deploy Kuadrant on a single node Red Hat OpenShift cluster.
 
+== Objectives
 
-- Add or remove section entries in the `antora.yaml` file as needed.
-- Ensure you create or delete the corresponding directory for the chapter accordingly.
+* Configure Amazon Route 53 to manage DNS and direct traffic to your AWS resources effectively.
+* Install cert-manager to manage TLS certificates for your Kuadrant gateways.
+* Integrate Kuadrant with Istio as a Gateway API provider by installing and configuring Istio using the Sail Operator.
+* Install the Kuadrant Operator and trigger the deployment of Kuadrant in Red Hat OpenShift cluster.

@@ -1,6 +1,15 @@
-= Section 1
+= What is Red Hat Connectivity Link (RHCL)?
 
-* Create multiple copies of this section as needed.
-* Remove any unnecessary sections or chapter pages.
-* Customize the section as appropriate.
-* Ensure that each page contains a manageable amount of content.
+* Red Hat Connectivity Link (RHCL) is a cloud-native, open-source solution designed for hybrid cloud environments. 
+
+* RHCL enables:
+** Seamless application connectivity
+** API management
+** Policy management
+
+* RHCL works in both single and multi-cluster Kubernetes setups.
+
+* RHCL is primarily based on the open source https://kuadrant.io/[Kuadrant] project and builds on the capabilities of Red Hat OpenShift.
+
+* RHCL is used to simplify connecting, securing, and managing services across multiple clusters and environments, especially as hybrid cloud setups become more common and complex.
+
