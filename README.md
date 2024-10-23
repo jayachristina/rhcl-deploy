@@ -1,10 +1,11 @@
-# About this Training
+# Getting Started with Red Hat Connectivity Link
 
-**Click here: [![Contribute](https://www.eclipse.org/che/contribute.svg)](https://devspaces.apps.tools-na100.dev.ole.redhat.com/#https://github.com/RedHatQuickCourses/rhcl-deploy) to start the development using devspace.**
-
-FIXME: Add short description about your training here.
+In this hands-on lab, you will learn how to secure, protect, and connect an API through a Gateway based on the Kubernetes Gateway API, all within a single OpenShift cluster with a shared HTTPS listener.
 
 # Objectives
 
 FIXME: Add here the list of objectives being covered in this training.
 
+# Problems and Feedback
+
+If you run into any issues, report bugs/suggestions/improvements about this course here - https://github.com/RedHatQuickCourses/rhcl-deploy/issues

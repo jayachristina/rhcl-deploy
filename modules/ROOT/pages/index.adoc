@@ -1,27 +1,40 @@
-= An Example Quick Course
+= Getting Started with Red Hat Connectivity Link
 :navtitle: Home
 
 == Introduction
 
-Course Title: Course title FIXME
+Welcome to this quick course on the _Getting Started with Red Hat Connectivity Link_.
+This course is the `second` in a series of `two` courses about Red Hat Connectivity Link.
 
-Description:
-Course description FIXME
+In this hands-on lab, you will learn how to secure, protect, and connect an API through a Gateway based on the Kubernetes Gateway API, all within a single OpenShift cluster with a shared HTTPS listener. 
 
-Duration: FIXME hours
+This lab is designed to use Red Hat Connectivity Link (RHCL) with a specific use case to implement its features, focusing on two different user roles:
+
+* **Platform Engineer**: As a Platform Engineer, this lab will guide you through deploying a Gateway that ensures secure communication, making it ready for application development teams. You'll learn to route specific traffic while maintaining security through global rate limiting and authentication.
+
+* **Application Developer**: As an Application Developer, this lab will show you how to deploy your application API and override the Gateway's global authentication and rate limiting policies to tailor them to your application’s specific needs.
+Overall, this lab demonstrates how both platform engineers and application developers can effectively leverage RHCL to achieve their goals.
+
+Duration: 2 hours
+
+== Contributors
+
+The PTL team acknowledges the valuable contributions of the following Red Hat associates:
+
+* Jaya Christina Baskaran
+* Ravi Srinivasan
+* Yogita Soni
+* Rutuja Deshmukh
 
 == Objectives
 
 On completing this course, you should be able to:
 
-* Observable, measurable objective...
-* Observable, measurable objective...
-* Observable, measurable objective...
+* TBA
 
 == Prerequisites
 
 This course assumes that you have the following prior experience:
 
-* Course or experience...
-* Course or experience...
-* Course or experience...
+* Red Hat OpenShift Container Platform (OCP) Technical Overview
+https://training-lms.redhat.com/lmt/clmsCourseDetails.prMain?in_sessionId=103595A3J0989409&in_from_module=CLMSBROWSEV2.PRMAIN&in_offeringId=57857955
