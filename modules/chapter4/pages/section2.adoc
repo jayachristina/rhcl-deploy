@@ -1,0 +1,27 @@
+= Deploying the Toystore HTTPRoute
+
+In this lab exercise, you will create an HTTPRoute for the toystore application, allowing it to manage incoming traffic effectively. 
+This will involve defining the routing rules and testing the configuration to ensure proper functionality.
+
+. Create the Toystore HTTPRoute:
+* Begin by creating the HTTPRoute for the toystore app using the following command:
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ curl -s https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/toystore-http-route.yaml | envsubst | oc apply -f - 
+httproute.gateway.networking.k8s.io/toystore created
+----
+
+. Test HTTPRoute
+* After creating the HTTPRoute, test its functionality with the following command:
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ curl -k -w "%{http_code}" https://$(oc get httproute toystore -n toystore  -o=jsonpath='{.spec.hostnames[0]}')/cars
+403
+----
++
+The expected response code is 403, indicating that access is denied due to the absence of authentication or authorization policies.
+
+In the next lab exercise, you will configure authentication policies, generate API keys, and test access to various endpoints in the toystore application, which is secured by Kuadrant policies.
+

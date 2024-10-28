@@ -1,6 +1,26 @@
-= Create TLS Policy
+= Create Rate Limit Policy
 
-* Create multiple copies of this section as needed.
-* Remove any unnecessary sections or chapter pages.
-* Customize the section as appropriate.
-* Ensure that each page contains a manageable amount of content.
+In this lab you sets a default **RateLimitPolicy** for your Gateway to control traffic limits, and verifies its acceptance by the Kuadrant controller.
+
+* Set the default **RateLimitPolicy** for your Gateway by running the following command:
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ **curl -s https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-ratelimitpolicy.yaml | envsubst | oc apply -f -**
+ratelimitpolicy.kuadrant.io/external-rlp created
+----
+
+* Navigate to the Red Hat Openshift console and select **Operators** -> select **Installed Opertor** -> select **Kuadrant Operator** -> select **RateLimitPolicy** -> select **external-rip** and notice the **Conditions** section:
++
+image::rate2.png[align="center"]
++
+Note that the **Enforced** status is set to **False** as there is no routes available to enforce the policy.
+
+* Verify that the rate limits has been accepted by the controller:
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ **oc get ratelimitpolicy ${gatewayName}-rlp -n ${gatewayNS} -o=jsonpath='{.status.conditions[?(@.type=="Accepted")].message}'**
+RateLimitPolicy has been accepted
+----
+

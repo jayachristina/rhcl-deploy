@@ -1,52 +1,8 @@
 = Install and configure Istio with Sail Operator
 
-Kuadrant integrates with Istio as a Gateway API provider. In this lab, you install and set up an Istio-based Gateway API provider by using the Sail Operator.
+Kuadrant integrates with **Istio** as a _Gateway API_ provider. In this lab, you install and set up an Istio-based Gateway API provider by using the Sail Operator.
 
-== Prerequisites
-
-In order to perform this lab, you will first need to log into the Red Hat OpenShift cluster with admin privileges.
-
-. SSH access to bastion
-* Open the lab environment page.
-* Navigate to the "Details" tab to find the information required to access the bastion.
-* Use SSH to connect to the bastion with the credentials provided.
-+
-[subs="+quotes,+macros"]
-----
-[student@user:~]$ **ssh lab-user@bastion.XXXXX.sandboxXXXX.opentlc.com**
-----
-
-. Login to Red Hat OpenShift cluster
-* Login to your Red Hat OpenShift console in your browser and locate the _kube:admin_ dropdown at the top right corner of the OpenShift console. 
-* Click on the dropdown and select _Copy login command_.
-+
-image::im1.png[align="center"]
-
-* This action will navigate you to a page where you will find a button labeled _Display Token_.
-+
-image::im2.png[align="center"]
-
-* Click _Display Token_, and you will be redirected to a page showing the login token. Copy the token.
-+
-image::im3.png[align="center"]
-
-* Return to the terminal and paste the copied token to log in to your OpenShift cluster:
-+
-[subs="+quotes,+macros"]
-----
-[lab-user@bastion ~]$ oc login --token=XXXX --server=XXXX
-Logged into "https://api.cluster-XXXXX.sandboxXXXXX.opentlc.com:6443" as "kube:admin" using the token provided.
-
-You have access to 71 projects, the list has been suppressed. You can list all projects with 'oc projects'
-
-Using project "default".
-----
-+
-You are now logged into the OpenShift cluster with admin privileges.
-
-== Install and Set up Istio
-
-. Before you can use Kuadrant, you must install Gateway API v1 as follows:
+. Switch to the terminal where you had taken access of bastion server. Before you can use Kuadrant, you need to install Gateway API v1 by applying the YAML file provided in the URL shown below:
 +
 [subs="+quotes,+macros"]
 ----
@@ -57,7 +13,7 @@ customresourcedefinition.apiextensions.k8s.io/httproutes.gateway.networking.k8s.
 customresourcedefinition.apiextensions.k8s.io/referencegrants.gateway.networking.k8s.io created
 ----
 
-. To install the Istio Gateway provider, run the following commands:
+. Create **gateway-system** namespace where the Gateway components shall be deployed:
 +
 [subs="+quotes,+macros"]
 ----
@@ -65,7 +21,7 @@ customresourcedefinition.apiextensions.k8s.io/referencegrants.gateway.networking
 namespace/gateway-system created
 ----
 
-. Run the following command to apply the Sail Operator Subscription YAML file directly from the URL:
+. Execute the following command to apply the _Sail Operator Subscription_ yaml file directly from the URL:
 +
 [subs="+quotes,+macros"]
 ----
@@ -74,22 +30,20 @@ operatorgroup.operators.coreos.com/sail created
 subscription.operators.coreos.com/sailoperator created
 ----
 
-* Check the status of the installation as follows:
+* Check the status of the installation using below command. When ready, the status will change from "installing" to "complete."
 +
 [subs="+quotes,+macros"]
 ----
 [lab-user@bastion ~]$ **oc get installplan -n gateway-system -o=jsonpath='{.items[0].status.phase}'**
 Complete
 ----
-+
-When ready, the status will change from installing to complete.
 
-* Notice you can now see _Sail operator_ in Openshift console's _Installed Operators_ section.
+* Note that you can now see **Sail operator** in _Red Hat Openshift_ console's _Installed Operators_ section.
 +
 image::sail.png[align="center"]
 
 . Configure Istio
-* To configure the Istio Gateway API provider, run the following command:
+* To configure the _Istio Gateway API_ provider, apply the yaml file from URL using below command:
 +
 [subs="+quotes,+macros"]
 ----
@@ -97,12 +51,12 @@ image::sail.png[align="center"]
 istio.operator.istio.io/default created
 ----
 
-* Wait for Istio to be ready as follows:
+* Wait for Istio to be ready as follow:
 +
 [subs="+quotes,+macros"]
 ----
 [lab-user@bastion ~]$ **oc wait istio/default -n gateway-system --for="condition=Ready=true"**
 istio.operator.istio.io/default condition met
 ----
-
-. Once you notice the _condition met_ output for above command, proceed with next lab.
++
+Once you notice the _condition met_ output for above command, proceed with next lab.

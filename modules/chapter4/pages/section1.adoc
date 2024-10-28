@@ -1,0 +1,23 @@
+= Toystore Application Deployment
+
+In this lab exercise, you will deploy the **toystore** application in _Red Hat OpenShift cluster_, and applying the necessary configurations for the app's deployment.
+
+. Create a namespace for the **toystore** app:
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ oc create namespace toystore
+namespace/toystore created
+----
+
+. Deploy the toystore app
+* Next, deploy a new version of the toystore app in the developer namespace using the command below:
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ oc apply -f https://raw.githubusercontent.com/Kuadrant/Kuadrant-operator/main/examples/toystore/toystore.yaml -n ${devNS}
+deployment.apps/toystore created
+service/toystore created
+----
++
+Notice that the deployment and pod are created under the toystore namespace.

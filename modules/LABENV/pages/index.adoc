@@ -1,15 +1,15 @@
 = Lab Environment
 
-Provision the lab environment https://demo.redhat.com/catalog?search=AWS+with+OpenShift+Open+Environment[AWS with OpenShift Open Environment] at https://demo.redhat.com/[demo.redhat.com].
+Provision the lab environment https://demo.redhat.com/catalog?search=AWS+with+OpenShift+Open+Environment&item=babylon-catalog-prod%2Fsandboxes-gpte.sandbox-ocp.prod[AWS with OpenShift Open Environment] at https://demo.redhat.com/[demo.redhat.com].
 
-IMPORTANT: Please provision this lab with exact requirements as mentioned below:
+IMPORTANT: Please provision this lab with exact requirements as mentioned below.
 
-Select the following options:
+Select the following options while provisioning the lab environment the lab:
 
-* Region: Choose your **closest region** and make a note of that. This will need to be used in the inventories file while running the Ansible script.
-* Control Plane Count = **1** [Note: we just need a single node OpenShift]
-* Control Plane Instance Type: **m6a.4xlarge**
-* OpenShift Version: **4.16**
+* **Region**: Choose your **closest region** and make a note of that.
+* **Control Plane Count** = **1** as we are deploying single node Red Hat Openshift cluster.
+* **Control Plane Instance Type**: **m6a.4xlarge**
+* **OpenShift Version**: **4.16**
 
 It can take upto 60 minutes to get the lab environment.
 

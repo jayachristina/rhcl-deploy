@@ -5,18 +5,10 @@ In this lab exercise, you will configure Amazon Route 53 to manage DNS and direc
 . Access the AWS Lab Environment:
 * Log in to the newly created AWS lab environment using the provided credentials in your lab environment page.
 
-. Follow the Video Instructions:
-* The video provides a step-by-step guide to setting up Route 53. It covers creating a hosted zone, configuring DNS records, and associating Route 53 with an existing Virtual Private Cloud (VPC).
+. Follow the video instructions to setting up Route 53:
+* The following video covers creating a hosted zone, configuring DNS records, and associating Route 53 with an existing Virtual Private Cloud (VPC).
 +
 video::route53.mp4[align="center",width=640,height=480]
-
-== References
-
-* https://docs.kuadrant.io/0.11.0/kuadrant-operator/doc/install/install-openshift/[Install Kuadrant on an OpenShift cluster]
-
-
-
-
 
 
 

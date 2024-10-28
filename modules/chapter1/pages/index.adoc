@@ -1,8 +1,6 @@
 = Overview of Red Hat Connectivity Link (RHCL)
 
-The objective of this chapter is to provide a comprehensive overview of Red Hat Connectivity Link (RHCL), an open-source solution tailored for hybrid cloud environments.
-
-
+The objective of this chapter is to provide a comprehensive overview of Red Hat Connectivity Link (RHCL).
 
 == Objectives
 

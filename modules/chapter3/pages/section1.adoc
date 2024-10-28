@@ -1,6 +1,101 @@
-= Create Kuadrant
+= Setting Up DNS and TLS for Kuadrant API Gateway
 
-* Create multiple copies of this section as needed.
-* Remove any unnecessary sections or chapter pages.
-* Customize the section as appropriate.
-* Ensure that each page contains a manageable amount of content.
+This lab covers the steps to configure DNS and TLS for the Kuadrant API Gateway, including setting up AWS credentials, creating necessary Kubernetes secrets, and configuring https://letsencrypt.org/[Let's Encrypt] for secure communication through TLS certificates.
+
+. Set the following environment variables that will be used in upcoming steps:
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ **export AWS_ACCESS_KEY_ID=XXXXXX**
+[lab-user@bastion ~]$ **export AWS_SECRET_ACCESS_KEY= XXXXXX**
+[lab-user@bastion ~]$ **export zid=XXXXXX**
+[lab-user@bastion ~]$ **export rootDomain=managed.sandboxXXXX.opentlc.com**
+[lab-user@bastion ~]$ **export gatewayNS=api-gateway**
+[lab-user@bastion ~]$ **export gatewayName=external**
+[lab-user@bastion ~]$ **export devNS=toystore**
+[lab-user@bastion ~]$ **export AWS_REGION=XXXXX**
+[lab-user@bastion ~]$ **export clusterIssuerName=lets-encrypt**
+[lab-user@bastion ~]$ **export EMAIL=user@gmail.com**
+----
++
+* Replace XXXXXX with the values as per your lab environment.
+* The **zid** is the zone ID of the AWS Route 53 hosted zone that you created in the "Setup Route53 in AWS" section mentioned in Chapter 2. The **rootDomain** is the name of the hosted zone created in the same section. Refer below image for reference:
++
+image::aws_zoneid.png[align="center"]
+* Ensure the **EMAIL** you provide is a genuine, existing email address, not a fake one.
+
+. Create a namespace for the API Gateway, which will be used for organizing and managing the resources.
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ **oc create ns ${gatewayNS}**
+namespace/api-gateway created
+----
+
+. Create a secret named **aws-credentials** to store the AWS credentials (AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY) that Kuadrant can use to authenticate and manage DNS configurations in AWS Route 53.
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ **oc -n ${gatewayNS} create secret generic aws-credentials \
+  --type=kuadrant.io/aws \
+  --from-literal=AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
+  --from-literal=AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY**
+secret/aws-credentials created
+----
+
+. Add a TLS issuer
+* To secure communication with the Gateways, define https://letsencrypt.org/[Let's Encrypt] TLS issuer for generating TLS certificates by executing command:
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ **curl -s https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/cluster-issuer-letsencrypt-route53.yaml | envsubst | oc apply -f -**
+----
++
+NOTE: In this training, we are using https://letsencrypt.org/[Let's Encrypt], but any cert-manager-supported issuer can be used.
++
+** Above curl command will:
+*** Streams the contents of yaml file directly into the envsubst command.
+*** Substitute the environment variables with their actual values using **envsubst**.
+*** Apply the processed YAML to your OpenShift cluster using **oc apply**.
+
+
+* Wait for the ClusterIssuer to become ready as follows:
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ **oc wait clusterissuer/${clusterIssuerName} --for=condition=ready=true**
+clusterissuer.cert-manager.io/lets-encrypt condition met
+----
+
+. Set up a Gateway
+* To enable Kuadrant to balance traffic across two or more clusters using DNS, you need to define a Gateway with a shared host. Run the following command to apply the Gateway configuration:
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ **curl -s https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-istio-gateway.yaml | envsubst | oc apply -f -**
+gateway.gateway.networking.k8s.io/external created
+----
++
+This will create the external Gateway needed for DNS-based traffic balancing.
+
+* Check the status of your Gateway as follows:
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ **oc get gateway ${gatewayName} -n ${gatewayNS} -o=jsonpath='{.status.conditions[?(@.type=="Accepted")].message}'**
+Resource accepted
+[lab-user@bastion ~]$ **oc get gateway ${gatewayName} -n ${gatewayNS} -o=jsonpath='{.status.conditions[?(@.type=="Programmed")].message}'**
+Resource programmed, assigned to service(s) external-istio.api-gateway.svc.cluster.local:443
+----
++
+Your Gateway should be accepted and programmed (valid and assigned an external address).
+
+* However, if you check your listener status as follows, you will see that it is not yet programmed or ready to accept traffic due to **bad TLS configuration**:
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ **oc get gateway ${gatewayName} -n ${gatewayNS} -o=jsonpath='{.status.listeners[0].conditions[?(@.type=="Programmed")].message}'**
+Bad TLS configuration
+----
++
+Kuadrant can help with this by using a **TLSPolicy** that we shall see in next section.

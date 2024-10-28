@@ -2,12 +2,9 @@
 
 In this lab, you install and setup Kuadrant Operator and trigger Kuadrant deployment.
 
-== Prerequisites
+== Install Kuadrant
 
-Before installing the Kuadrant Operator, you must create the necessary namespace and set up the CatalogSource. Follow the steps below:
-
-. Create the Namespace
-* Run the following command to create the kuadrant-system namespace:
+. Create **kuadrant-system** namespace as shown below:
 +
 [subs="+quotes,+macros"]
 ----
@@ -15,8 +12,7 @@ Before installing the Kuadrant Operator, you must create the necessary namespace
 namespace/kuadrant-system created
 ----
 
-. Set Up the CatalogSource
-* Apply the CatalogSource by running the following command:
+. Create the **catalog source** by appling the yaml file from URL using below command:
 +
 [subs="+quotes,+macros"]
 ----
@@ -24,9 +20,7 @@ namespace/kuadrant-system created
 catalogsource.operators.coreos.com/kuadrant-operator-catalog created
 ----
 
-== Install the Kuadrant Operator
-
-. To install the Kuadrant Operator, enter the following command:
+. Install the **Kuadrant** operator by appling the yaml file from URL using below command:
 +
 [subs="+quotes,+macros"]
 ----
@@ -35,22 +29,22 @@ subscription.operators.coreos.com/kuadrant-operator created
 operatorgroup.operators.coreos.com/kuadrant created
 ----
 
-* Wait for the Kuadrant Operators to be installed as follows:
+* Check the status of the installation using below command. When ready, the status will change from "installing" to "Complete."
 +
 [subs="+quotes,+macros"]
 ----
-[lab-user@bastion ~]$ oc get installplan -n kuadrant-system -o=jsonpath='{.items[0].status.phase}'
+[lab-user@bastion ~]$ **oc get installplan -n kuadrant-system -o=jsonpath='{.items[0].status.phase}'**
 Complete
 ----
-+
-After some time, this command should return complete. 
 
-* Notice the kuadrant operator is installed along with it's dependencies:
-** https://docs.kuadrant.io/latest/authorino-operator/#the-authorino-custom-resource-definition-crd[Authorino](Enforcement Component for AuthPolicy)
-** https://docs.kuadrant.io/latest/limitador-operator/#features[Limitador (Enforcement Component for RateLimitPolicy)]
-** DNS Operator (Enforcement Component for DNSPOlicy)
+* Observe the **Kuadrant** operator is installed along with it's dependencies in the _Red Hat Openshift_ console's  _Installed Operators_ section.
 +
 image::kuad.png[align="center"]
++
+** Below are the dependencies installed:
+*** https://docs.kuadrant.io/latest/authorino-operator/#the-authorino-custom-resource-definition-crd[Authorino](Enforcement Component for AuthPolicy)
+*** https://docs.kuadrant.io/latest/limitador-operator/#features[Limitador (Enforcement Component for RateLimitPolicy)]
+*** DNS Operator (Enforcement Component for DNSPOlicy)
 
 . Configure AWS Access Key and Secret Key
 * Now set up your AWS access credentials by exporting the access key ID and secret access key.
@@ -63,13 +57,18 @@ Use the following commands in your terminal, replacing xxxxxxx with your actual 
 ----
 
 . Set up a DNSProvider
-* Next step is to create DNS secret Provider that would provide those DNS Provider details that we set in AWS. It is important the secret for the DNSProvider is setup in the same namespace as the gateway.
+* Create a namespace named **ingress-gateway** for this as shown below:
 +
 [subs="+quotes,+macros"]
 ----
 [lab-user@bastion ~]$ **oc create ns ingress-gateway**
 namespace/ingress-gateway created
+----
 
+* Create DNS secret Provider that would provide those DNS Provider details that we set in AWS.
++
+[subs="+quotes,+macros"]
+----
 [lab-user@bastion ~]$ **oc -n ingress-gateway create secret generic aws-credentials \
   --type=kuadrant.io/aws \
   --from-literal=AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
@@ -94,7 +93,3 @@ kuadrant.kuadrant.io/kuadrant created
 [lab-user@bastion ~]$ **oc wait kuadrant/kuadrant --for="condition=Ready=true" -n kuadrant-system --timeout=300s**
 kuadrant.kuadrant.io/kuadrant condition met
 ----
-
-== References
-
-* https://docs.kuadrant.io/0.11.0/kuadrant-operator/doc/install/install-openshift/[Install Kuadrant on an OpenShift cluster]
