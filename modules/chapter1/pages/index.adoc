@@ -1,7 +1,8 @@
-= Chapter 1
+= Overview of Red Hat Connectivity Link (RHCL)
 
-In this section, we cover... FIXME
+The objective of this chapter is to provide a comprehensive overview of Red Hat Connectivity Link (RHCL).
 
+== Objectives
 
-- Add or remove section entries in the `antora.yaml` file as needed.
-- Ensure you create or delete the corresponding directory for the chapter accordingly.
+* Introduce RHCL
+* Highlight Key Features of RHCL

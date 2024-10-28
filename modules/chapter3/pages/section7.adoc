@@ -1,0 +1,78 @@
+= Create HTTP Route
+
+* Create an HTTPRoute for your Gateway as follows:
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ **curl -s https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-httproute.yaml | envsubst | oc apply -f -**
+httproute.gateway.networking.k8s.io/test created
+----
+
+* Notice that all DNSPolicy is enforced after this:
++
+image::dns2.png[align="center"]
+
+** Also notice instance are accepted + enforced
++
+image::all.png[align="center"]
+
+** Notice DNS records has been created. Navigate to Installed Operators -> DNS Operator -> DNSRecord
++
+image::all2.png[align="center"]
+
+** Refresh all the DNS record in AWS and notice all records are created. Navigate to AWS account -> Route 53 -> Hosted zones -> managed.sandbox1348.opentlc.com 
++
+image::dnsrecord.png[align="center"]
+
+** Check your Gateway policies are enforced as follows:
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ oc get dnspolicy ${gatewayName}-dnspolicy -n ${gatewayNS} -o=jsonpath='{.status.conditions[?(@.type=="Enforced")].message}'
+DNSPolicy has been successfully enforced
+
+[lab-user@bastion ~]$ kubectl get authpolicy ${gatewayName}-auth -n ${gatewayNS} -o=jsonpath='{.status.conditions[?(@.type=="Enforced")].message}'
+AuthPolicy has been successfully enforced
+
+[lab-user@bastion ~]$ kubectl get ratelimitpolicy ${gatewayName}-rlp -n ${gatewayNS} -o=jsonpath='{.status.conditions[?(@.type=="Enforced")].message}'
+RateLimitPolicy has been successfully enforced
+----
+
+** Check your listener is ready as follows:
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ oc get gateway ${gatewayName} -n ${gatewayNS} -o=jsonpath='{.status.listeners[0].conditions[?(@.type=="Programmed")].message}'
+Bad TLS configuration
+----
+
+* These credentials are expected in to be present, however some issue hence we create it:
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ oc -n cert-manager create secret generic aws-credentials --type=kuadrant.io/aws --from-literal=AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID --from-literal=AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+secret/aws-credentials created
+----
+
+* Delete the existing pod:
+Naviage to "Workloads" -> "Pods" -> select Project: cert-manager -> select **cert-manager-XXXXX** and delete it:
++
+image::pod.png[align="center"]
+*
+Allow the pod to recreate itself and then wait for 2-3 minutes for the secrets to propograte in the pod.
+
+* Test connectivity and deny all auth: You can use curl to hit your endpoint. You should see a 403. Because this example uses Let's Encrypt staging, you can pass the -k flag:
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ curl -k -w "%{http_code}" https://$(kubectl get httproute test -n ${gatewayNS} -o=jsonpath='{.spec.hostnames[0]}')
+403
+----
+
+* Opening up the Gateway for other namespaces: Because you have configured the Gateway, secured it with Kuadrant policies, and tested it, you can now open it up for use by other teams in other namespaces:
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ oc patch gateway ${gatewayName} -n ${gatewayNS} --type='json' -p='[{"op": "replace", "path": "/spec/listeners/0/allowedRoutes/namespaces/from", "value":"All"}]'
+gateway.gateway.networking.k8s.io/external patched
+----

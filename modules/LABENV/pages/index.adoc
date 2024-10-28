@@ -1,3 +1,16 @@
 = Lab Environment
 
-FIXME: Instructions for accessing the lab environment on the Demo platform, for this hands-on based training.
+Provision the lab environment https://demo.redhat.com/catalog?search=AWS+with+OpenShift+Open+Environment&item=babylon-catalog-prod%2Fsandboxes-gpte.sandbox-ocp.prod[AWS with OpenShift Open Environment] at https://demo.redhat.com/[demo.redhat.com].
+
+IMPORTANT: Please provision this lab with exact requirements as mentioned below.
+
+Select the following options while provisioning the lab environment the lab:
+
+* **Region**: Choose your **closest region** and make a note of that.
+* **Control Plane Count** = **1** as we are deploying single node Red Hat Openshift cluster.
+* **Control Plane Instance Type**: **m6a.4xlarge**
+* **OpenShift Version**: **4.16**
+
+It can take upto 60 minutes to get the lab environment.
+
+This training includes detailed lab instructions for learners to follow.

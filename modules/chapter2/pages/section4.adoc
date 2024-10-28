@@ -1,0 +1,95 @@
+= Install Kuadrant on Red Hat OpenShift cluster
+
+In this lab, you install and setup Kuadrant Operator and trigger Kuadrant deployment.
+
+== Install Kuadrant
+
+. Create **kuadrant-system** namespace as shown below:
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ **oc create ns kuadrant-system**
+namespace/kuadrant-system created
+----
+
+. Create the **catalog source** by appling the yaml file from URL using below command:
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ **oc apply -f https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-catalogsource.yaml**
+catalogsource.operators.coreos.com/kuadrant-operator-catalog created
+----
+
+. Install the **Kuadrant** operator by appling the yaml file from URL using below command:
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ **oc apply -f https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-subscription-operatorgroup.yaml**
+subscription.operators.coreos.com/kuadrant-operator created
+operatorgroup.operators.coreos.com/kuadrant created
+----
+
+* Check the status of the installation using below command. When ready, the status will change from "installing" to "Complete."
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ **oc get installplan -n kuadrant-system -o=jsonpath='{.items[0].status.phase}'**
+Complete
+----
+
+* Observe the **Kuadrant** operator is installed along with it's dependencies in the _Red Hat Openshift_ console's  _Installed Operators_ section.
++
+image::kuad.png[align="center"]
++
+** Below are the dependencies installed:
+*** https://docs.kuadrant.io/latest/authorino-operator/#the-authorino-custom-resource-definition-crd[Authorino](Enforcement Component for AuthPolicy)
+*** https://docs.kuadrant.io/latest/limitador-operator/#features[Limitador (Enforcement Component for RateLimitPolicy)]
+*** DNS Operator (Enforcement Component for DNSPOlicy)
+
+. Configure AWS Access Key and Secret Key
+* Now set up your AWS access credentials by exporting the access key ID and secret access key.
+Use the following commands in your terminal, replacing xxxxxxx with your actual keys that you can find in your lab environment section:
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ export AWS_ACCESS_KEY_ID=XXXXXXX
+[lab-user@bastion ~]$ export AWS_SECRET_ACCESS_KEY=XXXXXX
+----
+
+. Set up a DNSProvider
+* Create a namespace named **ingress-gateway** for this as shown below:
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ **oc create ns ingress-gateway**
+namespace/ingress-gateway created
+----
+
+* Create DNS secret Provider that would provide those DNS Provider details that we set in AWS.
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ **oc -n ingress-gateway create secret generic aws-credentials \
+  --type=kuadrant.io/aws \
+  --from-literal=AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
+  --from-literal=AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY**
+secret/aws-credentials created
+----
+
+== Deploy Kuadrant
+
+* To trigger your Kuadrant deployment, enter the following command:
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ **oc apply -f https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-resource.yaml**
+kuadrant.kuadrant.io/kuadrant created
+----
+
+* Wait for Kuadrant to be ready as follows:
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ **oc wait kuadrant/kuadrant --for="condition=Ready=true" -n kuadrant-system --timeout=300s**
+kuadrant.kuadrant.io/kuadrant condition met
+----

@@ -1,7 +1,54 @@
-= Chapter 2
+= RHCL Environment Setup
 
-In this section, we cover... FIXME
+In this chapter, you install and deploy Kuadrant on a single node Red Hat OpenShift cluster.
 
+== Objectives
 
-- Add or remove section entries in the `antora.yaml` file as needed.
-- Ensure you create or delete the corresponding directory for the chapter accordingly.
+* Configure Amazon Route 53 to manage DNS and direct traffic to your AWS resources effectively.
+* Install cert-manager to manage TLS certificates for your Kuadrant gateways.
+* Integrate Kuadrant with Istio as a Gateway API provider by installing and configuring Istio using the Sail Operator.
+* Install the Kuadrant Operator and trigger the deployment of Kuadrant in Red Hat OpenShift cluster.
+
+== Prerequisites
+
+In order to complete the upcoming sections in this lab, ensure you perform the following steps to gain the necessary access:
+
+* **Log into your _Red Hat OpenShift console_** as __kubeadmin__ user and password provided in the lab environment page.
+
+* **Take SSH access to bastion server** by following these steps:
+** Open the lab environment page and navigate to the **Details** tab.
+** Note the ssh command and password details provided to access the bastion server.
+** Open a terminal and execute the SSH command that looks like this:
++
+[subs="+quotes,+macros"]
+----
+[student@user:~]$ **ssh lab-user@bastion.XXXXX.sandboxXXXX.opentlc.com**
+----
+
+* **Log into to _Red Hat OpenShift cluster_** as the admin user from the bastion server by following these steps:
+** In your browser, log into your Red Hat OpenShift console as the kubeadmin user. Locate the **kube-admin** dropdown at the top right corner and select Copy login command as shown in the image:
++
+image::im1.png[align="center"]
+
+** This action will take you to a page where you'll find the **Display Token** button:
++
+image::im2.png[align="center"]
+
+** Click **Display Token**, and copy the token shown on the next page:
++
+image::im3.png[align="center"]
+
+** Return to your bastion server terminal and paste the copied token to log in to your _Red Hat OpenShift cluster_:
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ oc login --token=XXXX --server=XXXX
+Logged into "https://api.cluster-XXXXX.sandboxXXXXX.opentlc.com:6443" as "kube:admin" using the token provided.
+
+You have access to 71 projects, the list has been suppressed. You can list all projects with 'oc projects'
+
+Using project "default".
+----
+
+* Now, you're logged into the Red Hat OpenShift cluster with admin privileges and ready to proceed with the lab.
+

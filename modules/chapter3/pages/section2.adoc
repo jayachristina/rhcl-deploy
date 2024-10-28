@@ -1,6 +1,26 @@
-= Section 2
+= Create Auth Policy
 
-* Create multiple copies of this section as needed.
-* Remove any unnecessary sections or chapter pages.
-* Customize the section as appropriate.
-* Ensure that each page contains a manageable amount of content.
+In this lab you set a **default, deny-all AuthPolicy** for your Gateway, ensuring no traffic is allowed unless explicitly permitted, and verifies its acceptance by the Kuadrant controller.
+
+* Set a **default, deny-all AuthPolicy** for your Gateway by running the following command:
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ **curl -s https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-authpolicy.yaml | envsubst | oc apply -f -**
+authpolicy.kuadrant.io/external-auth created
+----
+
+* Navigate to the Red Hat Openshift console and select **Operators** -> select **Installed Opertor** -> select **Kuadrant Operator** -> select **AuthPolicy** -> select **external-auth** and notice the **Conditions** section:
++
+image::auth2.png[align="center"]
++
+Note that the **Enforced** status is set to **False** as there is not route to enforce the policy.
+
+* Confirm your auth policy was accepted by the controller as follows:
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ **oc get authpolicy ${gatewayName}-auth -n ${gatewayNS} -o=jsonpath='{.status.conditions[?(@.type=="Accepted")].message}'**
+AuthPolicy has been accepted
+----
+
