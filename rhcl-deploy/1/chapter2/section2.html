@@ -96,16 +96,41 @@
     <a class="nav-link" href="../chapter3/index.html">Platform Engineer Workflow</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter3/section2.html">Create a gateway matching the DNS created on AWS</a>
+    <a class="nav-link" href="../chapter3/section1.html">Setting Up DNS and TLS for Kuadrant API Gateway</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter3/section3.html">Create DNS Policy</a>
+    <a class="nav-link" href="../chapter3/section2.html">Create Auth Policy</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter3/section4.html">Create TLS Policy</a>
+    <a class="nav-link" href="../chapter3/section3.html">Create TLS Policy</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter3/section5.html">Create Auth Policy</a>
+    <a class="nav-link" href="../chapter3/section4.html">Create Rate Limit Policy</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter3/section5.html">Create DNS Policy</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter3/section6.html">Create HTTP Route</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../chapter4/index.html">Developer Workflow</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter4/section1.html">Toystore Application Deployment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter4/section2.html">Deploying the Toystore HTTPRoute</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter4/section3.html">Securing the Toystore Application with Kuadrant Policies</a>
   </li>
 </ul>
   </li>
@@ -159,21 +184,14 @@
 <article class="doc">
 <h1 class="page">Install Cert-manager Operator</h1>
 <div class="paragraph">
-<p>In this lab exercise, you will install cert-manager to manage TLS certificates for your Kuadrant gateways.</p>
+<p>Before using Kuadrant, you must first install the <strong>cert-manager</strong> operator, which is responsible for managing <em>TLS certificates</em> for your gateways in Kuadrant.
+In this lab exercise, you will install <strong>cert-manager</strong> operator.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Before using Kuadrant, you must install <em>cert-manager</em> operator.</p>
-</li>
-<li>
-<p>Cert-manager is responsible for managing TLS certificates for your gateways in Kuadrant.</p>
-</li>
-<li>
-<p>To install the cert-manager Operator, first, access your Red Hat OpenShift console using the credentials provided in the lab environment section.</p>
-</li>
-<li>
-<p>Once logged in, navigate to Operators, type "cert-manager" in the search box, and select <em>cert-manager Operator for Red Hat OpenShift</em>, as shown in the image below:</p>
+<p>In your <em>Red Hat Openshift console</em> , navigate to <em>Operators</em> option. Select <em>OperatorHub</em> option and type "cert-manager" in the search box.
+Select <strong>cert-manager Operator for Red Hat OpenShift</strong> that appears in the search result, as shown in the image below:</p>
 <div class="imageblock text-center">
 <div class="content">
 <img src="_images/certoperator.png" alt="certoperator">
@@ -181,7 +199,7 @@
 </div>
 </li>
 <li>
-<p>Confirm all the options are same as image below and select install:</p>
+<p>Confirm all the options are same as image below and select <strong>Install</strong> button:</p>
 <div class="imageblock text-center">
 <div class="content">
 <img src="_images/certinstall.png" alt="certinstall">

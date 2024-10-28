@@ -96,16 +96,41 @@
     <a class="nav-link" href="../chapter3/index.html">Platform Engineer Workflow</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter3/section2.html">Create a gateway matching the DNS created on AWS</a>
+    <a class="nav-link" href="../chapter3/section1.html">Setting Up DNS and TLS for Kuadrant API Gateway</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter3/section3.html">Create DNS Policy</a>
+    <a class="nav-link" href="../chapter3/section2.html">Create Auth Policy</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter3/section4.html">Create TLS Policy</a>
+    <a class="nav-link" href="../chapter3/section3.html">Create TLS Policy</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter3/section5.html">Create Auth Policy</a>
+    <a class="nav-link" href="../chapter3/section4.html">Create Rate Limit Policy</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter3/section5.html">Create DNS Policy</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter3/section6.html">Create HTTP Route</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../chapter4/index.html">Developer Workflow</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter4/section1.html">Toystore Application Deployment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter4/section2.html">Deploying the Toystore HTTPRoute</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter4/section3.html">Securing the Toystore Application with Kuadrant Policies</a>
   </li>
 </ul>
   </li>
@@ -166,19 +191,12 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h2>
+<h2 id="_install_kuadrant"><a class="anchor" href="#_install_kuadrant"></a>Install Kuadrant</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Before installing the Kuadrant Operator, you must create the necessary namespace and set up the CatalogSource. Follow the steps below:</p>
-</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Create the Namespace</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Run the following command to create the kuadrant-system namespace:</p>
+<p>Create <strong>kuadrant-system</strong> namespace as shown below:</p>
 <div class="listingblock">
 <div class="content">
 <pre>[lab-user@bastion ~]$ <strong>oc create ns kuadrant-system</strong>
@@ -186,15 +204,8 @@ namespace/kuadrant-system created</pre>
 </div>
 </div>
 </li>
-</ul>
-</div>
-</li>
 <li>
-<p>Set Up the CatalogSource</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Apply the CatalogSource by running the following command:</p>
+<p>Create the <strong>catalog source</strong> by appling the yaml file from URL using below command:</p>
 <div class="listingblock">
 <div class="content">
 <pre>[lab-user@bastion ~]$ <strong>oc apply -f <a href="https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-catalogsource.yaml" class="bare">https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-catalogsource.yaml</a></strong>
@@ -202,20 +213,8 @@ catalogsource.operators.coreos.com/kuadrant-operator-catalog created</pre>
 </div>
 </div>
 </li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_install_the_kuadrant_operator"><a class="anchor" href="#_install_the_kuadrant_operator"></a>Install the Kuadrant Operator</h2>
-<div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
 <li>
-<p>To install the Kuadrant Operator, enter the following command:</p>
+<p>Install the <strong>Kuadrant</strong> operator by appling the yaml file from URL using below command:</p>
 <div class="listingblock">
 <div class="content">
 <pre>[lab-user@bastion ~]$ <strong>oc apply -f <a href="https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-subscription-operatorgroup.yaml" class="bare">https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-subscription-operatorgroup.yaml</a></strong>
@@ -226,19 +225,25 @@ operatorgroup.operators.coreos.com/kuadrant created</pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Wait for the Kuadrant Operators to be installed as follows:</p>
+<p>Check the status of the installation using below command. When ready, the status will change from "installing" to "Complete."</p>
 <div class="listingblock">
 <div class="content">
-<pre>[lab-user@bastion ~]$ oc get installplan -n kuadrant-system -o=jsonpath='{.items[0].status.phase}'
+<pre>[lab-user@bastion ~]$ <strong>oc get installplan -n kuadrant-system -o=jsonpath='{.items[0].status.phase}'</strong>
 Complete</pre>
 </div>
 </div>
-<div class="paragraph">
-<p>After some time, this command should return complete.</p>
-</div>
 </li>
 <li>
-<p>Notice the kuadrant operator is installed along with it&#8217;s dependencies:</p>
+<p>Observe the <strong>Kuadrant</strong> operator is installed along with it&#8217;s dependencies in the <em>Red Hat Openshift</em> console&#8217;s  <em>Installed Operators</em> section.</p>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/kuad.png" alt="kuad">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Below are the dependencies installed:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -249,10 +254,8 @@ Complete</pre>
 </li>
 <li>
 <p>DNS Operator (Enforcement Component for DNSPOlicy)</p>
-<div class="imageblock text-center">
-<div class="content">
-<img src="_images/kuad.png" alt="kuad">
-</div>
+</li>
+</ul>
 </div>
 </li>
 </ul>
@@ -283,13 +286,19 @@ Use the following commands in your terminal, replacing xxxxxxx with your actual 
 <div class="ulist">
 <ul>
 <li>
-<p>Next step is to create DNS secret Provider that would provide those DNS Provider details that we set in AWS. It is important the secret for the DNSProvider is setup in the same namespace as the gateway.</p>
+<p>Create a namespace named <strong>ingress-gateway</strong> for this as shown below:</p>
 <div class="listingblock">
 <div class="content">
 <pre>[lab-user@bastion ~]$ <strong>oc create ns ingress-gateway</strong>
-namespace/ingress-gateway created
-
-[lab-user@bastion ~]$ <strong>oc -n ingress-gateway create secret generic aws-credentials \
+namespace/ingress-gateway created</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create DNS secret Provider that would provide those DNS Provider details that we set in AWS.</p>
+<div class="listingblock">
+<div class="content">
+<pre>[lab-user@bastion ~]$ <strong>oc -n ingress-gateway create secret generic aws-credentials \
   --type=kuadrant.io/aws \
   --from-literal=AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
   --from-literal=AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY</strong>
@@ -326,18 +335,6 @@ kuadrant.kuadrant.io/kuadrant created</pre>
 kuadrant.kuadrant.io/kuadrant condition met</pre>
 </div>
 </div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_references"><a class="anchor" href="#_references"></a>References</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://docs.kuadrant.io/0.11.0/kuadrant-operator/doc/install/install-openshift/">Install Kuadrant on an OpenShift cluster</a></p>
 </li>
 </ul>
 </div>

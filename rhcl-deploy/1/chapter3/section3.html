@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Create DNS Policy :: Getting Started with Red Hat Connectivity Link</title>
+    <title>Create TLS Policy :: Getting Started with Red Hat Connectivity Link</title>
     <link rel="prev" href="section2.html">
     <link rel="next" href="section4.html">
     <meta name="generator" content="Antora 3.1.3">
@@ -96,16 +96,41 @@
     <a class="nav-link" href="index.html">Platform Engineer Workflow</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section2.html">Create a gateway matching the DNS created on AWS</a>
+    <a class="nav-link" href="section1.html">Setting Up DNS and TLS for Kuadrant API Gateway</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section2.html">Create Auth Policy</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="section3.html">Create DNS Policy</a>
+    <a class="nav-link" href="section3.html">Create TLS Policy</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section4.html">Create TLS Policy</a>
+    <a class="nav-link" href="section4.html">Create Rate Limit Policy</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section5.html">Create Auth Policy</a>
+    <a class="nav-link" href="section5.html">Create DNS Policy</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section6.html">Create HTTP Route</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../chapter4/index.html">Developer Workflow</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter4/section1.html">Toystore Application Deployment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter4/section2.html">Deploying the Toystore HTTPRoute</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter4/section3.html">Securing the Toystore Application with Kuadrant Policies</a>
   </li>
 </ul>
   </li>
@@ -148,7 +173,7 @@
   <ul>
     <li><a href="../index.html">Getting Started with Red Hat Connectivity Link</a></li>
     <li><a href="index.html">Platform Engineer Workflow</a></li>
-    <li><a href="section3.html">Create DNS Policy</a></li>
+    <li><a href="section3.html">Create TLS Policy</a></li>
   </ul>
 </nav>
 </div>
@@ -157,26 +182,46 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Create DNS Policy</h1>
+<h1 class="page">Create TLS Policy</h1>
+<div class="paragraph">
+<p>In this lab, you will set a TLSPolicy for your Gateway to manage secure traffic, and verifying its acceptance by the Kuadrant controller.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Create multiple copies of this section as needed.</p>
+<p>Set the <strong>TLSPolicy</strong> for your Gateway by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre>[lab-user@bastion ~]$ <strong>curl -s <a href="https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-tlspolicy.yaml" class="bare">https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-tlspolicy.yaml</a> | envsubst | oc apply -f -</strong>
+tlspolicy.kuadrant.io/external-tls created</pre>
+</div>
+</div>
 </li>
 <li>
-<p>Remove any unnecessary sections or chapter pages.</p>
+<p>Verify that the TLS policy has been accepted by the controller:</p>
+<div class="listingblock">
+<div class="content">
+<pre>[lab-user@bastion ~]$ <strong>oc get tlspolicy ${gatewayName}-tls -n ${gatewayNS} -o=jsonpath='{.status.conditions[?(@.type=="Accepted")].message}'</strong>
+TLSPolicy has been accepted</pre>
+</div>
+</div>
 </li>
 <li>
-<p>Customize the section as appropriate.</p>
-</li>
-<li>
-<p>Ensure that each page contains a manageable amount of content.</p>
+<p>Navigate to the Red Hat Openshift console and select <strong>Operators</strong> &#8594; select <strong>Installed Opertor</strong> &#8594; select <strong>Kuadrant Operator</strong> &#8594; select <strong>TLSPolicy</strong> &#8594; select <strong>external-tls</strong> and notice the <strong>Conditions</strong> section:</p>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/tls2.png" alt="tls2">
+</div>
+</div>
+<div class="paragraph">
+<p>Note that the <strong>Enforced</strong> status is set to <strong>False</strong> as certificate <strong>api-external-tls</strong> is not ready.</p>
+</div>
 </li>
 </ul>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="section2.html">Create a gateway matching the DNS created on AWS</a></span>
-  <span class="next"><a href="section4.html">Create TLS Policy</a></span>
+  <span class="prev"><a href="section2.html">Create Auth Policy</a></span>
+  <span class="next"><a href="section4.html">Create Rate Limit Policy</a></span>
 </nav>
 </article>
   </div>
