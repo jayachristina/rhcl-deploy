@@ -1,0 +1,52 @@
+= Lab Scenerio
+
+Before we dive into the lab, let’s review the following scenario:
+
+== Situation
+
+Globex, a fast-growing retail company, is expanding its mobile presence by allowing access to its core services via a new mobile app.
+However, security is a top priority, as exposing their core service endpoints to unauthorized access could pose significant risks.
+
+To address these concerns, _Globex_ has decided to:
+
+* Implement OpenID Connect (OIDC) for secure authentication to the _Product Catalog API_.
+
+Additionally, _Globex_ aims to protect its endpoints by:
+
+* Implementing rate limiting
+* Enforcing user-specific access controls
+
+Their goals include:
+
+* Managing everything through configuration
+* Avoiding hardcoding
+* Easily adjusting rate limits as needed
+
+== Solution to the Situation along with in-depth Architecture
+
+_Globex’s_ development team has built a Mobile Gateway, serving as a single point of entry (a wrapper) in front of the company’s core services, following the gateway-pattern approach. This gateway allows Globex’s mobile app to access core services, but the endpoint must be secured for safe connectivity.
++
+image::arch.png[align="center"]
+
+To enhance security and management:
+* _Globex_ adopts a policy-as-code approach allowing them to define security through code for automated and repeatable processes.
++
+image::sail.png[align="center"]
+
+* _Globex_ adopts a Kubernetes-native approach to application connectivity using Red Hat Connectivity Link (RHCL).
+* RHCL enables secure, efficient management of application connectivity across both single and multi-cluster environments.
+* Using RHCL, _Globex_  integrates Gateway API and policies, enabling them to effectively scale, load-balance, and secure their gateways.
+
+
+== What We Will Do in This Lab-Oriented Course
+
+In the upcoming sections, we will exercise these concepts by dividing the work into two job roles:
+
+* Platform Engineer
+** The Platform Engineer sets up a Gateway to establish secure connections to backend service endpoints.
+** This process involves configuring several other components as well. Navigate to this section to learn more.
+
+* Developer
+** Once the Gateway is established, developers will onboard their service endpoints by creating an HTTPRoute for each endpoint.
+** Developers can also override the authentication and rate limit policies set by the Platform Engineer to address their specific authorization needs and non-functional rate limiting requirements.
+

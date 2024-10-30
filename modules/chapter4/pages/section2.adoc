@@ -1,4 +1,4 @@
-= Deploying the Toystore HTTPRoute
+== Deploying the Toystore HTTPRoute
 
 In this lab exercise, you will create an HTTPRoute for the toystore application, allowing it to manage incoming traffic effectively. 
 This will involve defining the routing rules and testing the configuration to ensure proper functionality.

@@ -1,4 +1,4 @@
-= Securing the Toystore Application with Kuadrant Policies
+== Securing the Toystore Application with Kuadrant Policies
 
 In this lab exercise, you will configure authentication policies, generate API keys, and test access to various endpoints in the **toystore** application, which is secured by Kuadrant policies.
 
@@ -11,8 +11,11 @@ In this lab exercise, you will configure authentication policies, generate API k
 authpolicy.kuadrant.io/toystore created
 ----
 
-. Test without API_KEY
-* After applying the authentication policy, test access to the **/cars** endpoint without an API key:
+. Authenticate using API_KEY:
+* The API_KEY is crucial for enforcing the security measures defined in the AuthPolicy and ensuring that the **toystore** application is accessed only by authenticated and authorized users.
+
+* Test without API_KEY
+** After applying the authentication policy, test access to the **/cars** endpoint without an API key:
 +
 [subs="+quotes,+macros"]
 ----
@@ -22,8 +25,8 @@ authpolicy.kuadrant.io/toystore created
 +
 The response should return a 401 status code, indicating unauthorized access.
 
-. Create API Keys
-* Next, create API keys for different user roles by applying the following YAML file:
+* Create API Keys
+** Next, create API keys for different user roles by applying the following YAML file:
 +
 [subs="+quotes,+macros"]
 ----
@@ -32,9 +35,8 @@ secret/api-key-regular-user created
 secret/api-key-admin-user created
 ----
 
-. Test the API with API_KEY
-* Test **/cars** endpoint with **regular user** API Key.
-** Use the API_KEY for the **regular user** to access the **/cars** endpoint:
+* Test the API with API_KEY
+** Test **/cars** endpoint with **regular user** API Key. Use the API_KEY for the **regular user** to access the **/cars** endpoint:
 +
 [subs="+quotes,+macros"]
 ----
@@ -68,8 +70,7 @@ secret/api-key-admin-user created
 +
 This will return the expected output from the **/cars** endpoint, confirming successful authentication.
 
-** Test **/admin** endpoint with admin user API Key
-*** Use the API_KEY for the admin user to access the **/admin** endpoint:
+** Test **/admin** endpoint with admin user API Key. Use the API_KEY for the admin user to access the **/admin** endpoint:
 +
 [subs="+quotes,+macros"]
 ----

@@ -1,8 +1,8 @@
-= Install Kuadrant on Red Hat OpenShift cluster
+== Install Kuadrant on Red Hat OpenShift cluster
 
 In this lab, you install and setup Kuadrant Operator and trigger Kuadrant deployment.
 
-== Install Kuadrant
+=== Install Kuadrant
 
 . Create **kuadrant-system** namespace as shown below:
 +
@@ -76,7 +76,7 @@ namespace/ingress-gateway created
 secret/aws-credentials created
 ----
 
-== Deploy Kuadrant
+=== Deploy Kuadrant
 
 * To trigger your Kuadrant deployment, enter the following command:
 +

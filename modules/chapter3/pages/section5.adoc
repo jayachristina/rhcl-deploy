@@ -1,4 +1,6 @@
-= Create DNS Policy
+== Create DNS Policy
+
+Now that we have setup a secure, protected application connectivity environment, we are now ready to expose this to the Internet. We will do so by creating a DNSPolicy.
 
 In this lab, you set a **DNSPolicy** for your Gateway, using the previously defined DNS provider secret, and verify its acceptance by the Kuadrant controller.
 

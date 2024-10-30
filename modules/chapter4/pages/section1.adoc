@@ -1,4 +1,4 @@
-= Toystore Application Deployment
+== Toystore Application Deployment
 
 In this lab exercise, you will deploy the **toystore** application in _Red Hat OpenShift cluster_, and applying the necessary configurations for the app's deployment.
 
@@ -20,4 +20,11 @@ deployment.apps/toystore created
 service/toystore created
 ----
 +
-Notice that the deployment and pod are created under the toystore namespace.
+Notice that the deployment named **toystore** created under the **toystore** namespace.
++
+image::deploy.png[align="center"]
++
+Notice that the pod under the **toystore** namespace is created.
++
+image::ppp.png[align="center"]
+

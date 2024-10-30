@@ -1,0 +1,15 @@
+== Summary
+
+This chapter has laid the groundwork for API management in a Red Hat Openshift environment by:
+
+* Setting up managed zone using AWS Route53
+* Install and configure Istio with Sail Operator
+* Install Kuadrant operator
+* Deploy Kuadrant instance
+
+All these will support traffic control, security, and scalability in the upcoming chapters.
+
+In the next section, as a Platform Engineer, you’ll configure:
+
+* DNS and TLS for the Kuadrant API Gateway
+* Implement policies like DNS, TLS, Authentication, and Rate Limiting to manage API traffic effectively
