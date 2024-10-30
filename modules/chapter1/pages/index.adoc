@@ -1,4 +1,4 @@
-= Lab Scenerio
+= Lab Scenario
 
 == Situation
 
