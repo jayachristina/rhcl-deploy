@@ -3,9 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Section 3 :: Getting Started with Red Hat Connectivity Link</title>
-    <link rel="prev" href="section2.html">
-    <link rel="next" href="../chapter2/index.html">
+    <title>Lab Scenerio :: Getting Started with Red Hat Connectivity Link</title>
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -54,17 +52,30 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Lab Scenerio</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Chapter 1</a>
+    <a class="nav-link" href="../chapter2/index.html">Infrastructure Engineer Workflow</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section1.html">Section 1</a>
+    <a class="nav-link" href="../chapter2/section1.html">Setup Route53 in AWS</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section2.html">Section 2</a>
+    <a class="nav-link" href="../chapter2/section2.html">Install Cert-manager Operator</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="section3.html">Section 3</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter2/section3.html">Install and configure Istio with Sail Operator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter2/section4.html">Install Kuadrant on Red Hat OpenShift cluster</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter2/section5.html">Summary</a>
   </li>
 </ul>
   </li>
@@ -74,10 +85,25 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../chapter2/index.html">Chapter 2</a>
+    <a class="nav-link" href="../chapter3/index.html">Platform Engineer Workflow</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter2/section1.html">Section 1</a>
+    <a class="nav-link" href="../chapter3/section1.html">Setting Up DNS and TLS for Kuadrant API Gateway</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter3/section2.html">Create Auth Policy</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter3/section3.html">Create TLS Policy</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter3/section4.html">Create Rate Limit Policy</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter3/section5.html">Create DNS Policy</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter3/section7.html">Summary</a>
   </li>
 </ul>
   </li>
@@ -87,13 +113,22 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../chapter3/index.html">Chapter 3</a>
+    <a class="nav-link" href="../chapter4/index.html">Developer Workflow</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter3/section1.html">Section 1</a>
+    <a class="nav-link" href="../chapter4/section4.html">Create HTTP Route</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter3/section2.html">Section 2</a>
+    <a class="nav-link" href="../chapter4/section1.html">Toystore Application Deployment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter4/section2.html">Deploying the Toystore HTTPRoute</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter4/section3.html">Securing the Toystore Application with Kuadrant Policies</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter4/section5.html">Summary</a>
   </li>
 </ul>
   </li>
@@ -135,8 +170,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Getting Started with Red Hat Connectivity Link</a></li>
-    <li><a href="index.html">Chapter 1</a></li>
-    <li><a href="section3.html">Section 3</a></li>
+    <li><a href="section3.html">Lab Scenerio</a></li>
   </ul>
 </nav>
 </div>
@@ -145,27 +179,64 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Section 3</h1>
+<h1 class="page">Lab Scenerio</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Before starting with the upcoming lab, let&#8217;s walk through below scenerio:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_situation"><a class="anchor" href="#_situation"></a>Situation</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p>Create multiple copies of this section as needed.</p>
+<p>Globex, a fictional retail company, wants their product catalog to be securely accessible.</p>
 </li>
 <li>
-<p>Remove any unnecessary sections or chapter pages.</p>
+<p>The new application will use OpenID Connect (OIDC) for secure access to the Product Catalog API.</p>
 </li>
 <li>
-<p>Customize the section as appropriate.</p>
+<p>Globex wants to protect their application&#8217;s endpoints with:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Rate limiting</p>
 </li>
 <li>
-<p>Ensure that each page contains a manageable amount of content.</p>
+<p>User-specific access levels</p>
 </li>
 </ul>
 </div>
-<nav class="pagination">
-  <span class="prev"><a href="section2.html">Section 2</a></span>
-  <span class="next"><a href="../chapter2/index.html">Chapter 2</a></span>
-</nav>
+</li>
+<li>
+<p>They aim to achieve this by:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Managing everything through configuration</p>
+</li>
+<li>
+<p>Avoiding hardcoding</p>
+</li>
+<li>
+<p>Allowing easy adjustment of rate limits</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_solution_to_this_situation"><a class="anchor" href="#_solution_to_this_situation"></a>Solution to this Situation</h2>
+<div class="sectionbody">
+
+</div>
+</div>
 </article>
   </div>
 </main>

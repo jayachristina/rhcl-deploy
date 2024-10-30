@@ -53,16 +53,7 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="chapter1/index.html">Overview of Red Hat Connectivity Link (RHCL)</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="chapter1/section1.html">What is Red Hat Connectivity Link (RHCL)?</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="chapter1/section2.html">What Red Hat Connectivity Link Can Do?</a>
-  </li>
-</ul>
+    <a class="nav-link" href="chapter1/index.html">Lab Scenerio</a>
   </li>
 </ul>
   </li>
@@ -70,7 +61,7 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="chapter2/index.html">RHCL Environment Setup</a>
+    <a class="nav-link" href="chapter2/index.html">Infrastructure Engineer Workflow</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="chapter2/section1.html">Setup Route53 in AWS</a>
@@ -83,6 +74,9 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="chapter2/section4.html">Install Kuadrant on Red Hat OpenShift cluster</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="chapter2/section5.html">Summary</a>
   </li>
 </ul>
   </li>
@@ -110,7 +104,7 @@
     <a class="nav-link" href="chapter3/section5.html">Create DNS Policy</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="chapter3/section6.html">Create HTTP Route</a>
+    <a class="nav-link" href="chapter3/section7.html">Summary</a>
   </li>
 </ul>
   </li>
@@ -123,6 +117,9 @@
     <a class="nav-link" href="chapter4/index.html">Developer Workflow</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="chapter4/section4.html">Create HTTP Route</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="chapter4/section1.html">Toystore Application Deployment</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -130,6 +127,9 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="chapter4/section3.html">Securing the Toystore Application with Kuadrant Policies</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="chapter4/section5.html">Summary</a>
   </li>
 </ul>
   </li>
@@ -186,10 +186,7 @@
 <div class="sectionbody">
 <div class="paragraph">
 <p>Welcome to this quick course on the <em>Getting Started with Red Hat Connectivity Link</em>.
-This course is the <code>second</code> in a series of <code>two</code> courses about Red Hat Connectivity Link.</p>
-</div>
-<div class="paragraph">
-<p>The courses are as follows:</p>
+This course is the <code>second</code> in a series of <code>two</code> courses about Red Hat Connectivity Link (RHCL):</p>
 </div>
 <div class="ulist">
 <ul>
@@ -197,18 +194,24 @@ This course is the <code>second</code> in a series of <code>two</code> courses a
 <p><a href="https://xyz.com/"><em>Introduction to Red Hat Connectivity Link</em></a></p>
 </li>
 <li>
-<p><a href="https://redhatquickcourses.github.io/rhcl-deploy/rhcl-deploy/1/index.html"><em>Getting Started with Red Hat Connectivity Link</em></a></p>
+<p>Getting Started with Red Hat Connectivity Link (<em>This course</em>)</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>In this hands-on lab, you will learn how to secure, protect, and connect an API through a Gateway based on the Kubernetes Gateway API, all within a single OpenShift cluster with a shared HTTPS listener.</p>
 </div>
-<div class="paragraph">
-<p>This lab is designed to use Red Hat Connectivity Link (RHCL) with a specific use case to implement its features, focusing on two different user roles:</p>
 </div>
+<div class="sect1">
+<h2 id="_whats_in_this_course"><a class="anchor" href="#_whats_in_this_course"></a>What&#8217;s in this course?</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
+<li>
+<p>This lab is designed to use Red Hat Connectivity Link (RHCL) with a specific use case to implement its features, focusing on three different user roles:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Infrastructure Engineer</strong>: As a Infrastructure Engineer, this lab will guide through Kuadrant installation and configuration.</p>
+</li>
 <li>
 <p><strong>Platform Engineer</strong>: As a Platform Engineer, this lab will guide you through deploying a Gateway that ensures secure communication, making it ready for application development teams. You&#8217;ll learn to route specific traffic while maintaining security through global rate limiting and authentication.</p>
 </li>
@@ -217,8 +220,11 @@ This course is the <code>second</code> in a series of <code>two</code> courses a
 </li>
 </ul>
 </div>
+</li>
+</ul>
+</div>
 <div class="paragraph">
-<p>Overall, this lab demonstrates how both platform engineers and application developers can effectively leverage RHCL to achieve their goals.</p>
+<p>Overall, in this lab you install RHCL and understand how both platform engineers and application developers can effectively leverage RHCL to achieve their goals.</p>
 </div>
 <div class="paragraph">
 <p>Duration: 2 hours</p>
@@ -245,6 +251,12 @@ This course is the <code>second</code> in a series of <code>two</code> courses a
 <li>
 <p>Rutuja Deshmukh</p>
 </li>
+<li>
+<p>Stephen McCarthy</p>
+</li>
+<li>
+<p>Anna Swicegood</p>
+</li>
 </ul>
 </div>
 </div>
@@ -258,13 +270,32 @@ This course is the <code>second</code> in a series of <code>two</code> courses a
 <div class="ulist">
 <ul>
 <li>
-<p>Hava a comprehensive overview of Red Hat Connectivity Link (RHCL) for hybrid cloud environments.</p>
+<p>Create and configure managed zone using AWS Route53.</p>
 </li>
 <li>
 <p>Install and deploy Kuadrant on a single-node Red Hat OpenShift cluster.</p>
 </li>
 <li>
 <p>Configure DNS and TLS for Kuadrant API Gateway, including AWS credentials and Let’s Encrypt setup.</p>
+</li>
+<li>
+<p>Implement essential RHCL gateway policies for managing API traffic like:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>DNS Policy</p>
+</li>
+<li>
+<p>TLS Policy</p>
+</li>
+<li>
+<p>Authentication policy</p>
+</li>
+<li>
+<p>Rate Limiting Policy</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p>Deploy toystore application as a developer.</p>
@@ -288,7 +319,34 @@ This course is the <code>second</code> in a series of <code>two</code> courses a
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://training-lms.redhat.com/lmt/clmsCourseDetails.prMain?in_sessionId=103595A3J0989409&amp;in_from_module=CLMSBROWSEV2.PRMAIN&amp;in_offeringId=57857955">Red Hat OpenShift Container Platform (OCP) Technical Overview</a></p>
+<p><a href="https://training-lms.redhat.com/lmt/clmsCourseDetails.prMain?in_sessionId=103595A3J0989409&amp;in_from_module=CLMSBROWSEV2.PRMAIN&amp;in_offeringId=57857955">Red Hat OpenShift Container Platform (OCP) Technical Overview</a> or Kubernetes Basics</p>
+</li>
+<li>
+<p>Familiarity with Red Hat Openshift networking concepts</p>
+</li>
+<li>
+<p>Basic Understanding of AWS services like EC2 and Route53</p>
+</li>
+<li>
+<p>Basic knowledge of TLS encryption, certificates (e.g., how they work), and certificate management tools.</p>
+</li>
+<li>
+<p>Concepts of DNS resolution, domain management, and how DNS policies work in cloud environments.</p>
+</li>
+<li>
+<p>Understanding rate limiting concepts, including request throttling, quotas, and burst limits.</p>
+</li>
+<li>
+<p>Familiarity with authentication mechanisms (e.g., OAuth, JWT) and how policies control access to APIs.</p>
+</li>
+<li>
+<p>Understanding API development, RESTful services, and how to define routes in Kubernetes.</p>
+</li>
+<li>
+<p>Familiarity with overriding default gateway policies (e.g., for authentication or rate limiting) based on application-specific needs.</p>
+</li>
+<li>
+<p>Knowledge of service mesh architectures (like Istio) and how they handle traffic routing, observability, and policy enforcement.</p>
 </li>
 </ul>
 </div>
