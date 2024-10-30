@@ -53,7 +53,7 @@ image::role.png[align="center"]
 .**Infrastructure Engineer**: Click to view what you would be doing as infrastructure engineer in this lab
 [%collapsible]
 ====
-The Platform Engineer you will setup a Gateway which will allow for secure connection to the backend service endpoints.
+As Infrastructure Engineer you will install, configure and deploy RHCL.
 
 To achieve this a number of components need to be setup:
 
@@ -68,7 +68,7 @@ To achieve this a number of components need to be setup:
 .**Platform Engineer**: Click to view what you would be doing as platform engineer in this lab
 [%collapsible]
 ====
-The Platform Engineer you will setup a Gateway which will allow for secure connection to the backend service endpoints.
+As Platform Engineer you will setup a Gateway which will allow for secure connection to the backend service endpoints.
 
 To achieve this a number of components need to be setup:
 
