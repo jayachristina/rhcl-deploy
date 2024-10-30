@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Lab Scenario :: Getting Started with Red Hat Connectivity Link</title>
+    <link rel="prev" href="../LABENV/index.html">
+    <link rel="next" href="../chapter2/index.html">
+    <meta name="generator" content="Antora 3.1.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.redhat.com" target="_blank"><img src="../../../_/img/redhat-logo.png" height="40px" alt="Red Hat"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">Getting Started with Red Hat Connectivity Link</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://github.com/RedHatQuickCourses/rhcl-deploy/issues" target="_blank">Report Issues</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="rhcl-deploy" data-version="1">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Getting Started with Red Hat Connectivity Link</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Home</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../LABENV/index.html">Lab Environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="index.html">Lab Scenario</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../chapter2/index.html">Infrastructure Engineer Workflow</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter2/section1.html">Setup Route53 in AWS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter2/section2.html">Install Cert-manager Operator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter2/section3.html">Install and configure Istio with Sail Operator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter2/section4.html">Install Kuadrant on Red Hat OpenShift cluster</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter2/section5.html">Summary</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../chapter3/index.html">Platform Engineer Workflow</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter3/section1.html">Setting Up DNS and TLS for Kuadrant API Gateway</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter3/section2.html">Create Auth Policy</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter3/section3.html">Create TLS Policy</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter3/section4.html">Create Rate Limit Policy</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter3/section5.html">Create DNS Policy</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter3/section7.html">Summary</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../chapter4/index.html">Developer Workflow</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter4/section4.html">Create HTTP Route</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter4/section1.html">Toystore Application Deployment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter4/section2.html">Deploying the Toystore HTTPRoute</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter4/section3.html">Securing the Toystore Application with Kuadrant Policies</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter4/section5.html">Summary</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../appendix/appendix.html">Appendix</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Getting Started with Red Hat Connectivity Link</span>
+    <span class="version">1</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Getting Started with Red Hat Connectivity Link</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Getting Started with Red Hat Connectivity Link</a></li>
+    <li><a href="index.html">Lab Scenario</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Lab Scenario</h1>
+<div class="sect1">
+<h2 id="_situation"><a class="anchor" href="#_situation"></a>Situation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Globex Mobile, a fast-growing retail company, is expanding its mobile presence by allowing access to its core services via a new mobile app.
+However, security is a top priority, as exposing their core service endpoints to unauthorized access could pose significant risks.</p>
+</div>
+<div class="paragraph">
+<p>To address these concerns, <em>Globex Mobile</em> has decided to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Implement OpenID Connect (OIDC) for secure authentication to the <em>Product Catalog API</em>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Additionally, <em>Globex Mobile</em> aims to protect its endpoints by:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Implementing rate limiting</p>
+</li>
+<li>
+<p>Enforcing user-specific access controls</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Their goals include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Managing everything through configuration</p>
+</li>
+<li>
+<p>Avoiding hardcoding</p>
+</li>
+<li>
+<p>Easily adjusting rate limits as needed</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_solution_to_the_situation_along_with_in_depth_an_architecture"><a class="anchor" href="#_solution_to_the_situation_along_with_in_depth_an_architecture"></a>Solution To The Situation Along With In-depth An Architecture</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><em>Globex Mobile’s</em> development team has built a Mobile Gateway, serving as a single point of entry (a wrapper) in front of the company’s core services, following the gateway-pattern approach. This gateway allows Globex Mobile’s mobile app to access core services, but the endpoint must be secured for safe connectivity.</p>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/arch.png" alt="arch">
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Focus on the Red Hat Connectivity Link (RHCL) portion of the diagram, which illustrates how RHCL is used to manage and secure the application connectivity.</p>
+</div>
+<div class="paragraph">
+<p>Specifically, RHCL facilitates:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Gateway setup by the platform engineers</strong>, which includes setting up below policies for secure connections to the backend services:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>TLS policies</p>
+</li>
+<li>
+<p>DNS policies</p>
+</li>
+<li>
+<p>RateLimit policies</p>
+</li>
+<li>
+<p>Auth policies</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>HTTPRoute creation by the developers</strong>, which represents the service endpoints and allows them to:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Override policies for authentication</p>
+</li>
+<li>
+<p>Rate limiting aligning with their specific needs</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Separation of concerns between the platform engineers and developers</strong>, allowing each to focus on their role in a scalable, secure multi-cluster environment.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_we_will_do_in_this_lab_oriented_course"><a class="anchor" href="#_what_we_will_do_in_this_lab_oriented_course"></a>What We Will Do in This Lab-Oriented Course</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>In the upcoming sections, we will exercise these concepts by dividing the work into three job roles:</p>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/role.png" alt="role">
+</div>
+</div>
+</li>
+</ul>
+</div>
+<details>
+<summary class="title"><strong>Infrastructure Engineer</strong>: Click to view what you would be doing as infrastructure engineer in this lab</summary>
+<div class="content">
+<div class="paragraph">
+<p>As Infrastructure Engineer you will install, configure and deploy RHCL.</p>
+</div>
+<div class="paragraph">
+<p>To achieve this a number of components need to be setup:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A <strong>Managed Zone</strong> needs to be setup within the DNS provider. E.g. <em>managed.Globex Mobile.com</em>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Refer to the <a href="https://developers.redhat.com/articles/2024/06/12/getting-started-red-hat-connectivity-link-openshift">Getting started page</a> to learn how to setup a Managed Zone.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Install cert-manager to manage TLS certificates for your Kuadrant gateways.</p>
+</li>
+<li>
+<p>Integrate Kuadrant with Istio as a Gateway API provider by installing and configuring Istio using the Sail Operator.</p>
+</li>
+<li>
+<p>Install the Kuadrant Operator and trigger the deployment of Kuadrant in Red Hat OpenShift cluster.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title"><strong>Platform Engineer</strong>: Click to view what you would be doing as platform engineer in this lab</summary>
+<div class="content">
+<div class="paragraph">
+<p>As Platform Engineer you will setup a Gateway which will allow for secure connection to the backend service endpoints.</p>
+</div>
+<div class="paragraph">
+<p>To achieve this a number of components need to be setup:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>TLS issuer (a.k.a ClusterIssuer):</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Sets up a Certificate Issuer to create TLS certificates that are needed to secure communication.</p>
+</li>
+<li>
+<p>In this case, Globex Mobile uses <a href="https://letsencrypt.org/">Let’s Encrypt</a>. This certificate is stored as a secret to be referenced by the Gateways.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://gateway-api.sigs.k8s.io/api-types/gateway/">Gateway</a>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Create a new Gateway (using the Gateway API and <a href="https://istio.io/latest/docs/">Istio</a>-based controllers) as an entrypoint for all requests to Globex Mobile’s system.</p>
+</li>
+<li>
+<p>The Gateway uses the TLS Certificates created by the TLS Issuer.</p>
+</li>
+<li>
+<p>Also a number of policies are setup to secure and protect the Gateway.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://docs.kuadrant.io/0.11.0/kuadrant-operator/doc/tls/">TLS Policy</a>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Leverages the TLS-issuer/CertificateIssuer to set up TLS certificates for the listeners defined within the Gateway.</p>
+</li>
+<li>
+<p>Listeners define the hostname for the various incoming requests and is denoted with a wildcard hostname based on the root domain.</p>
+</li>
+<li>
+<p>These gateways can use a subdomain of the Managed Zone. E.g. <em>*.managed.Globex Mobile.com</em>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://docs.kuadrant.io/0.11.0/kuadrant-operator/doc/auth/">Auth Policy</a>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Setup a zero-trust deny-all policy that result in a default 403 response for any unprotected endpoints.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://docs.kuadrant.io/0.11.0/kuadrant-operator/doc/dns/">DNS Policy</a>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Provide DNS management by managing the lifecycle of DNS records to setup ingress connectivity using DNS to bring traffic to the Gateway.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://docs.kuadrant.io/0.11.0/kuadrant-operator/doc/rate-limiting/">RateLimit Policy</a>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Set up a default artificially low global limit to further protect any endpoints exposed by this Gateway.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title"><strong>Developer</strong>: Click to view what you would be doing as developer in this lab</summary>
+<div class="content">
+<div class="paragraph">
+<p>With the Gateway available, developers can onboard service endpoints by creating an HTTPRoute for each. They can also override Auth and RateLimit policies set by the Platform Engineer to meet their specific auth/authz and rate limiting needs.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://gateway-api.sigs.k8s.io/api-types/httproute/">HTTPRoute</a>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>This is part of the Gateway API.</p>
+</li>
+<li>
+<p>Set up an HTTPRoute by linking it to the parent Gateway configured by the Platform Engineer.</p>
+</li>
+<li>
+<p>Define a hostname to route requests correctly and set up rules to direct traffic to the appropriate backend endpoint.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>AuthPolicy:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Globex Mobile uses OIDC for authentication.</p>
+</li>
+<li>
+<p>As a developer you creates a policy on the HTTPRoute, overriding the Platform Engineer&#8217;s deny-all policy.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>RateLimit Policy:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The default low-limit rate policy at the Gateway level is overridden by this policy to meet specific needs.</p>
+</li>
+<li>
+<p>Adjustments can easily be made through this policy.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="../LABENV/index.html">Lab Environment</a></span>
+  <span class="next"><a href="../chapter2/index.html">Infrastructure Engineer Workflow</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <img src="../../../_/img/rhl-logo-red.png" height="40px" alt="Red Hat"  href="https://redhat.com" >
+</footer><script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
