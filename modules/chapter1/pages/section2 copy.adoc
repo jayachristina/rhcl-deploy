@@ -1,0 +1,8 @@
+= What Red Hat Connectivity Link Can Do?
+
+* The following features are designed to work across multiple clusters as well as in a single-cluster environment:
+** _Multicluster Ingress_: Connectivity Link uses DNS to route traffic to Gateways across clusters through a DNSPolicy.
+** _Global Rate Limiting_: It supports global rate limiting by using shared Redis or Dragonfly stores based on RateLimitPolicy.
+** _Global Authentication_: You can set up a unified AuthPolicy across clusters to ensure consistent API authentication and authorization.
+** _Automatic TLS Certificates_:  You can configure a TLSPolicy to automatically provision TLS certificates based on Gateway listener hosts by using integration with cert-manager and ACME providers such as Let’s Encrypt.
+** _Federated Metrics Integration_: Connectivity Link provides dashboards and metrics for monitoring Gateways and traffic across multiple clusters.

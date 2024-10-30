@@ -1,6 +1,8 @@
-= Setup Route53 in AWS
+== Setup Route53 in AWS
 
-In this lab exercise, you will configure Amazon Route 53 to manage DNS and direct traffic to your AWS resources effectively.
+Before proceeding with the Kuadrant installation, it's essential to set up a **Managed Zone** within your DNS provider. This Managed Zone will serve as the foundation for routing and managing your API traffic.
+
+In this lab, we will configure the **Managed Zone** using **AWS Route53**.
 
 . Access the AWS Lab Environment:
 * Log in to the newly created AWS lab environment using the provided credentials in your lab environment page.
@@ -10,6 +12,9 @@ In this lab exercise, you will configure Amazon Route 53 to manage DNS and direc
 +
 video::route53.mp4[align="center",width=640,height=480]
 
+. You should be able to view a DNS record similar to what is shown in below screenshot:
++
+image::route.png[align="center"]
 
 
 

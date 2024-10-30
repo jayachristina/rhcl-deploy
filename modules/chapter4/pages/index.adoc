@@ -1,12 +1,17 @@
 = Developer Workflow
 
-In this chapter, as a developer will deploy the toystore application, configure external access via an HTTPRoute, and secure it using Kuadrant policies for authentication and access control.
+* As an **Application Developer**, you will deploy a sample **toystore** application and configure external access through an HTTPRoute. Additionally, you would apply Kuadrant policies to secure it with authentication and access control
++
+image::role.png[align="center"]
 
 == Objectives
 
-* Toystore Application Deployment
-* Deploying the Toystore HTTPRoute
-* Securing the Toystore Application with Kuadrant Policies
+In this chapter, you will:
+
+* Create HTTPRoute
+* Deploy Toystore Application
+* Deploy the Toystore HTTPRoute
+* Secure the Toystore Application with Kuadrant Policies
 
 
 

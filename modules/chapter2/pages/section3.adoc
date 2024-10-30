@@ -1,6 +1,8 @@
-= Install and configure Istio with Sail Operator
+== Install and configure Istio with Sail Operator
 
-Kuadrant integrates with **Istio** as a _Gateway API_ provider. In this lab, you install and set up an Istio-based Gateway API provider by using the Sail Operator.
+Kuadrant integrates with **https://istio.io/latest/docs/[Istio]** as a _Gateway API_ provider.
+
+In this lab, you install and set up an https://istio.io/latest/docs/[Istio]-based Gateway API provider by using the Sail Operator.
 
 . Switch to the terminal where you had taken access of bastion server. Before you can use Kuadrant, you need to install Gateway API v1 by applying the YAML file provided in the URL shown below:
 +

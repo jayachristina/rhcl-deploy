@@ -1,16 +1,22 @@
 = Lab Environment
 
-Provision the lab environment https://demo.redhat.com/catalog?search=AWS+with+OpenShift+Open+Environment&item=babylon-catalog-prod%2Fsandboxes-gpte.sandbox-ocp.prod[AWS with OpenShift Open Environment] at https://demo.redhat.com/[demo.redhat.com].
+This classroom does *NOT* have Red Hat Connectivity Link (RHCL) pre-installed. You install and configure a RHCL in this course, and then continue for upcoming lab sections.
 
-IMPORTANT: Please provision this lab with exact requirements as mentioned below.
+Click the https://demo.redhat.com/[RHDP] link above, log in to RHDP, and click `Order` to request a new https://demo.redhat.com/catalog?search=AWS+with+OpenShift+Open+Environment&item=babylon-catalog-prod%2Fsandboxes-gpte.sandbox-ocp.prod[AWS with OpenShift Open Environment]. On the order page for the catalog item, do the following:
 
-Select the following options while provisioning the lab environment the lab:
+* *Activity*: Select `Practice/Enablement`
+* *Purpose*: Select `Learning about the Product`
+* *Salesforce ID*: If you have an opportunity ID, enter it into this field, otherwise select `Project`, and then enter "Learning about Dev Spaces" in the text field. You will see a warning message that a Salesforce ID is required, but you can safely ignore it.
+* *Features*: Select `Enable Let's Encrypt`
+* *Region*: Select the AWS region closest to your location
+* *User count*: `1`
+* *Control Plane Count*: `1`
+* *OpenShift Version*: `4.16`
+* *Control Plane Instance Type*: `m6a.4xlarge`
 
-* **Region**: Choose your **closest region** and make a note of that.
-* **Control Plane Count** = **1** as we are deploying single node Red Hat Openshift cluster.
-* **Control Plane Instance Type**: **m6a.4xlarge**
-* **OpenShift Version**: **4.16**
+* Select the checkbox at the bottom of the page to confirm that lab costs will be charged to your cost center, and click `Order`.
+* You can refer below image to confirm the lab settings.
++
+image::labenv.png[align="center"]
 
-It can take upto 60 minutes to get the lab environment.
-
-This training includes detailed lab instructions for learners to follow.
+NOTE: The lab environment will take an hour to provision. You can check the status and details of the OpenShift cluster from the `Services` page of RHDP. The classroom is available for 48 hours initially. You can extend the duration of classroom availability by clicking `Help > Get Technical Help` in RHDP, and then requesting an extension by opening a ServiceNow ticket with the RHDP team.

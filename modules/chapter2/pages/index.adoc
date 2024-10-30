@@ -1,10 +1,14 @@
-= RHCL Environment Setup
+= Infrastructure Engineer Workflow
 
-In this chapter, you install and deploy Kuadrant on a single node Red Hat OpenShift cluster.
+* Before diving into the **Platform engineer and developer** lab workflow, as an **infrastructure engineer** you first need to install and deploy Kuadrant (i.e GatewayClass) on a single-node Red Hat OpenShift cluster to set up the necessary environment for the upcoming tasks.
++
+image::role.png[align="center"]
 
 == Objectives
 
-* Configure Amazon Route 53 to manage DNS and direct traffic to your AWS resources effectively.
+In this chapter, you will:
+
+* Configure Amazon Route53 to manage DNS and direct traffic to your AWS resources effectively.
 * Install cert-manager to manage TLS certificates for your Kuadrant gateways.
 * Integrate Kuadrant with Istio as a Gateway API provider by installing and configuring Istio using the Sail Operator.
 * Install the Kuadrant Operator and trigger the deployment of Kuadrant in Red Hat OpenShift cluster.

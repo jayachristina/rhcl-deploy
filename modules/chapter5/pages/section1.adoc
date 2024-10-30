@@ -1,0 +1,23 @@
+= Solution's architecture
+
+== Securing Mobile Gateway Connectivity for Globex
+
+Globex’s development team has built a Mobile Gateway, serving as a single point of entry (a wrapper) in front of the company’s core services, following the gateway-pattern approach. This gateway allows Globex’s mobile app to access core services, but the endpoint must be secured for safe connectivity.
++
+image::arch.png[align="center"]
+
+=== Challenge
+
+The Mobile Gateway service endpoint needs robust security to handle increasing traffic from the mobile app.
+
+=== Solution
+To address this, Globex adopts a Kubernetes-native approach to application connectivity using Red Hat Connectivity Link (RHCL).
+RHCL enables secure, efficient management of application connectivity across both single and multi-cluster environments.
+
+=== Key Benefit: Separation of Concerns
+Red Hat Connectivity Link allows for a clear separation of concerns between the various teams involved in setting up secure connectivity. Platform engineers and developers can focus on their respective roles, from configuring secure gateways to managing service access, ensuring a unified, secure infrastructure.
+
+=== Step-by-Step Approach
+In this solution, we will follow a step-by-step approach to onboarding a new application and securely granting it access to Globex’s core services, supporting the company's goal of expanding access to their services from multiple applications and channels.
++
+image::sail.png[align="center"]
