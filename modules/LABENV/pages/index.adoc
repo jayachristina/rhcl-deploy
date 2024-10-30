@@ -6,7 +6,7 @@ Click the https://demo.redhat.com/[RHDP] link above, log in to RHDP, and click `
 
 * *Activity*: Select `Practice/Enablement`
 * *Purpose*: Select `Learning about the Product`
-* *Salesforce ID*: If you have an opportunity ID, enter it into this field, otherwise select `Project`, and then enter "Learning about Dev Spaces" in the text field. You will see a warning message that a Salesforce ID is required, but you can safely ignore it.
+* *Salesforce ID*: If you have an opportunity ID, enter it into this field, otherwise select `Project`, and then enter "Learning about RHCL" in the text field. You will see a warning message that a Salesforce ID is required, but you can safely ignore it.
 * *Features*: Select `Enable Let's Encrypt`
 * *Region*: Select the AWS region closest to your location
 * *User count*: `1`
