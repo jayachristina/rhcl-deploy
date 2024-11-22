@@ -17,8 +17,6 @@ In this chapter, you will:
 
 In order to complete the upcoming sections in this lab, ensure you perform the following steps to gain the necessary access:
 
-* **Log into your _Red Hat OpenShift console_** as __kubeadmin__ user and password provided in the lab environment page.
-
 * **Take SSH access to bastion server** by following these steps:
 ** Open the lab environment page and navigate to the **Details** tab.
 ** Note the ssh command and password details provided to access the bastion server.
@@ -29,8 +27,8 @@ In order to complete the upcoming sections in this lab, ensure you perform the f
 [student@user:~]$ **ssh lab-user@bastion.XXXXX.sandboxXXXX.opentlc.com**
 ----
 
-* **Log into to _Red Hat OpenShift cluster_** as the admin user from the bastion server by following these steps:
-** In your browser, log into your Red Hat OpenShift console as the kubeadmin user. Locate the **kube-admin** dropdown at the top right corner and select Copy login command as shown in the image:
+* **Log into to _Red Hat OpenShift cluster_** as the __kubeadmin__ user and password provided in the lab environment page and follow below steps:
+** Locate the **kube-admin** dropdown at the top right corner and select **Copy login command** as shown in the image:
 +
 image::im1.png[align="center"]
 
@@ -42,17 +40,6 @@ image::im2.png[align="center"]
 +
 image::im3.png[align="center"]
 
-** Return to your bastion server terminal and paste the copied token to log in to your _Red Hat OpenShift cluster_:
-+
-[subs="+quotes,+macros"]
-----
-[lab-user@bastion ~]$ oc login --token=XXXX --server=XXXX
-Logged into "https://api.cluster-XXXXX.sandboxXXXXX.opentlc.com:6443" as "kube:admin" using the token provided.
-
-You have access to 71 projects, the list has been suppressed. You can list all projects with 'oc projects'
-
-Using project "default".
-----
+** Return to your bastion server terminal and paste the copied token to log in to your _Red Hat OpenShift cluster_.
 
 * Now, you're logged into the Red Hat OpenShift cluster with admin privileges and ready to proceed with the lab.
-

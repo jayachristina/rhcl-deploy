@@ -19,7 +19,7 @@ authpolicy.kuadrant.io/toystore created
 +
 [subs="+quotes,+macros"]
 ----
-[lab-user@bastion ~]$ curl -k -w "%{http_code}" https://$(oc get httproute toystore -n toystore  -o=jsonpath='{.spec.hostnames[0]}')/cars
+[lab-user@bastion ~]$ **curl -k -w "%{http_code}" https://$(oc get httproute toystore -n toystore  -o=jsonpath='{.spec.hostnames[0]}')/cars**
 401
 ----
 +
@@ -30,7 +30,7 @@ The response should return a 401 status code, indicating unauthorized access.
 +
 [subs="+quotes,+macros"]
 ----
-[lab-user@bastion ~]$ curl -s https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/toystore-api-key-secrets.yaml | envsubst | oc apply -f - 
+[lab-user@bastion ~]$ **curl -s https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/toystore-api-key-secrets.yaml | envsubst | oc apply -f - **
 secret/api-key-regular-user created
 secret/api-key-admin-user created
 ----
@@ -40,7 +40,7 @@ secret/api-key-admin-user created
 +
 [subs="+quotes,+macros"]
 ----
-[lab-user@bastion ~]$ curl -H 'Authorization: APIKEY iamaregularuser'  -k -w "%{http_code}" https://$(oc get httproute toystore -n toystore  -o=jsonpath='{.spec.hostnames[0]}')/cars
+[lab-user@bastion ~]$ **curl -H 'Authorization: APIKEY iamaregularuser'  -k -w "%{http_code}" https://$(oc get httproute toystore -n toystore  -o=jsonpath='{.spec.hostnames[0]}')/cars**
 {
   "method": "GET",
   "path": "/cars",
@@ -74,7 +74,7 @@ This will return the expected output from the **/cars** endpoint, confirming suc
 +
 [subs="+quotes,+macros"]
 ----
-[lab-user@bastion ~]$ curl -H 'Authorization: APIKEY iamanadmin' -k -w "%{http_code}" https://$(oc get httproute toystore -n toystore  -o=jsonpath='{.spec.hostnames[0]}')/admin
+[lab-user@bastion ~]$ **curl -H 'Authorization: APIKEY iamanadmin' -k -w "%{http_code}" https://$(oc get httproute toystore -n toystore  -o=jsonpath='{.spec.hostnames[0]}')/admin**
 {
   "method": "GET",
   "path": "/admin",

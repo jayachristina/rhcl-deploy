@@ -10,6 +10,23 @@ This lab guides you through the process of setting up and verifying an HTTPRoute
 httproute.gateway.networking.k8s.io/test created
 ----
 
+* Confirm the **HTTPRoute** for your Gateway is created successfully:
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ **oc get httproute -n ${gatewayNS}**
+NAME   HOSTNAMES                                  AGE
+test   ["test.managed.sandboxXXXX.opentlc.com"]   14m
+----
+
+* Testing the route using below command:
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ curl -k https://test.managed.sandboxXXXX.opentlc.com
+--No output--
+----
+
 * Navigate to the _Red Hat Openshift console_ and select **Operators** -> select **Installed Opertor** -> select **Kuadrant Operator** -> select **DNSPolicy** -> select **external-dnspolicy** and notice the **Conditions** section.
 +
 image::dns4.png[align="center"]
@@ -18,7 +35,7 @@ Take note that all DNSPolicy rules are enforced after this step.
 
 * Navigate to the _Red Hat Openshift console_ and select **Operators** -> select **Installed Opertor** -> select **Kuadrant Operator** -> select **All Instances**:
 +
-image::all.png[align="center"]
+image::dns5.png[align="center"]
 +
 Take note that the status of all pods shows **Accepted, Enforced**.
 
@@ -47,38 +64,24 @@ AuthPolicy has been successfully enforced
 RateLimitPolicy has been successfully enforced
 ----
 
-* Create **aws-credentials** secret under **cert-manager** namespace for **AWS_ACCESS_KEY_ID** and **AWS_SECRET_ACCESS_KEY**:
+* Test connectivity of **HTTPRoute**
+
+** You can use curl to hit your endpoint. As this lab uses **Let's Encrypt**, you can pass the -k flag:
 +
 [subs="+quotes,+macros"]
 ----
-[lab-user@bastion ~]$ oc -n cert-manager create secret generic aws-credentials --type=kuadrant.io/aws --from-literal=AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID --from-literal=AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
-secret/aws-credentials created
-----
-
-* Delete the existing pod to ensure that the secret propagates into the pods.
-Navigate to _Red Hat Openshift console_, select **Workloads** → select **Pods** → select **Project: cert-manager** → choose cert-manager-XXXXX and delete it:
-+
-image::pod.png[align="center"]
-+
-Allow the pod to recreate itself and then wait for 5 minutes for the secrets to propograte in the pod.
-
-* Test connectivity and deny all auth.
-** You can use curl to hit your endpoint. You should see a 403. Because this example uses Let's Encrypt staging, you can pass the -k flag:
-+
-[subs="+quotes,+macros"]
-----
-[lab-user@bastion ~]$ curl -k -w "%{http_code}" https://$(oc get httproute test -n ${gatewayNS} -o=jsonpath='{.spec.hostnames[0]}')
+[lab-user@bastion ~]$ **curl -k -w "%{http_code}" https://$(oc get httproute test -n ${gatewayNS} -o=jsonpath='{.spec.hostnames[0]}')**
 403
 ----
 +
-Above command can take 5-10 mins to return result.
+Notice the response code is **403** meaning authentication failure.
 
 * Verify that your listener is ready:
 +
 [subs="+quotes,+macros"]
 ----
-[lab-user@bastion ~]$ oc get gateway ${gatewayName} -n ${gatewayNS} -o=jsonpath='{.status.listeners[0].conditions[?(@.type=="Programmed")].message}'
-No errors found
+[lab-user@bastion ~]$ **oc get gateway ${gatewayName} -n ${gatewayNS} -o=jsonpath='{.status.listeners[0].conditions[?(@.type=="Programmed")].message}'**
+No error found
 ----
 
 * Open up the Gateway for other namespaces
@@ -86,6 +89,6 @@ No errors found
 +
 [subs="+quotes,+macros"]
 ----
-[lab-user@bastion ~]$ oc patch gateway ${gatewayName} -n ${gatewayNS} --type='json' -p='[{"op": "replace", "path": "/spec/listeners/0/allowedRoutes/namespaces/from", "value":"All"}]'
+[lab-user@bastion ~]$ **oc patch gateway ${gatewayName} -n ${gatewayNS} --type='json' -p='[{"op": "replace", "path": "/spec/listeners/0/allowedRoutes/namespaces/from", "value":"All"}]'**
 gateway.gateway.networking.k8s.io/external patched
 ----

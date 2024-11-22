@@ -8,7 +8,7 @@ This will involve defining the routing rules and testing the configuration to en
 +
 [subs="+quotes,+macros"]
 ----
-[lab-user@bastion ~]$ curl -s https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/toystore-http-route.yaml | envsubst | oc apply -f - 
+[lab-user@bastion ~]$ **curl -s https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/toystore-http-route.yaml | envsubst | oc apply -f - **
 httproute.gateway.networking.k8s.io/toystore created
 ----
 
@@ -17,7 +17,7 @@ httproute.gateway.networking.k8s.io/toystore created
 +
 [subs="+quotes,+macros"]
 ----
-[lab-user@bastion ~]$ curl -k -w "%{http_code}" https://$(oc get httproute toystore -n toystore  -o=jsonpath='{.spec.hostnames[0]}')/cars
+[lab-user@bastion ~]$ **curl -k -w "%{http_code}" https://$(oc get httproute toystore -n toystore  -o=jsonpath='{.spec.hostnames[0]}')/cars**
 403
 ----
 +

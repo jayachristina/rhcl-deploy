@@ -24,6 +24,6 @@ DNSPolicy has been accepted
 
 * Navigate to the _Red Hat Openshift console_ and select **Operators** -> select **Installed Opertor** -> select **Kuadrant Operator** -> select **DNSPolicy** -> select **external-dnspolicy** and notice the **Conditions** section:
 +
-image::dns3.png[align="center"]
+image::dns5.png[align="center"]
 +
 Note that the **Enforced** status is set to **False** as there is no routes attached for listeners.

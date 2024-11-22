@@ -12,7 +12,7 @@ ratelimitpolicy.kuadrant.io/external-rlp created
 
 * Navigate to the Red Hat Openshift console and select **Operators** -> select **Installed Opertor** -> select **Kuadrant Operator** -> select **RateLimitPolicy** -> select **external-rip** and notice the **Conditions** section:
 +
-image::rate2.png[align="center"]
+image::rate3.png[align="center"]
 +
 Note that the **Enforced** status is set to **False** as there is no routes available to enforce the policy.
 

@@ -20,14 +20,13 @@ namespace/kuadrant-system created
 catalogsource.operators.coreos.com/kuadrant-operator-catalog created
 ----
 
-. Install the **Kuadrant** operator by appling the yaml file from URL using below command:
+. Install the **Kuadrant** operator by navigating to the Red Hat OpenShift cluster, select **OperatorHub** from side panel and search **Kuadrant**. Select the **Kuadrant Operator** highlighted in below screenshot and click **Install**
 +
-[subs="+quotes,+macros"]
-----
-[lab-user@bastion ~]$ **oc apply -f https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-subscription-operatorgroup.yaml**
-subscription.operators.coreos.com/kuadrant-operator created
-operatorgroup.operators.coreos.com/kuadrant created
-----
+image::install1.png[align="center"]
+
+* Select **kuadrant-system** namespace as shown in below screenshot and click **Install**.
++
+image::setting1.png[align="center"]
 
 * Check the status of the installation using below command. When ready, the status will change from "installing" to "Complete."
 +
@@ -39,7 +38,7 @@ Complete
 
 * Observe the **Kuadrant** operator is installed along with it's dependencies in the _Red Hat Openshift_ console's  _Installed Operators_ section.
 +
-image::kuad.png[align="center"]
+image::service4.png[align="center"]
 +
 ** Below are the dependencies installed:
 *** https://docs.kuadrant.io/latest/authorino-operator/#the-authorino-custom-resource-definition-crd[Authorino](Enforcement Component for AuthPolicy)
@@ -93,3 +92,18 @@ kuadrant.kuadrant.io/kuadrant created
 [lab-user@bastion ~]$ **oc wait kuadrant/kuadrant --for="condition=Ready=true" -n kuadrant-system --timeout=300s**
 kuadrant.kuadrant.io/kuadrant condition met
 ----
+
+
+* Enabling Kuadrant plugin to view components configuration status easily that we would perform in coming sections.
+
+. Navigate _Red Hat OpenShift cluster_ and from **Administrator** view, click  on **Home** -> **Overview**.
+. Under **Status** section, click on **Dynamic Plugins** -> **View All**.
+. You will see **kuadrant-console-plugin** marked  as disabled.
+. Click on the pencil icon and then choose **Enabled** and click **Save**.
+. Refresh the page in a couple of minutes, and you will see the Kuadrant menu on the left hand side menu.
++
+image::kuad2.png[align="center"]
+
+. Click on **Overview** option and you shall see a dashboard that will show you kuadrant's overview. You this dashboard to track status of **policies/gateways/http routes** that we shall configure in upcoming lab sections.
++
+image::kuad3.png[align="center"]

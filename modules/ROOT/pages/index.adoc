@@ -54,13 +54,47 @@ On completing this course, you should be able to:
 
 This course assumes that you have the following prior experience:
 
-* https://training-lms.redhat.com/lmt/clmsCourseDetails.prMain?in_sessionId=103595A3J0989409&in_from_module=CLMSBROWSEV2.PRMAIN&in_offeringId=57857955[Red Hat OpenShift Container Platform (OCP) Technical Overview] or Kubernetes Basics
-* Familiarity with Red Hat Openshift networking concepts
-* Basic Understanding of AWS services like EC2 and Route53
-* Basic knowledge of TLS encryption, certificates (e.g., how they work), and certificate management tools.
-* Concepts of DNS resolution, domain management, and how DNS policies work in cloud environments.
-* Understanding rate limiting concepts, including request throttling, quotas, and burst limits.
-* Familiarity with authentication mechanisms (e.g., OAuth, JWT) and how policies control access to APIs.
-* Understanding API development, RESTful services, and how to define routes in Kubernetes.
-* Familiarity with overriding default gateway policies (e.g., for authentication or rate limiting) based on application-specific needs.
-* Knowledge of service mesh architectures (like Istio) and how they handle traffic routing, observability, and policy enforcement.
+1. https://training-lms.redhat.com/lmt/clmsCourseDetails.prMain?in_sessionId=103595A3J0989409&in_from_module=CLMSBROWSEV2.PRMAIN&in_offeringId=57857955[Red Hat OpenShift Container Platform (OCP) Technical Overview] or Kubernetes Basics
+2. Basic Understanding of AWS services like EC2 and Route53
+3. Basic knowledge of:
+
+.TLS encryption: Click here for a quick primer
+[%collapsible]
+====
+* TLS (Transport Layer Security) is a cryptographic protocol that ensures secure communication over a network.
+====
+
+.Rate limiting concepts: Click here for a quick primer
+[%collapsible]
+====
+* Rate limiting controls how many requests a client can make to a server within a specific time frame.
+* It is essential for protecting APIs, servers resources from being overwhelmed by excessive traffic, whether intentional (DDoS attacks) or unintentional (high demand).
+====
+
+.Authentication mechanisms (e.g., OAuth, JWT): Click here for a quick primer
+[%collapsible]
+====
+* Authentication mechanisms validate the identity of a user or system attempting to access a resource.
+* Example:
+** OAuth (Open Authorization): OAuth is a standard for secure delegated access, allowing third-party applications to access resources on behalf of a user without exposing credentials.
+====
+
+.API and RESTful services: Click here for a quick primer
+[%collapsible]
+====
+* API:
+** An API is a set of rules and protocols that allow different software applications to communicate with each other.
+** APIs enable developers to use predefined functions to interact with a service or application without needing to understand its internal workings.
+
+* RESTful services:
+** REST (Representational State Transfer) is an architectural style for designing networked applications.
+** A RESTful service adheres to REST principles to provide scalability, simplicity, and statelessness.
+====
+
+.Service mesh architectures (like Istio): Click here for a quick primer
+[%collapsible]
+====
+* A service mesh is a dedicated infrastructure layer for managing service-to-service communication in microservices architectures.
+* It abstracts the network and provides advanced features like load balancing, traffic control, security, and observability.
+====
+

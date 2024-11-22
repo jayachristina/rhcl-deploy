@@ -20,6 +20,21 @@ TLSPolicy has been accepted
 
 * Navigate to the Red Hat Openshift console and select **Operators** -> select **Installed Opertor** -> select **Kuadrant Operator** -> select **TLSPolicy** -> select **external-tls** and notice the **Conditions** section:
 +
-image::tls2.png[align="center"]
+image::tls3.png[align="center"]
 +
-Note that the **Enforced** status is set to **False** as certificate **api-external-tls** is not ready.
+Note that the **Enforced** status is set to **False** as certificate **external-api** is not ready.
+
+* Create **aws-credentials** secret under **cert-manager** namespace for **AWS_ACCESS_KEY_ID** and **AWS_SECRET_ACCESS_KEY**:
++
+[subs="+quotes,+macros"]
+----
+[lab-user@bastion ~]$ oc -n cert-manager create secret generic aws-credentials --type=kuadrant.io/aws --from-literal=AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID --from-literal=AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+secret/aws-credentials created
+----
+
+* Delete the existing pod to ensure that the secret propagates into the pods.
+Navigate to _Red Hat Openshift console_, select **Workloads** → select **Pods** → select **Project: cert-manager** → choose cert-manager-XXXXX and delete it:
++
+image::pod.png[align="center"]
++
+Allow the pod to recreate itself and then wait for 5 minutes for the secrets to propograte in the pod.
