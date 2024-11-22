@@ -4,27 +4,6 @@ Kuadrant integrates with **https://istio.io/latest/docs/[Istio]** as a _Gateway 
 
 In this lab, you install and set up an https://istio.io/latest/docs/[Istio]-based Gateway API provider by using the Service Mesh Operator.
 
-* Install Gateway API
-
-. Switch to the terminal where you had taken access of bastion server. Before you can use Kuadrant, you need to install Gateway API v1 by applying the YAML file provided in the URL shown below:
-+
-[subs="+quotes,+macros"]
-----
-[lab-user@bastion ~]$ **oc apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.0.0/standard-install.yaml**
-customresourcedefinition.apiextensions.k8s.io/gatewayclasses.gateway.networking.k8s.io created
-customresourcedefinition.apiextensions.k8s.io/gateways.gateway.networking.k8s.io created
-customresourcedefinition.apiextensions.k8s.io/httproutes.gateway.networking.k8s.io created
-customresourcedefinition.apiextensions.k8s.io/referencegrants.gateway.networking.k8s.io created
-----
-
-. Create **gateway-system** namespace where the Gateway components shall be deployed:
-+
-[subs="+quotes,+macros"]
-----
-[lab-user@bastion ~]$ **oc create ns gateway-system**
-namespace/gateway-system created
-----
-
 * Install Red Hat Openshift Service Mesh 3
 
 . In your _Red Hat Openshift console_ , navigate to _Operators_ option. Select _OperatorHub_ option and type "service mesh" in the search box.
