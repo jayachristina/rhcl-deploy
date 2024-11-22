@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Untitled :: Getting Started with Red Hat Connectivity Link</title>
-    <link rel="prev" href="section2.html">
+    <link rel="prev" href="section6.html">
     <link rel="next" href="section4.html">
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -69,6 +69,9 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section2.html">Install Cert-manager Operator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section6.html">Install Gateway API</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="section3.html">Install and configure Istio with Service Mesh Operator</a>
@@ -194,34 +197,6 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Install Gateway API</p>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Switch to the terminal where you had taken access of bastion server. Before you can use Kuadrant, you need to install Gateway API v1 by applying the YAML file provided in the URL shown below:</p>
-<div class="listingblock">
-<div class="content">
-<pre>[lab-user@bastion ~]$ <strong>oc apply -f <a href="https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.0.0/standard-install.yaml" class="bare">https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.0.0/standard-install.yaml</a></strong>
-customresourcedefinition.apiextensions.k8s.io/gatewayclasses.gateway.networking.k8s.io created
-customresourcedefinition.apiextensions.k8s.io/gateways.gateway.networking.k8s.io created
-customresourcedefinition.apiextensions.k8s.io/httproutes.gateway.networking.k8s.io created
-customresourcedefinition.apiextensions.k8s.io/referencegrants.gateway.networking.k8s.io created</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Create <strong>gateway-system</strong> namespace where the Gateway components shall be deployed:</p>
-<div class="listingblock">
-<div class="content">
-<pre>[lab-user@bastion ~]$ <strong>oc create ns gateway-system</strong>
-namespace/gateway-system created</pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</li>
-<li>
 <p>Install Red Hat Openshift Service Mesh 3</p>
 <div class="olist arabic">
 <ol class="arabic">
@@ -290,7 +265,7 @@ default   1           1       0        Healthy           v1.23.0   34s</pre>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="section2.html">Install Cert-manager Operator</a></span>
+  <span class="prev"><a href="section6.html">Install Gateway API</a></span>
   <span class="next"><a href="section4.html">Install Kuadrant on Red Hat OpenShift cluster</a></span>
 </nav>
 </article>

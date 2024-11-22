@@ -3,7 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>What is Red Hat Connectivity Link (RHCL)? :: Getting Started with Red Hat Connectivity Link</title>
+    <title>Untitled :: Getting Started with Red Hat Connectivity Link</title>
+    <link rel="prev" href="section2.html">
+    <link rel="next" href="section3.html">
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -52,7 +54,7 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="index.html">Lab Scenario</a>
+    <a class="nav-link" href="../chapter1/index.html">Lab Scenario</a>
   </li>
 </ul>
   </li>
@@ -60,25 +62,25 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../chapter2/index.html">Infrastructure Engineer Workflow</a>
+    <a class="nav-link" href="index.html">Infrastructure Engineer Workflow</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter2/section1.html">Setup Route53 in AWS</a>
+    <a class="nav-link" href="section1.html">Setup Route53 in AWS</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter2/section2.html">Install Cert-manager Operator</a>
+    <a class="nav-link" href="section2.html">Install Cert-manager Operator</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="section6.html">Install Gateway API</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter2/section6.html">Install Gateway API</a>
+    <a class="nav-link" href="section3.html">Install and configure Istio with Service Mesh Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter2/section3.html">Install and configure Istio with Service Mesh Operator</a>
+    <a class="nav-link" href="section4.html">Install Kuadrant on Red Hat OpenShift cluster</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter2/section4.html">Install Kuadrant on Red Hat OpenShift cluster</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter2/section5.html">Summary</a>
+    <a class="nav-link" href="section5.html">Summary</a>
   </li>
 </ul>
   </li>
@@ -173,7 +175,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Getting Started with Red Hat Connectivity Link</a></li>
-    <li><a href="section1.html">What is Red Hat Connectivity Link (RHCL)?</a></li>
+    <li><a href="index.html">Infrastructure Engineer Workflow</a></li>
+    <li><a href="section6.html">Install Gateway API</a></li>
   </ul>
 </nav>
 </div>
@@ -182,48 +185,43 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">What is Red Hat Connectivity Link (RHCL)?</h1>
-<div class="ulist">
-<ul>
-<li>
-<p>Red Hat Connectivity Link (RHCL) is an open-source solution designed to facilitate seamless integration between various services and applications across hybrid cloud environments.</p>
-</li>
-<li>
-<p>It is part of the Red Hat ecosystem, focusing on enabling connectivity between on-premise and cloud-based infrastructures.</p>
-</li>
-<li>
-<p>RHCL allows organizations to:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Securely manage API traffic management</p>
-</li>
-<li>
-<p>Have Seamless application connectivity</p>
-</li>
-<li>
-<p>Implement policy management</p>
-</li>
-<li>
-<p>Implement access control</p>
-</li>
-<li>
-<p>Ensure smooth communication between microservices in distributed architectures.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>It typically leverages Red Hat OpenShift for container orchestration, using tools like <a href="https://kuadrant.io/">Kuadrant</a> for API gateway management, authentication, and policy enforcement.</p>
-</li>
-<li>
-<p>RHCL works in both single and multi-cluster Kubernetes setups.</p>
-</li>
-</ul>
-</div>
+<div class="sect1">
+<h2 id="_install_gateway_api"><a class="anchor" href="#_install_gateway_api"></a>Install Gateway API</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>In summary, RHCL simplifies the complexities of managing and securing APIs in hybrid cloud environments.</p>
+<p>In this lab, you install Gateway API.</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Switch to the terminal where you had taken access of bastion server. Before you can use Kuadrant, you need to install Gateway API by applying the YAML file provided in the URL shown below:</p>
+<div class="listingblock">
+<div class="content">
+<pre>[lab-user@bastion ~]$ <strong>oc apply -f <a href="https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.0.0/standard-install.yaml" class="bare">https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.0.0/standard-install.yaml</a></strong>
+customresourcedefinition.apiextensions.k8s.io/gatewayclasses.gateway.networking.k8s.io created
+customresourcedefinition.apiextensions.k8s.io/gateways.gateway.networking.k8s.io created
+customresourcedefinition.apiextensions.k8s.io/httproutes.gateway.networking.k8s.io created
+customresourcedefinition.apiextensions.k8s.io/referencegrants.gateway.networking.k8s.io created</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create <strong>gateway-system</strong> namespace where the Gateway components shall be deployed:</p>
+<div class="listingblock">
+<div class="content">
+<pre>[lab-user@bastion ~]$ <strong>oc create ns gateway-system</strong>
+namespace/gateway-system created</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="section2.html">Install Cert-manager Operator</a></span>
+  <span class="next"><a href="section3.html">Install and configure Istio with Service Mesh Operator</a></span>
+</nav>
 </article>
   </div>
 </main>
