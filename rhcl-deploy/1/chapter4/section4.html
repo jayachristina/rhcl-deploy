@@ -71,7 +71,7 @@
     <a class="nav-link" href="../chapter2/section2.html">Install Cert-manager Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter2/section3.html">Install and configure Istio with Sail Operator</a>
+    <a class="nav-link" href="../chapter2/section3.html">Install and configure Istio with Service Mesh Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../chapter2/section4.html">Install Kuadrant on Red Hat OpenShift cluster</a>
@@ -200,6 +200,25 @@ httproute.gateway.networking.k8s.io/test created</pre>
 </div>
 </li>
 <li>
+<p>Confirm the <strong>HTTPRoute</strong> for your Gateway is created successfully:</p>
+<div class="listingblock">
+<div class="content">
+<pre>[lab-user@bastion ~]$ <strong>oc get httproute -n ${gatewayNS}</strong>
+NAME   HOSTNAMES                                  AGE
+test   ["test.managed.sandboxXXXX.opentlc.com"]   14m</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Testing the route using below command:</p>
+<div class="listingblock">
+<div class="content">
+<pre>[lab-user@bastion ~]$ curl -k <a href="https://test.managed.sandboxXXXX.opentlc.com" class="bare">https://test.managed.sandboxXXXX.opentlc.com</a>
+--No output--</pre>
+</div>
+</div>
+</li>
+<li>
 <p>Navigate to the <em>Red Hat Openshift console</em> and select <strong>Operators</strong> &#8594; select <strong>Installed Opertor</strong> &#8594; select <strong>Kuadrant Operator</strong> &#8594; select <strong>DNSPolicy</strong> &#8594; select <strong>external-dnspolicy</strong> and notice the <strong>Conditions</strong> section.</p>
 <div class="imageblock text-center">
 <div class="content">
@@ -214,7 +233,7 @@ httproute.gateway.networking.k8s.io/test created</pre>
 <p>Navigate to the <em>Red Hat Openshift console</em> and select <strong>Operators</strong> &#8594; select <strong>Installed Opertor</strong> &#8594; select <strong>Kuadrant Operator</strong> &#8594; select <strong>All Instances</strong>:</p>
 <div class="imageblock text-center">
 <div class="content">
-<img src="_images/all.png" alt="all">
+<img src="_images/dns5.png" alt="dns5">
 </div>
 </div>
 <div class="paragraph">
@@ -263,40 +282,19 @@ RateLimitPolicy has been successfully enforced</pre>
 </div>
 </li>
 <li>
-<p>Create <strong>aws-credentials</strong> secret under <strong>cert-manager</strong> namespace for <strong>AWS_ACCESS_KEY_ID</strong> and <strong>AWS_SECRET_ACCESS_KEY</strong>:</p>
-<div class="listingblock">
-<div class="content">
-<pre>[lab-user@bastion ~]$ oc -n cert-manager create secret generic aws-credentials --type=kuadrant.io/aws --from-literal=AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID --from-literal=AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
-secret/aws-credentials created</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Delete the existing pod to ensure that the secret propagates into the pods.
-Navigate to <em>Red Hat Openshift console</em>, select <strong>Workloads</strong> → select <strong>Pods</strong> → select <strong>Project: cert-manager</strong> → choose cert-manager-XXXXX and delete it:</p>
-<div class="imageblock text-center">
-<div class="content">
-<img src="_images/pod.png" alt="pod">
-</div>
-</div>
-<div class="paragraph">
-<p>Allow the pod to recreate itself and then wait for 5 minutes for the secrets to propograte in the pod.</p>
-</div>
-</li>
-<li>
-<p>Test connectivity and deny all auth.</p>
+<p>Test connectivity of <strong>HTTPRoute</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p>You can use curl to hit your endpoint. You should see a 403. Because this example uses Let&#8217;s Encrypt staging, you can pass the -k flag:</p>
+<p>You can use curl to hit your endpoint. As this lab uses <strong>Let&#8217;s Encrypt</strong>, you can pass the -k flag:</p>
 <div class="listingblock">
 <div class="content">
-<pre>[lab-user@bastion ~]$ curl -k -w "%{http_code}" <a href="https://$(oc" class="bare">https://$(oc</a> get httproute test -n ${gatewayNS} -o=jsonpath='{.spec.hostnames[0]}')
+<pre>[lab-user@bastion ~]$ <strong>curl -k -w "%{http_code}" <a href="https://$(oc" class="bare">https://$(oc</a> get httproute test -n ${gatewayNS} -o=jsonpath='{.spec.hostnames[0]}')</strong>
 403</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Above command can take 5-10 mins to return result.</p>
+<p>Notice the response code is <strong>403</strong> meaning authentication failure.</p>
 </div>
 </li>
 </ul>
@@ -306,8 +304,8 @@ Navigate to <em>Red Hat Openshift console</em>, select <strong>Workloads</strong
 <p>Verify that your listener is ready:</p>
 <div class="listingblock">
 <div class="content">
-<pre>[lab-user@bastion ~]$ oc get gateway ${gatewayName} -n ${gatewayNS} -o=jsonpath='{.status.listeners[0].conditions[?(@.type=="Programmed")].message}'
-No errors found</pre>
+<pre>[lab-user@bastion ~]$ <strong>oc get gateway ${gatewayName} -n ${gatewayNS} -o=jsonpath='{.status.listeners[0].conditions[?(@.type=="Programmed")].message}'</strong>
+No error found</pre>
 </div>
 </div>
 </li>
@@ -319,7 +317,7 @@ No errors found</pre>
 <p>Because you have configured the Gateway, secured it with Kuadrant policies, and tested it, you can now open it up for use by other teams in other namespaces:</p>
 <div class="listingblock">
 <div class="content">
-<pre>[lab-user@bastion ~]$ oc patch gateway ${gatewayName} -n ${gatewayNS} --type='json' -p='[{"op": "replace", "path": "/spec/listeners/0/allowedRoutes/namespaces/from", "value":"All"}]'
+<pre>[lab-user@bastion ~]$ <strong>oc patch gateway ${gatewayName} -n ${gatewayNS} --type='json' -p='[{"op": "replace", "path": "/spec/listeners/0/allowedRoutes/namespaces/from", "value":"All"}]'</strong>
 gateway.gateway.networking.k8s.io/external patched</pre>
 </div>
 </div>

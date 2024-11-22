@@ -71,7 +71,7 @@
     <a class="nav-link" href="section2.html">Install Cert-manager Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section3.html">Install and configure Istio with Sail Operator</a>
+    <a class="nav-link" href="section3.html">Install and configure Istio with Service Mesh Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section4.html">Install Kuadrant on Red Hat OpenShift cluster</a>
@@ -231,9 +231,6 @@
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Log into your <em>Red Hat OpenShift console</em></strong> as <em>kubeadmin</em> user and password provided in the lab environment page.</p>
-</li>
-<li>
 <p><strong>Take SSH access to bastion server</strong> by following these steps:</p>
 <div class="ulist">
 <ul>
@@ -255,11 +252,11 @@
 </div>
 </li>
 <li>
-<p><strong>Log into to <em>Red Hat OpenShift cluster</em></strong> as the admin user from the bastion server by following these steps:</p>
+<p><strong>Log into to <em>Red Hat OpenShift cluster</em></strong> as the <em>kubeadmin</em> user and password provided in the lab environment page and follow below steps:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>In your browser, log into your Red Hat OpenShift console as the kubeadmin user. Locate the <strong>kube-admin</strong> dropdown at the top right corner and select Copy login command as shown in the image:</p>
+<p>Locate the <strong>kube-admin</strong> dropdown at the top right corner and select <strong>Copy login command</strong> as shown in the image:</p>
 <div class="imageblock text-center">
 <div class="content">
 <img src="_images/im1.png" alt="im1">
@@ -283,17 +280,7 @@
 </div>
 </li>
 <li>
-<p>Return to your bastion server terminal and paste the copied token to log in to your <em>Red Hat OpenShift cluster</em>:</p>
-<div class="listingblock">
-<div class="content">
-<pre>[lab-user@bastion ~]$ oc login --token=XXXX --server=XXXX
-Logged into "https://api.cluster-XXXXX.sandboxXXXXX.opentlc.com:6443" as "kube:admin" using the token provided.
-
-You have access to 71 projects, the list has been suppressed. You can list all projects with 'oc projects'
-
-Using project "default".</pre>
-</div>
-</div>
+<p>Return to your bastion server terminal and paste the copied token to log in to your <em>Red Hat OpenShift cluster</em>.</p>
 </li>
 </ul>
 </div>

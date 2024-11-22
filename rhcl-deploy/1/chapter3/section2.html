@@ -71,7 +71,7 @@
     <a class="nav-link" href="../chapter2/section2.html">Install Cert-manager Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter2/section3.html">Install and configure Istio with Sail Operator</a>
+    <a class="nav-link" href="../chapter2/section3.html">Install and configure Istio with Service Mesh Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../chapter2/section4.html">Install Kuadrant on Red Hat OpenShift cluster</a>
@@ -200,14 +200,14 @@ authpolicy.kuadrant.io/external-auth created</pre>
 </div>
 </li>
 <li>
-<p>Navigate to the Red Hat Openshift console and select <strong>Operators</strong> &#8594; select <strong>Installed Opertor</strong> &#8594; select <strong>Kuadrant Operator</strong> &#8594; select <strong>AuthPolicy</strong> &#8594; select <strong>external-auth</strong> and notice the <strong>Conditions</strong> section:</p>
+<p>Navigate to the Red Hat Openshift cluster and select <strong>Operators</strong> &#8594; select <strong>Installed Opertor</strong> &#8594; select <strong>Kuadrant Operator</strong> &#8594; select <strong>AuthPolicy</strong> tab &#8594; select <strong>external-auth</strong> and notice the <strong>Conditions</strong> section:</p>
 <div class="imageblock text-center">
 <div class="content">
-<img src="_images/auth2.png" alt="auth2">
+<img src="_images/auth3.png" alt="auth3">
 </div>
 </div>
 <div class="paragraph">
-<p>Note that the <strong>Enforced</strong> status is set to <strong>False</strong> as there is not route to enforce the policy.</p>
+<p>Note that the <strong>Enforced</strong> status is set to <strong>False</strong> as there is no route to enforce the policy.</p>
 </div>
 </li>
 <li>

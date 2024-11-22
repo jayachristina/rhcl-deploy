@@ -71,7 +71,7 @@
     <a class="nav-link" href="../chapter2/section2.html">Install Cert-manager Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter2/section3.html">Install and configure Istio with Sail Operator</a>
+    <a class="nav-link" href="../chapter2/section3.html">Install and configure Istio with Service Mesh Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../chapter2/section4.html">Install Kuadrant on Red Hat OpenShift cluster</a>
@@ -221,7 +221,7 @@ authpolicy.kuadrant.io/toystore created</pre>
 <p>After applying the authentication policy, test access to the <strong>/cars</strong> endpoint without an API key:</p>
 <div class="listingblock">
 <div class="content">
-<pre>[lab-user@bastion ~]$ curl -k -w "%{http_code}" <a href="https://$(oc" class="bare">https://$(oc</a> get httproute toystore -n toystore  -o=jsonpath='{.spec.hostnames[0]}')/cars
+<pre>[lab-user@bastion ~]$ <strong>curl -k -w "%{http_code}" <a href="https://$(oc" class="bare">https://$(oc</a> get httproute toystore -n toystore  -o=jsonpath='{.spec.hostnames[0]}')/cars</strong>
 401</pre>
 </div>
 </div>
@@ -240,7 +240,7 @@ authpolicy.kuadrant.io/toystore created</pre>
 <p>Next, create API keys for different user roles by applying the following YAML file:</p>
 <div class="listingblock">
 <div class="content">
-<pre>[lab-user@bastion ~]$ curl -s <a href="https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/toystore-api-key-secrets.yaml" class="bare">https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/toystore-api-key-secrets.yaml</a> | envsubst | oc apply -f -
+<pre>[lab-user@bastion ~]$ <strong>curl -s <a href="https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/toystore-api-key-secrets.yaml" class="bare">https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/toystore-api-key-secrets.yaml</a> | envsubst | oc apply -f - </strong>
 secret/api-key-regular-user created
 secret/api-key-admin-user created</pre>
 </div>
@@ -257,7 +257,7 @@ secret/api-key-admin-user created</pre>
 <p>Test <strong>/cars</strong> endpoint with <strong>regular user</strong> API Key. Use the API_KEY for the <strong>regular user</strong> to access the <strong>/cars</strong> endpoint:</p>
 <div class="listingblock">
 <div class="content">
-<pre>[lab-user@bastion ~]$ curl -H 'Authorization: APIKEY iamaregularuser'  -k -w "%{http_code}" <a href="https://$(oc" class="bare">https://$(oc</a> get httproute toystore -n toystore  -o=jsonpath='{.spec.hostnames[0]}')/cars
+<pre>[lab-user@bastion ~]$ <strong>curl -H 'Authorization: APIKEY iamaregularuser'  -k -w "%{http_code}" <a href="https://$(oc" class="bare">https://$(oc</a> get httproute toystore -n toystore  -o=jsonpath='{.spec.hostnames[0]}')/cars</strong>
 {
   "method": "GET",
   "path": "/cars",
@@ -293,7 +293,7 @@ secret/api-key-admin-user created</pre>
 <p>Test <strong>/admin</strong> endpoint with admin user API Key. Use the API_KEY for the admin user to access the <strong>/admin</strong> endpoint:</p>
 <div class="listingblock">
 <div class="content">
-<pre>[lab-user@bastion ~]$ curl -H 'Authorization: APIKEY iamanadmin' -k -w "%{http_code}" <a href="https://$(oc" class="bare">https://$(oc</a> get httproute toystore -n toystore  -o=jsonpath='{.spec.hostnames[0]}')/admin
+<pre>[lab-user@bastion ~]$ <strong>curl -H 'Authorization: APIKEY iamanadmin' -k -w "%{http_code}" <a href="https://$(oc" class="bare">https://$(oc</a> get httproute toystore -n toystore  -o=jsonpath='{.spec.hostnames[0]}')/admin</strong>
 {
   "method": "GET",
   "path": "/admin",

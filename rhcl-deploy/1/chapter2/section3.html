@@ -71,7 +71,7 @@
     <a class="nav-link" href="section2.html">Install Cert-manager Operator</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="section3.html">Install and configure Istio with Sail Operator</a>
+    <a class="nav-link" href="section3.html">Install and configure Istio with Service Mesh Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section4.html">Install Kuadrant on Red Hat OpenShift cluster</a>
@@ -173,7 +173,7 @@
   <ul>
     <li><a href="../index.html">Getting Started with Red Hat Connectivity Link</a></li>
     <li><a href="index.html">Infrastructure Engineer Workflow</a></li>
-    <li><a href="section3.html">Install and configure Istio with Sail Operator</a></li>
+    <li><a href="section3.html">Install and configure Istio with Service Mesh Operator</a></li>
   </ul>
 </nav>
 </div>
@@ -183,14 +183,18 @@
 </aside>
 <article class="doc">
 <div class="sect1">
-<h2 id="_install_and_configure_istio_with_sail_operator"><a class="anchor" href="#_install_and_configure_istio_with_sail_operator"></a>Install and configure Istio with Sail Operator</h2>
+<h2 id="_install_and_configure_istio_with_service_mesh_operator"><a class="anchor" href="#_install_and_configure_istio_with_service_mesh_operator"></a>Install and configure Istio with Service Mesh Operator</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Kuadrant integrates with <strong><a href="https://istio.io/latest/docs/">Istio</a></strong> as a <em>Gateway API</em> provider.</p>
 </div>
 <div class="paragraph">
-<p>In this lab, you install and set up an <a href="https://istio.io/latest/docs/">Istio</a>-based Gateway API provider by using the Sail Operator.</p>
+<p>In this lab, you install and set up an <a href="https://istio.io/latest/docs/">Istio</a>-based Gateway API provider by using the Service Mesh Operator.</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Install Gateway API</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -214,41 +218,45 @@ namespace/gateway-system created</pre>
 </div>
 </div>
 </li>
-<li>
-<p>Execute the following command to apply the <em>Sail Operator Subscription</em> yaml file directly from the URL:</p>
-<div class="listingblock">
-<div class="content">
-<pre>[lab-user@bastion ~]$ <strong>oc apply -f <a href="https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/main/sail-operator-subscription.yaml" class="bare">https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/main/sail-operator-subscription.yaml</a></strong>
-operatorgroup.operators.coreos.com/sail created
-subscription.operators.coreos.com/sailoperator created</pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Check the status of the installation using below command. When ready, the status will change from "installing" to "complete."</p>
-<div class="listingblock">
-<div class="content">
-<pre>[lab-user@bastion ~]$ <strong>oc get installplan -n gateway-system -o=jsonpath='{.items[0].status.phase}'</strong>
-Complete</pre>
-</div>
+</ol>
 </div>
 </li>
 <li>
-<p>Note that you can now see <strong>Sail operator</strong> in <em>Red Hat Openshift</em> console&#8217;s <em>Installed Operators</em> section.</p>
+<p>Install Red Hat Openshift Service Mesh 3</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In your <em>Red Hat Openshift console</em> , navigate to <em>Operators</em> option. Select <em>OperatorHub</em> option and type "service mesh" in the search box.
+Select <strong>Red Hat OpenShift Service Mesh 3</strong> that appears in the search result, as shown in the image below:</p>
 <div class="imageblock text-center">
 <div class="content">
-<img src="_images/sail.png" alt="sail">
+<img src="_images/service.png" alt="service">
 </div>
 </div>
 </li>
-</ul>
+<li>
+<p>Confirm all the options are same as image below and select <strong>Install</strong> button:</p>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/service2.png" alt="service2">
+</div>
+</div>
+</li>
+<li>
+<p>Note that you can now see <strong>Red Hat OpenShift Service Mesh 3 operator</strong> in <em>Red Hat Openshift</em> console&#8217;s <em>Installed Operators</em> section.</p>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/service3.png" alt="service3">
+</div>
+</div>
+</li>
+</ol>
 </div>
 </li>
 <li>
 <p>Configure Istio</p>
-<div class="ulist">
-<ul>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
 <p>To configure the <em>Istio Gateway API</em> provider, apply the yaml file from URL using below command:</p>
 <div class="listingblock">
@@ -259,21 +267,25 @@ istio.operator.istio.io/default created</pre>
 </div>
 </li>
 <li>
-<p>Wait for Istio to be ready as follow:</p>
+<p>Wait for Istio to be ready and confirm the <strong>default</strong> istio provider is available.</p>
 <div class="listingblock">
 <div class="content">
 <pre>[lab-user@bastion ~]$ <strong>oc wait istio/default -n gateway-system --for="condition=Ready=true"</strong>
-istio.operator.istio.io/default condition met</pre>
+istio.operator.istio.io/default condition met
+
+[lab-user@bastion ~]$ <strong>oc get istio -n gateway-system</strong>
+NAME      REVISIONS   READY   IN USE   ACTIVE REVISION   VERSION   AGE
+default   1           1       0        Healthy           v1.23.0   34s</pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Once you notice the <em>condition met</em> output for above command, proceed with next lab.</p>
 </div>
 </li>
-</ul>
+</ol>
 </div>
 </li>
-</ol>
+</ul>
 </div>
 </div>
 </div>

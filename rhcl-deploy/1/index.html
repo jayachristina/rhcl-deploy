@@ -70,7 +70,7 @@
     <a class="nav-link" href="chapter2/section2.html">Install Cert-manager Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="chapter2/section3.html">Install and configure Istio with Sail Operator</a>
+    <a class="nav-link" href="chapter2/section3.html">Install and configure Istio with Service Mesh Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="chapter2/section4.html">Install Kuadrant on Red Hat OpenShift cluster</a>
@@ -316,40 +316,118 @@ This course is the <code>second</code> in a series of <code>two</code> courses a
 <div class="paragraph">
 <p>This course assumes that you have the following prior experience:</p>
 </div>
-<div class="ulist">
-<ul>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
 <p><a href="https://training-lms.redhat.com/lmt/clmsCourseDetails.prMain?in_sessionId=103595A3J0989409&amp;in_from_module=CLMSBROWSEV2.PRMAIN&amp;in_offeringId=57857955">Red Hat OpenShift Container Platform (OCP) Technical Overview</a> or Kubernetes Basics</p>
-</li>
-<li>
-<p>Familiarity with Red Hat Openshift networking concepts</p>
 </li>
 <li>
 <p>Basic Understanding of AWS services like EC2 and Route53</p>
 </li>
 <li>
-<p>Basic knowledge of TLS encryption, certificates (e.g., how they work), and certificate management tools.</p>
+<p>Basic knowledge of:</p>
 </li>
+</ol>
+</div>
+<details>
+<summary class="title">TLS encryption: Click here for a quick primer</summary>
+<div class="content">
+<div class="ulist">
+<ul>
 <li>
-<p>Concepts of DNS resolution, domain management, and how DNS policies work in cloud environments.</p>
-</li>
-<li>
-<p>Understanding rate limiting concepts, including request throttling, quotas, and burst limits.</p>
-</li>
-<li>
-<p>Familiarity with authentication mechanisms (e.g., OAuth, JWT) and how policies control access to APIs.</p>
-</li>
-<li>
-<p>Understanding API development, RESTful services, and how to define routes in Kubernetes.</p>
-</li>
-<li>
-<p>Familiarity with overriding default gateway policies (e.g., for authentication or rate limiting) based on application-specific needs.</p>
-</li>
-<li>
-<p>Knowledge of service mesh architectures (like Istio) and how they handle traffic routing, observability, and policy enforcement.</p>
+<p>TLS (Transport Layer Security) is a cryptographic protocol that ensures secure communication over a network.</p>
 </li>
 </ul>
 </div>
+</div>
+</details>
+<details>
+<summary class="title">Rate limiting concepts: Click here for a quick primer</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Rate limiting controls how many requests a client can make to a server within a specific time frame.</p>
+</li>
+<li>
+<p>It is essential for protecting APIs, servers resources from being overwhelmed by excessive traffic, whether intentional (DDoS attacks) or unintentional (high demand).</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Authentication mechanisms (e.g., OAuth, JWT): Click here for a quick primer</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Authentication mechanisms validate the identity of a user or system attempting to access a resource.</p>
+</li>
+<li>
+<p>Example:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>OAuth (Open Authorization): OAuth is a standard for secure delegated access, allowing third-party applications to access resources on behalf of a user without exposing credentials.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">API and RESTful services: Click here for a quick primer</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>API:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>An API is a set of rules and protocols that allow different software applications to communicate with each other.</p>
+</li>
+<li>
+<p>APIs enable developers to use predefined functions to interact with a service or application without needing to understand its internal workings.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>RESTful services:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>REST (Representational State Transfer) is an architectural style for designing networked applications.</p>
+</li>
+<li>
+<p>A RESTful service adheres to REST principles to provide scalability, simplicity, and statelessness.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Service mesh architectures (like Istio): Click here for a quick primer</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>A service mesh is a dedicated infrastructure layer for managing service-to-service communication in microservices architectures.</p>
+</li>
+<li>
+<p>It abstracts the network and provides advanced features like load balancing, traffic control, security, and observability.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
 </div>
 </div>
 <nav class="pagination">

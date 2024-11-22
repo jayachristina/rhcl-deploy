@@ -71,7 +71,7 @@
     <a class="nav-link" href="section2.html">Install Cert-manager Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section3.html">Install and configure Istio with Sail Operator</a>
+    <a class="nav-link" href="section3.html">Install and configure Istio with Service Mesh Operator</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="section4.html">Install Kuadrant on Red Hat OpenShift cluster</a>
@@ -211,16 +211,22 @@ catalogsource.operators.coreos.com/kuadrant-operator-catalog created</pre>
 </div>
 </li>
 <li>
-<p>Install the <strong>Kuadrant</strong> operator by appling the yaml file from URL using below command:</p>
-<div class="listingblock">
+<p>Install the <strong>Kuadrant</strong> operator by navigating to the Red Hat OpenShift cluster, select <strong>OperatorHub</strong> from side panel and search <strong>Kuadrant</strong>. Select the <strong>Kuadrant Operator</strong> highlighted in below screenshot and click <strong>Install</strong></p>
+<div class="imageblock text-center">
 <div class="content">
-<pre>[lab-user@bastion ~]$ <strong>oc apply -f <a href="https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-subscription-operatorgroup.yaml" class="bare">https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-subscription-operatorgroup.yaml</a></strong>
-subscription.operators.coreos.com/kuadrant-operator created
-operatorgroup.operators.coreos.com/kuadrant created</pre>
+<img src="_images/install1.png" alt="install1">
 </div>
 </div>
 <div class="ulist">
 <ul>
+<li>
+<p>Select <strong>kuadrant-system</strong> namespace as shown in below screenshot and click <strong>Install</strong>.</p>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/setting1.png" alt="setting1">
+</div>
+</div>
+</li>
 <li>
 <p>Check the status of the installation using below command. When ready, the status will change from "installing" to "Complete."</p>
 <div class="listingblock">
@@ -234,7 +240,7 @@ Complete</pre>
 <p>Observe the <strong>Kuadrant</strong> operator is installed along with it&#8217;s dependencies in the <em>Red Hat Openshift</em> console&#8217;s  <em>Installed Operators</em> section.</p>
 <div class="imageblock text-center">
 <div class="content">
-<img src="_images/kuad.png" alt="kuad">
+<img src="_images/service4.png" alt="service4">
 </div>
 </div>
 <div class="ulist">
@@ -331,13 +337,48 @@ kuadrant.kuadrant.io/kuadrant condition met</pre>
 </div>
 </div>
 </li>
+<li>
+<p>Enabling Kuadrant plugin to view components configuration status easily that we would perform in coming sections.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate <em>Red Hat OpenShift cluster</em> and from <strong>Administrator</strong> view, click  on <strong>Home</strong> &#8594; <strong>Overview</strong>.</p>
+</li>
+<li>
+<p>Under <strong>Status</strong> section, click on <strong>Dynamic Plugins</strong> &#8594; <strong>View All</strong>.</p>
+</li>
+<li>
+<p>You will see <strong>kuadrant-console-plugin</strong> marked  as disabled.</p>
+</li>
+<li>
+<p>Click on the pencil icon and then choose <strong>Enabled</strong> and click <strong>Save</strong>.</p>
+</li>
+<li>
+<p>Refresh the page in a couple of minutes, and you will see the Kuadrant menu on the left hand side menu.</p>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/kuad2.png" alt="kuad2">
+</div>
+</div>
+</li>
+<li>
+<p>Click on <strong>Overview</strong> option and you shall see a dashboard that will show you kuadrant&#8217;s overview. You this dashboard to track status of <strong>policies/gateways/http routes</strong> that we shall configure in upcoming lab sections.</p>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/kuad3.png" alt="kuad3">
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
 </ul>
 </div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="section3.html">Install and configure Istio with Sail Operator</a></span>
+  <span class="prev"><a href="section3.html">Install and configure Istio with Service Mesh Operator</a></span>
   <span class="next"><a href="section5.html">Summary</a></span>
 </nav>
 </article>

@@ -71,7 +71,7 @@
     <a class="nav-link" href="../chapter2/section2.html">Install Cert-manager Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter2/section3.html">Install and configure Istio with Sail Operator</a>
+    <a class="nav-link" href="../chapter2/section3.html">Install and configure Istio with Service Mesh Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../chapter2/section4.html">Install Kuadrant on Red Hat OpenShift cluster</a>
@@ -199,7 +199,7 @@ This will involve defining the routing rules and testing the configuration to en
 <p>Begin by creating the HTTPRoute for the toystore app using the following command:</p>
 <div class="listingblock">
 <div class="content">
-<pre>[lab-user@bastion ~]$ curl -s <a href="https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/toystore-http-route.yaml" class="bare">https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/toystore-http-route.yaml</a> | envsubst | oc apply -f -
+<pre>[lab-user@bastion ~]$ <strong>curl -s <a href="https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/toystore-http-route.yaml" class="bare">https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/toystore-http-route.yaml</a> | envsubst | oc apply -f - </strong>
 httproute.gateway.networking.k8s.io/toystore created</pre>
 </div>
 </div>
@@ -215,7 +215,7 @@ httproute.gateway.networking.k8s.io/toystore created</pre>
 <p>After creating the HTTPRoute, test its functionality with the following command:</p>
 <div class="listingblock">
 <div class="content">
-<pre>[lab-user@bastion ~]$ curl -k -w "%{http_code}" <a href="https://$(oc" class="bare">https://$(oc</a> get httproute toystore -n toystore  -o=jsonpath='{.spec.hostnames[0]}')/cars
+<pre>[lab-user@bastion ~]$ <strong>curl -k -w "%{http_code}" <a href="https://$(oc" class="bare">https://$(oc</a> get httproute toystore -n toystore  -o=jsonpath='{.spec.hostnames[0]}')/cars</strong>
 403</pre>
 </div>
 </div>

@@ -71,7 +71,7 @@
     <a class="nav-link" href="../chapter2/section2.html">Install Cert-manager Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter2/section3.html">Install and configure Istio with Sail Operator</a>
+    <a class="nav-link" href="../chapter2/section3.html">Install and configure Istio with Service Mesh Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../chapter2/section4.html">Install Kuadrant on Red Hat OpenShift cluster</a>
@@ -212,11 +212,32 @@ TLSPolicy has been accepted</pre>
 <p>Navigate to the Red Hat Openshift console and select <strong>Operators</strong> &#8594; select <strong>Installed Opertor</strong> &#8594; select <strong>Kuadrant Operator</strong> &#8594; select <strong>TLSPolicy</strong> &#8594; select <strong>external-tls</strong> and notice the <strong>Conditions</strong> section:</p>
 <div class="imageblock text-center">
 <div class="content">
-<img src="_images/tls2.png" alt="tls2">
+<img src="_images/tls3.png" alt="tls3">
 </div>
 </div>
 <div class="paragraph">
-<p>Note that the <strong>Enforced</strong> status is set to <strong>False</strong> as certificate <strong>api-external-tls</strong> is not ready.</p>
+<p>Note that the <strong>Enforced</strong> status is set to <strong>False</strong> as certificate <strong>external-api</strong> is not ready.</p>
+</div>
+</li>
+<li>
+<p>Create <strong>aws-credentials</strong> secret under <strong>cert-manager</strong> namespace for <strong>AWS_ACCESS_KEY_ID</strong> and <strong>AWS_SECRET_ACCESS_KEY</strong>:</p>
+<div class="listingblock">
+<div class="content">
+<pre>[lab-user@bastion ~]$ oc -n cert-manager create secret generic aws-credentials --type=kuadrant.io/aws --from-literal=AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID --from-literal=AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+secret/aws-credentials created</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Delete the existing pod to ensure that the secret propagates into the pods.
+Navigate to <em>Red Hat Openshift console</em>, select <strong>Workloads</strong> → select <strong>Pods</strong> → select <strong>Project: cert-manager</strong> → choose cert-manager-XXXXX and delete it:</p>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/pod.png" alt="pod">
+</div>
+</div>
+<div class="paragraph">
+<p>Allow the pod to recreate itself and then wait for 5 minutes for the secrets to propograte in the pod.</p>
 </div>
 </li>
 </ul>
