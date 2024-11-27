@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: Getting Started with Red Hat Connectivity Link</title>
+    <title>Untitled :: RHCL Installation and Implementation for Multi-Role Use Cases</title>
     <link rel="prev" href="section3.html">
     <link rel="next" href="section5.html">
     <meta name="generator" content="Antora 3.1.3">
@@ -15,7 +15,7 @@
   <nav class="navbar">
     <div class="navbar-brand">
       <a class="navbar-item" href="https://www.redhat.com" target="_blank"><img src="../../../_/img/redhat-logo.png" height="40px" alt="Red Hat"></a>
-      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">Getting Started with Red Hat Connectivity Link</a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">RHCL Installation and Implementation for Multi-Role Use Cases</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
@@ -35,12 +35,12 @@
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="../index.html">Getting Started with Red Hat Connectivity Link</a></h3>
+    <h3 class="title"><a href="../index.html">RHCL Installation and Implementation for Multi-Role Use Cases</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../index.html">Home</a>
+    <a class="nav-link" href="../index.html">RHCL Installation and Implementation for Multi-Role Use Cases</a>
   </li>
 </ul>
   </li>
@@ -62,7 +62,7 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../chapter2/index.html">Infrastructure Engineer Workflow</a>
+    <a class="nav-link" href="../chapter2/index.html">RHCL Setup Prerequisites</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../chapter2/section1.html">Setup Route53 in AWS</a>
@@ -71,10 +71,10 @@
     <a class="nav-link" href="../chapter2/section2.html">Install Cert-manager Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter2/section6.html">Install Gateway API</a>
+    <a class="nav-link" href="../chapter2/section6.html">Install Gateway API v1</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter2/section3.html">Install and configure Istio with Service Mesh Operator</a>
+    <a class="nav-link" href="../chapter2/section3.html">Install and configure Istio with the OpenShift Service Mesh</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../chapter2/section4.html">Install Kuadrant on Red Hat OpenShift cluster</a>
@@ -108,6 +108,9 @@
     <a class="nav-link" href="section5.html">Create DNS Policy</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section6.html">Configure Gateway</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section7.html">Summary</a>
   </li>
 </ul>
@@ -121,16 +124,16 @@
     <a class="nav-link" href="../chapter4/index.html">Developer Workflow</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter4/section4.html">Create HTTP Route</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../chapter4/section1.html">Toystore Application Deployment</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter4/section2.html">Deploying the Toystore HTTPRoute</a>
+    <a class="nav-link" href="../chapter4/section4.html">Create HTTP Route</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../chapter4/section3.html">Securing the Toystore Application with Kuadrant Policies</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter4/section2.html">Test the HTTP Route</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../chapter4/section5.html">Summary</a>
@@ -151,12 +154,12 @@
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">Getting Started with Red Hat Connectivity Link</span>
+    <span class="title">RHCL Installation and Implementation for Multi-Role Use Cases</span>
     <span class="version">1</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <a class="title" href="../index.html">Getting Started with Red Hat Connectivity Link</a>
+      <a class="title" href="../index.html">RHCL Installation and Implementation for Multi-Role Use Cases</a>
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="../index.html">1</a>
@@ -174,7 +177,7 @@
   <a href="../index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="../index.html">Getting Started with Red Hat Connectivity Link</a></li>
+    <li><a href="../index.html">RHCL Installation and Implementation for Multi-Role Use Cases</a></li>
     <li><a href="index.html">Platform Engineer Workflow</a></li>
     <li><a href="section4.html">Create Rate Limit Policy</a></li>
   </ul>
@@ -195,31 +198,50 @@
 <ul>
 <li>
 <p>Set the default <strong>RateLimitPolicy</strong> for your Gateway by running the following command:</p>
+<div class="exampleblock">
+<div class="content">
 <div class="listingblock">
 <div class="content">
-<pre>[lab-user@bastion ~]$ <strong>curl -s <a href="https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-ratelimitpolicy.yaml" class="bare">https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-ratelimitpolicy.yaml</a> | envsubst | oc apply -f -</strong>
-ratelimitpolicy.kuadrant.io/external-rlp created</pre>
+<pre class="highlightjs highlight"><code class="language-none hljs"><strong>oc apply -f -&lt;&lt;EOF
+apiVersion: kuadrant.io/v1
+kind: RateLimitPolicy
+metadata:
+ name: external-rlp
+ namespace: api-gateway
+spec:
+ targetRef:
+   group: gateway.networking.k8s.io
+   kind: Gateway
+   name: external
+ defaults:
+   limits:
+     "low-limit":
+       rates:
+       - limit: 5
+         window: 10s
+EOF</strong></code></pre>
 </div>
 </div>
-</li>
-<li>
-<p>Navigate to the Red Hat Openshift console and select <strong>Operators</strong> &#8594; select <strong>Installed Opertor</strong> &#8594; select <strong>Kuadrant Operator</strong> &#8594; select <strong>RateLimitPolicy</strong> &#8594; select <strong>external-rip</strong> and notice the <strong>Conditions</strong> section:</p>
-<div class="imageblock text-center">
-<div class="content">
-<img src="_images/rate3.png" alt="rate3">
 </div>
 </div>
 <div class="paragraph">
-<p>Note that the <strong>Enforced</strong> status is set to <strong>False</strong> as there is no routes available to enforce the policy.</p>
+<p>You should see the output as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">ratelimitpolicy.kuadrant.io/external-rlp created</code></pre>
+</div>
 </div>
 </li>
 <li>
-<p>Verify that the rate limits has been accepted by the controller:</p>
-<div class="listingblock">
+<p>Navigate to the Red Hat Openshift console and select <strong>Kuadrant</strong> &#8594; select <strong>Overview</strong> &#8594; notice the <strong>Policy</strong> section&#8217;s <strong>external-rlp</strong> option:</p>
+<div class="imageblock text-center">
 <div class="content">
-<pre>[lab-user@bastion ~]$ <strong>oc get ratelimitpolicy ${gatewayName}-rlp -n ${gatewayNS} -o=jsonpath='{.status.conditions[?(@.type=="Accepted")].message}'</strong>
-RateLimitPolicy has been accepted</pre>
+<img src="_images/new7.png" alt="new7">
 </div>
+</div>
+<div class="paragraph">
+<p>Note the <strong>Status</strong> is set to <strong>Accepted(not Enforced)</strong> as there is no route to enforce the policy.</p>
 </div>
 </li>
 </ul>

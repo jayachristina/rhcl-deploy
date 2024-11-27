@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: Getting Started with Red Hat Connectivity Link</title>
-    <link rel="prev" href="section1.html">
-    <link rel="next" href="section3.html">
+    <title>Untitled :: RHCL Installation and Implementation for Multi-Role Use Cases</title>
+    <link rel="prev" href="section3.html">
+    <link rel="next" href="section5.html">
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -15,7 +15,7 @@
   <nav class="navbar">
     <div class="navbar-brand">
       <a class="navbar-item" href="https://www.redhat.com" target="_blank"><img src="../../../_/img/redhat-logo.png" height="40px" alt="Red Hat"></a>
-      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">Getting Started with Red Hat Connectivity Link</a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">RHCL Installation and Implementation for Multi-Role Use Cases</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
@@ -35,12 +35,12 @@
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="../index.html">Getting Started with Red Hat Connectivity Link</a></h3>
+    <h3 class="title"><a href="../index.html">RHCL Installation and Implementation for Multi-Role Use Cases</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../index.html">Home</a>
+    <a class="nav-link" href="../index.html">RHCL Installation and Implementation for Multi-Role Use Cases</a>
   </li>
 </ul>
   </li>
@@ -62,7 +62,7 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../chapter2/index.html">Infrastructure Engineer Workflow</a>
+    <a class="nav-link" href="../chapter2/index.html">RHCL Setup Prerequisites</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../chapter2/section1.html">Setup Route53 in AWS</a>
@@ -71,10 +71,10 @@
     <a class="nav-link" href="../chapter2/section2.html">Install Cert-manager Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter2/section6.html">Install Gateway API</a>
+    <a class="nav-link" href="../chapter2/section6.html">Install Gateway API v1</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter2/section3.html">Install and configure Istio with Service Mesh Operator</a>
+    <a class="nav-link" href="../chapter2/section3.html">Install and configure Istio with the OpenShift Service Mesh</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../chapter2/section4.html">Install Kuadrant on Red Hat OpenShift cluster</a>
@@ -108,6 +108,9 @@
     <a class="nav-link" href="../chapter3/section5.html">Create DNS Policy</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter3/section6.html">Configure Gateway</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../chapter3/section7.html">Summary</a>
   </li>
 </ul>
@@ -121,16 +124,16 @@
     <a class="nav-link" href="index.html">Developer Workflow</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section1.html">Toystore Application Deployment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section4.html">Create HTTP Route</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section1.html">Toystore Application Deployment</a>
+    <a class="nav-link" href="section3.html">Securing the Toystore Application with Kuadrant Policies</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="section2.html">Deploying the Toystore HTTPRoute</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section3.html">Securing the Toystore Application with Kuadrant Policies</a>
+    <a class="nav-link" href="section2.html">Test the HTTP Route</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section5.html">Summary</a>
@@ -151,12 +154,12 @@
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">Getting Started with Red Hat Connectivity Link</span>
+    <span class="title">RHCL Installation and Implementation for Multi-Role Use Cases</span>
     <span class="version">1</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <a class="title" href="../index.html">Getting Started with Red Hat Connectivity Link</a>
+      <a class="title" href="../index.html">RHCL Installation and Implementation for Multi-Role Use Cases</a>
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="../index.html">1</a>
@@ -174,9 +177,9 @@
   <a href="../index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="../index.html">Getting Started with Red Hat Connectivity Link</a></li>
+    <li><a href="../index.html">RHCL Installation and Implementation for Multi-Role Use Cases</a></li>
     <li><a href="index.html">Developer Workflow</a></li>
-    <li><a href="section2.html">Deploying the Toystore HTTPRoute</a></li>
+    <li><a href="section2.html">Test the HTTP Route</a></li>
   </ul>
 </nav>
 </div>
@@ -186,59 +189,175 @@
 </aside>
 <article class="doc">
 <div class="sect1">
-<h2 id="_deploying_the_toystore_httproute"><a class="anchor" href="#_deploying_the_toystore_httproute"></a>Deploying the Toystore HTTPRoute</h2>
+<h2 id="_test_the_http_routes"><a class="anchor" href="#_test_the_http_routes"></a>Test the HTTP Routes</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this lab exercise, you will create an HTTPRoute for the toystore application, allowing it to manage incoming traffic effectively.
-This will involve defining the routing rules and testing the configuration to ensure proper functionality.</p>
+<p>In this lab exercise, you will test access to various endpoints in the toystore application, which is secured by Kuadrant policies.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Create the Toystore HTTPRoute:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Begin by creating the HTTPRoute for the toystore app using the following command:</p>
+<p>Test <strong>/test</strong> endpoint without APIKey:</p>
+<div class="exampleblock">
+<div class="content">
 <div class="listingblock">
 <div class="content">
-<pre>[lab-user@bastion ~]$ <strong>curl -s <a href="https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/toystore-http-route.yaml" class="bare">https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/toystore-http-route.yaml</a> | envsubst | oc apply -f - </strong>
-httproute.gateway.networking.k8s.io/toystore created</pre>
+<pre class="highlightjs highlight"><code class="language-none hljs"><strong>curl -k -w "%{http_code}" https://toystore.managed.&lt;sandboxXXXX.opentlc.com&gt;/test -i</strong></code></pre>
 </div>
 </div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Test HTTPRoute</p>
-<div class="ulist">
-<ul>
-<li>
-<p>After creating the HTTPRoute, test its functionality with the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre>[lab-user@bastion ~]$ <strong>curl -k -w "%{http_code}" <a href="https://$(oc" class="bare">https://$(oc</a> get httproute toystore -n toystore  -o=jsonpath='{.spec.hostnames[0]}')/cars</strong>
-403</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The expected response code is 403, indicating that access is denied due to the absence of authentication or authorization policies.</p>
+<p>You receive output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">www-authenticate: APIKEY realm="api-key-authn"
+x-ext-auth-reason: credential not found
+date: Tue, 26 Nov 2024 17:48:49 GMT
+server: istio-envoy
+401</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This response highlights that the Gateway is configured to enforce API key authentication,
+rejecting requests that do not include a valid key.
+To proceed successfully, you must provide the correct API key in the request headers.</p>
+</div>
+</li>
+<li>
+<p>Test <strong>/test</strong> endpoint with invalid APIKey.</p>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs"><strong>curl  -H 'Authorization: APIKEY error' https://toystore.managed.sandboxXXXX.opentlc.com/toy -i</strong></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>You receive output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">HTTP/2 401
+www-authenticate: APIKEY realm="api-key-authn"
+x-ext-auth-reason: the API Key provided is invalid
+date: Tue, 26 Nov 2024 17:55:37 GMT
+server: istio-envoy</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The output shows the server is rejecting the request because the API key provided is incorrect or invalid.</p>
+</div>
+</li>
+<li>
+<p>Test <strong>/toy</strong> endpoint with valid APIKey for regular user.</p>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs"><strong>curl  -H 'Authorization: APIKEY iamaregularuser' https://toystore.managed.sandboxXXXX.opentlc.com/toy -i</strong></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>You receive output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">HTTP/2 200
+content-type: application/json
+server: istio-envoy
+date: Mon, 26 Nov 2024 17:58:37 GMT
+content-length: 1298
+x-envoy-upstream-service-time: 1
+{
+  "method": "GET",
+  "path": "/toy",
+  "query_string": null,
+  "body": "",
+  "headers": { …
+  "uuid": "bf45b225-244f-41c8-abcd-36623f729858"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The request with the valid API key for a regular user was processed successfully, and the response contains the expected data in JSON format.</p>
+</div>
+</li>
+<li>
+<p>Test <strong>/admin/toy</strong> endpoint as regular user.</p>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs"><strong>curl  -H 'Authorization: APIKEY iamaregularuser' https://toystore.managed.sandboxXXXX.opentlc.com/admin/toy -i</strong></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>You receive output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">HTTP/2 403
+x-ext-auth-reason: Unauthorized
+date: Mon, 25 Nov 2024 05:08:54 GMT
+server: istio-envoy</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Notice that the regular user accessing an <strong>/admin</strong> URL, is restricted with higher privileges (such as an admin), resulting in a 403 Forbidden error because the regular user does not have the necessary permissions.</p>
+</div>
+</li>
+<li>
+<p>Test <strong>/admin/toy</strong> endpoint with valid APIKey for admin user.</p>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs"><strong>curl  -H 'Authorization: APIKEY iamanadmin' https://toystore.managed.sandboxXXXX.opentlc.com/admin/toy -i</strong></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>You receive output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">HTTP/2 200
+content-type: application/json
+server: istio-envoy
+date: Mon, 25 Nov 2024 05:09:36 GMT
+content-length: 1299
+x-envoy-upstream-service-time: 1
+{
+  "method": "GET",
+  "path": "/admin/toy",
+  "query_string": null,
+  "body": "",
+  "headers": {..
+  },
+  "uuid": "cd459161-46c2-4099-a410-370027d1c070"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this case, since the user provided a valid API key for an admin user, the server successfully processed the request to access the <strong>/admin</strong> URL and returned the expected response.</p>
 </div>
 </li>
 </ul>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>In the next lab exercise, you will configure authentication policies, generate API keys, and test access to various endpoints in the toystore application, which is secured by Kuadrant policies.</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="section1.html">Toystore Application Deployment</a></span>
-  <span class="next"><a href="section3.html">Securing the Toystore Application with Kuadrant Policies</a></span>
+  <span class="prev"><a href="section3.html">Securing the Toystore Application with Kuadrant Policies</a></span>
+  <span class="next"><a href="section5.html">Summary</a></span>
 </nav>
 </article>
   </div>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: Getting Started with Red Hat Connectivity Link</title>
+    <title>Untitled :: RHCL Installation and Implementation for Multi-Role Use Cases</title>
     <link rel="prev" href="section1.html">
     <link rel="next" href="section6.html">
     <meta name="generator" content="Antora 3.1.3">
@@ -15,7 +15,7 @@
   <nav class="navbar">
     <div class="navbar-brand">
       <a class="navbar-item" href="https://www.redhat.com" target="_blank"><img src="../../../_/img/redhat-logo.png" height="40px" alt="Red Hat"></a>
-      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">Getting Started with Red Hat Connectivity Link</a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">RHCL Installation and Implementation for Multi-Role Use Cases</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
@@ -35,12 +35,12 @@
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="../index.html">Getting Started with Red Hat Connectivity Link</a></h3>
+    <h3 class="title"><a href="../index.html">RHCL Installation and Implementation for Multi-Role Use Cases</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../index.html">Home</a>
+    <a class="nav-link" href="../index.html">RHCL Installation and Implementation for Multi-Role Use Cases</a>
   </li>
 </ul>
   </li>
@@ -62,7 +62,7 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Infrastructure Engineer Workflow</a>
+    <a class="nav-link" href="index.html">RHCL Setup Prerequisites</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section1.html">Setup Route53 in AWS</a>
@@ -71,10 +71,10 @@
     <a class="nav-link" href="section2.html">Install Cert-manager Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section6.html">Install Gateway API</a>
+    <a class="nav-link" href="section6.html">Install Gateway API v1</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="section3.html">Install and configure Istio with Service Mesh Operator</a>
+    <a class="nav-link" href="section3.html">Install and configure Istio with the OpenShift Service Mesh</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section4.html">Install Kuadrant on Red Hat OpenShift cluster</a>
@@ -108,6 +108,9 @@
     <a class="nav-link" href="../chapter3/section5.html">Create DNS Policy</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter3/section6.html">Configure Gateway</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../chapter3/section7.html">Summary</a>
   </li>
 </ul>
@@ -121,16 +124,16 @@
     <a class="nav-link" href="../chapter4/index.html">Developer Workflow</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter4/section4.html">Create HTTP Route</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../chapter4/section1.html">Toystore Application Deployment</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter4/section2.html">Deploying the Toystore HTTPRoute</a>
+    <a class="nav-link" href="../chapter4/section4.html">Create HTTP Route</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../chapter4/section3.html">Securing the Toystore Application with Kuadrant Policies</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter4/section2.html">Test the HTTP Route</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../chapter4/section5.html">Summary</a>
@@ -151,12 +154,12 @@
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">Getting Started with Red Hat Connectivity Link</span>
+    <span class="title">RHCL Installation and Implementation for Multi-Role Use Cases</span>
     <span class="version">1</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <a class="title" href="../index.html">Getting Started with Red Hat Connectivity Link</a>
+      <a class="title" href="../index.html">RHCL Installation and Implementation for Multi-Role Use Cases</a>
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="../index.html">1</a>
@@ -174,8 +177,8 @@
   <a href="../index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="../index.html">Getting Started with Red Hat Connectivity Link</a></li>
-    <li><a href="index.html">Infrastructure Engineer Workflow</a></li>
+    <li><a href="../index.html">RHCL Installation and Implementation for Multi-Role Use Cases</a></li>
+    <li><a href="index.html">RHCL Setup Prerequisites</a></li>
     <li><a href="section2.html">Install Cert-manager Operator</a></li>
   </ul>
 </nav>
@@ -214,7 +217,49 @@ Select <strong>cert-manager Operator for Red Hat OpenShift</strong> that appears
 </div>
 </li>
 <li>
-<p>Once the installation is complete, proceed with next lab.</p>
+<p>Follow the steps below to configure cert-manager by setting up AWS credentials that will be utilized in subsequent steps.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Begin by exporting your AWS credentials as environment variables.
+Replace &lt;YOUR AWS_ACCESS_KEY_ID&gt; and &lt;YOUR AWS_SECRET_ACCESS_KEY&gt; with your actual AWS access key and secret key.</p>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs"><strong>export AWS_ACCESS_KEY_ID=&lt;YOUR AWS_ACCESS_KEY_ID&gt;</strong>
+<strong>export AWS_SECRET_ACCESS_KEY=&lt;YOUR AWS_SECRET_ACCESS_KEY&gt;</strong></code></pre>
+</div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Create a Red Hat OpenShift secret to store the AWS credentials. This secret will be referenced by cert-manager in the upcoming steps.
+Run the following command:</p>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs"><strong>oc -n cert-manager create secret generic aws-credentials \
+  --type=kuadrant.io/aws \
+  --from-literal=AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
+  --from-literal=AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY</strong></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>You should see the output as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">secret/aws-credentials created</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -222,7 +267,7 @@ Select <strong>cert-manager Operator for Red Hat OpenShift</strong> that appears
 </div>
 <nav class="pagination">
   <span class="prev"><a href="section1.html">Setup Route53 in AWS</a></span>
-  <span class="next"><a href="section6.html">Install Gateway API</a></span>
+  <span class="next"><a href="section6.html">Install Gateway API v1</a></span>
 </nav>
 </article>
   </div>

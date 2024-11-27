@@ -3,7 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: Getting Started with Red Hat Connectivity Link</title>
+    <title>Untitled :: RHCL Installation and Implementation for Multi-Role Use Cases</title>
+    <link rel="prev" href="section5.html">
+    <link rel="next" href="section7.html">
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -13,7 +15,7 @@
   <nav class="navbar">
     <div class="navbar-brand">
       <a class="navbar-item" href="https://www.redhat.com" target="_blank"><img src="../../../_/img/redhat-logo.png" height="40px" alt="Red Hat"></a>
-      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">Getting Started with Red Hat Connectivity Link</a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">RHCL Installation and Implementation for Multi-Role Use Cases</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
@@ -33,12 +35,12 @@
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="../index.html">Getting Started with Red Hat Connectivity Link</a></h3>
+    <h3 class="title"><a href="../index.html">RHCL Installation and Implementation for Multi-Role Use Cases</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../index.html">Home</a>
+    <a class="nav-link" href="../index.html">RHCL Installation and Implementation for Multi-Role Use Cases</a>
   </li>
 </ul>
   </li>
@@ -60,7 +62,7 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../chapter2/index.html">Infrastructure Engineer Workflow</a>
+    <a class="nav-link" href="../chapter2/index.html">RHCL Setup Prerequisites</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../chapter2/section1.html">Setup Route53 in AWS</a>
@@ -69,10 +71,10 @@
     <a class="nav-link" href="../chapter2/section2.html">Install Cert-manager Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter2/section6.html">Install Gateway API</a>
+    <a class="nav-link" href="../chapter2/section6.html">Install Gateway API v1</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter2/section3.html">Install and configure Istio with Service Mesh Operator</a>
+    <a class="nav-link" href="../chapter2/section3.html">Install and configure Istio with the OpenShift Service Mesh</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../chapter2/section4.html">Install Kuadrant on Red Hat OpenShift cluster</a>
@@ -105,6 +107,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section5.html">Create DNS Policy</a>
   </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="section6.html">Configure Gateway</a>
+  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section7.html">Summary</a>
   </li>
@@ -119,16 +124,16 @@
     <a class="nav-link" href="../chapter4/index.html">Developer Workflow</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter4/section4.html">Create HTTP Route</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../chapter4/section1.html">Toystore Application Deployment</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter4/section2.html">Deploying the Toystore HTTPRoute</a>
+    <a class="nav-link" href="../chapter4/section4.html">Create HTTP Route</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../chapter4/section3.html">Securing the Toystore Application with Kuadrant Policies</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter4/section2.html">Test the HTTP Route</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../chapter4/section5.html">Summary</a>
@@ -149,12 +154,12 @@
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">Getting Started with Red Hat Connectivity Link</span>
+    <span class="title">RHCL Installation and Implementation for Multi-Role Use Cases</span>
     <span class="version">1</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <a class="title" href="../index.html">Getting Started with Red Hat Connectivity Link</a>
+      <a class="title" href="../index.html">RHCL Installation and Implementation for Multi-Role Use Cases</a>
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="../index.html">1</a>
@@ -171,6 +176,11 @@
 <button class="nav-toggle"></button>
   <a href="../index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">RHCL Installation and Implementation for Multi-Role Use Cases</a></li>
+    <li><a href="index.html">Platform Engineer Workflow</a></li>
+    <li><a href="section6.html">Configure Gateway</a></li>
+  </ul>
 </nav>
 </div>
   <div class="content">
@@ -179,154 +189,41 @@
 </aside>
 <article class="doc">
 <div class="sect1">
-<h2 id="_create_http_route"><a class="anchor" href="#_create_http_route"></a>Create HTTP Route</h2>
+<h2 id="_configure_gateway"><a class="anchor" href="#_configure_gateway"></a>Configure Gateway</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This lab guides you through the process of setting up and verifying an HTTPRoute for your Gateway, enforcing DNSPolicy and other policies, creating AWS credentials, and configuring the Gateway for use by multiple namespaces while ensuring that the connection is secure and functioning as expected.</p>
+<p>This lab guides you open up the Gateway for other namespaces.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Create an <strong>HTTPRoute</strong> for your Gateway by running the following command:</p>
+<p>As you have configured, secured and tested Gateway with RHCL policies, you can now open it up for use by other teams in other namespaces:</p>
+<div class="exampleblock">
+<div class="content">
 <div class="listingblock">
 <div class="content">
-<pre>[lab-user@bastion ~]$ <strong>curl -s <a href="https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-httproute.yaml" class="bare">https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-httproute.yaml</a> | envsubst | oc apply -f -</strong>
-httproute.gateway.networking.k8s.io/test created</pre>
+<pre><strong>oc patch gateway external -n api-gateway --type='json' -p='[{"op": "replace", "path": "/spec/listeners/0/allowedRoutes/namespaces/from", "value":"All"}]'</strong></pre>
 </div>
 </div>
-</li>
-<li>
-<p>Navigate to the <em>Red Hat Openshift console</em> and select <strong>Operators</strong> &#8594; select <strong>Installed Opertor</strong> &#8594; select <strong>Kuadrant Operator</strong> &#8594; select <strong>DNSPolicy</strong> &#8594; select <strong>external-dnspolicy</strong> and notice the <strong>Conditions</strong> section.</p>
-<div class="imageblock text-center">
-<div class="content">
-<img src="_images/dns4.png" alt="dns4">
 </div>
 </div>
 <div class="paragraph">
-<p>Take note that all DNSPolicy rules are enforced after this step.</p>
+<p>You should see the output as follows:</p>
 </div>
-</li>
-<li>
-<p>Navigate to the <em>Red Hat Openshift console</em> and select <strong>Operators</strong> &#8594; select <strong>Installed Opertor</strong> &#8594; select <strong>Kuadrant Operator</strong> &#8594; select <strong>All Instances</strong>:</p>
-<div class="imageblock text-center">
-<div class="content">
-<img src="_images/all.png" alt="all">
-</div>
-</div>
-<div class="paragraph">
-<p>Take note that the status of all pods shows <strong>Accepted, Enforced</strong>.</p>
-</div>
-</li>
-<li>
-<p>Navigate to the <em>Red Hat Openshift console</em> and select <strong>Operators</strong> &#8594; select <strong>Installed Opertor</strong> &#8594; select <strong>DNS Operator</strong> &#8594; select <strong>DNSRecord</strong>:</p>
-<div class="imageblock text-center">
-<div class="content">
-<img src="_images/all2.png" alt="all2">
-</div>
-</div>
-<div class="paragraph">
-<p>Take note that the DNS records has been created.</p>
-</div>
-</li>
-<li>
-<p>Refresh all DNS records in AWS and verify that the records have been successfully created.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Navigate to your AWS account → navigate to <strong>Route 53</strong> → select <strong>Hosted Zones</strong> → select <strong>managed.sandboxXXXX.opentlc.com</strong>.</p>
-<div class="imageblock text-center">
-<div class="content">
-<img src="_images/dnsrecord.png" alt="dnsrecord">
-</div>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Verify that your Gateway policies are being enforced after appling HTTP route as follows:</p>
 <div class="listingblock">
 <div class="content">
-<pre>[lab-user@bastion ~]$ oc get dnspolicy ${gatewayName}-dnspolicy -n ${gatewayNS} -o=jsonpath='{.status.conditions[?(@.type=="Enforced")].message}'
-DNSPolicy has been successfully enforced
-
-[lab-user@bastion ~]$ oc get authpolicy ${gatewayName}-auth -n ${gatewayNS} -o=jsonpath='{.status.conditions[?(@.type=="Enforced")].message}'
-AuthPolicy has been successfully enforced
-
-[lab-user@bastion ~]$ oc get ratelimitpolicy ${gatewayName}-rlp -n ${gatewayNS} -o=jsonpath='{.status.conditions[?(@.type=="Enforced")].message}'
-RateLimitPolicy has been successfully enforced</pre>
+<pre>gateway.gateway.networking.k8s.io/external patched</pre>
 </div>
-</div>
-</li>
-<li>
-<p>Create <strong>aws-credentials</strong> secret under <strong>cert-manager</strong> namespace for <strong>AWS_ACCESS_KEY_ID</strong> and <strong>AWS_SECRET_ACCESS_KEY</strong>:</p>
-<div class="listingblock">
-<div class="content">
-<pre>[lab-user@bastion ~]$ oc -n cert-manager create secret generic aws-credentials --type=kuadrant.io/aws --from-literal=AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID --from-literal=AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
-secret/aws-credentials created</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Delete the existing pod to ensure that the secret propagates into the pods.
-Navigate to <em>Red Hat Openshift console</em>, select <strong>Workloads</strong> → select <strong>Pods</strong> → select <strong>Project: cert-manager</strong> → choose cert-manager-XXXXX and delete it:</p>
-<div class="imageblock text-center">
-<div class="content">
-<img src="_images/pod.png" alt="pod">
-</div>
-</div>
-<div class="paragraph">
-<p>Allow the pod to recreate itself and then wait for 5 minutes for the secrets to propograte in the pod.</p>
-</div>
-</li>
-<li>
-<p>Test connectivity and deny all auth.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>You can use curl to hit your endpoint. You should see a 403. Because this example uses Let&#8217;s Encrypt staging, you can pass the -k flag:</p>
-<div class="listingblock">
-<div class="content">
-<pre>[lab-user@bastion ~]$ curl -k -w "%{http_code}" <a href="https://$(oc" class="bare">https://$(oc</a> get httproute test -n ${gatewayNS} -o=jsonpath='{.spec.hostnames[0]}')
-403</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Above command can take 5-10 mins to return result.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Verify that your listener is ready:</p>
-<div class="listingblock">
-<div class="content">
-<pre>[lab-user@bastion ~]$ oc get gateway ${gatewayName} -n ${gatewayNS} -o=jsonpath='{.status.listeners[0].conditions[?(@.type=="Programmed")].message}'
-No errors found</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Open up the Gateway for other namespaces</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Because you have configured the Gateway, secured it with Kuadrant policies, and tested it, you can now open it up for use by other teams in other namespaces:</p>
-<div class="listingblock">
-<div class="content">
-<pre>[lab-user@bastion ~]$ oc patch gateway ${gatewayName} -n ${gatewayNS} --type='json' -p='[{"op": "replace", "path": "/spec/listeners/0/allowedRoutes/namespaces/from", "value":"All"}]'
-gateway.gateway.networking.k8s.io/external patched</pre>
-</div>
-</div>
-</li>
-</ul>
 </div>
 </li>
 </ul>
 </div>
 </div>
 </div>
+<nav class="pagination">
+  <span class="prev"><a href="section5.html">Create DNS Policy</a></span>
+  <span class="next"><a href="section7.html">Summary</a></span>
+</nav>
 </article>
   </div>
 </main>

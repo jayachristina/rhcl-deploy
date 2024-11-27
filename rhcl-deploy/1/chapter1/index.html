@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Lab Scenario :: Getting Started with Red Hat Connectivity Link</title>
+    <title>Lab Scenario :: RHCL Installation and Implementation for Multi-Role Use Cases</title>
     <link rel="prev" href="../LABENV/index.html">
     <link rel="next" href="../chapter2/index.html">
     <meta name="generator" content="Antora 3.1.3">
@@ -15,7 +15,7 @@
   <nav class="navbar">
     <div class="navbar-brand">
       <a class="navbar-item" href="https://www.redhat.com" target="_blank"><img src="../../../_/img/redhat-logo.png" height="40px" alt="Red Hat"></a>
-      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">Getting Started with Red Hat Connectivity Link</a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">RHCL Installation and Implementation for Multi-Role Use Cases</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
@@ -35,12 +35,12 @@
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="../index.html">Getting Started with Red Hat Connectivity Link</a></h3>
+    <h3 class="title"><a href="../index.html">RHCL Installation and Implementation for Multi-Role Use Cases</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../index.html">Home</a>
+    <a class="nav-link" href="../index.html">RHCL Installation and Implementation for Multi-Role Use Cases</a>
   </li>
 </ul>
   </li>
@@ -62,7 +62,7 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../chapter2/index.html">Infrastructure Engineer Workflow</a>
+    <a class="nav-link" href="../chapter2/index.html">RHCL Setup Prerequisites</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../chapter2/section1.html">Setup Route53 in AWS</a>
@@ -71,10 +71,10 @@
     <a class="nav-link" href="../chapter2/section2.html">Install Cert-manager Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter2/section6.html">Install Gateway API</a>
+    <a class="nav-link" href="../chapter2/section6.html">Install Gateway API v1</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter2/section3.html">Install and configure Istio with Service Mesh Operator</a>
+    <a class="nav-link" href="../chapter2/section3.html">Install and configure Istio with the OpenShift Service Mesh</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../chapter2/section4.html">Install Kuadrant on Red Hat OpenShift cluster</a>
@@ -108,6 +108,9 @@
     <a class="nav-link" href="../chapter3/section5.html">Create DNS Policy</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter3/section6.html">Configure Gateway</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../chapter3/section7.html">Summary</a>
   </li>
 </ul>
@@ -121,16 +124,16 @@
     <a class="nav-link" href="../chapter4/index.html">Developer Workflow</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter4/section4.html">Create HTTP Route</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../chapter4/section1.html">Toystore Application Deployment</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../chapter4/section2.html">Deploying the Toystore HTTPRoute</a>
+    <a class="nav-link" href="../chapter4/section4.html">Create HTTP Route</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../chapter4/section3.html">Securing the Toystore Application with Kuadrant Policies</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter4/section2.html">Test the HTTP Route</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../chapter4/section5.html">Summary</a>
@@ -151,12 +154,12 @@
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">Getting Started with Red Hat Connectivity Link</span>
+    <span class="title">RHCL Installation and Implementation for Multi-Role Use Cases</span>
     <span class="version">1</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <a class="title" href="../index.html">Getting Started with Red Hat Connectivity Link</a>
+      <a class="title" href="../index.html">RHCL Installation and Implementation for Multi-Role Use Cases</a>
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="../index.html">1</a>
@@ -174,7 +177,7 @@
   <a href="../index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="../index.html">Getting Started with Red Hat Connectivity Link</a></li>
+    <li><a href="../index.html">RHCL Installation and Implementation for Multi-Role Use Cases</a></li>
     <li><a href="index.html">Lab Scenario</a></li>
   </ul>
 </nav>
@@ -189,11 +192,10 @@
 <h2 id="_situation"><a class="anchor" href="#_situation"></a>Situation</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Globex Mobile, a fast-growing retail company, is expanding its mobile presence by allowing access to its core services via a new mobile app.
-However, security is a top priority, as exposing their core service endpoints to unauthorized access could pose significant risks.</p>
+<p>Toystore application, a fast-growing retail company, has security as a top priority, as exposing their core service endpoints to unauthorized access could pose significant risks.</p>
 </div>
 <div class="paragraph">
-<p>To address these concerns, <em>Globex Mobile</em> has decided to:</p>
+<p>To address these concerns, <em>Toystore Application</em> has decided to:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -203,7 +205,7 @@ However, security is a top priority, as exposing their core service endpoints to
 </ul>
 </div>
 <div class="paragraph">
-<p>Additionally, <em>Globex Mobile</em> aims to protect its endpoints by:</p>
+<p>Additionally, <em>Toystore Application</em> aims to protect its endpoints by:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -239,7 +241,8 @@ However, security is a top priority, as exposing their core service endpoints to
 <div class="ulist">
 <ul>
 <li>
-<p><em>Globex Mobile’s</em> development team has built a Mobile Gateway, serving as a single point of entry (a wrapper) in front of the company’s core services, following the gateway-pattern approach. This gateway allows Globex Mobile’s mobile app to access core services, but the endpoint must be secured for safe connectivity.</p>
+<p><em>Toystore Application</em> development team has built an application Gateway, serving as a single point of entry (a wrapper) in front of the company’s core services, following the gateway-pattern approach.
+This gateway allows <em>Toystore</em> app to access core services, but the endpoint must be secured for safe connectivity.</p>
 <div class="imageblock text-center">
 <div class="content">
 <img src="_images/arch.png" alt="arch">
@@ -249,7 +252,7 @@ However, security is a top priority, as exposing their core service endpoints to
 </ul>
 </div>
 <div class="paragraph">
-<p>Focus on the Red Hat Connectivity Link (RHCL) portion of the diagram, which illustrates how RHCL is used to manage and secure the application connectivity.</p>
+<p>Focus on the RHCL portion of the diagram, which illustrates how RHCL is used to manage and secure the application connectivity.</p>
 </div>
 <div class="paragraph">
 <p>Specifically, RHCL facilitates:</p>
@@ -322,20 +325,13 @@ However, security is a top priority, as exposing their core service endpoints to
 <div class="ulist">
 <ul>
 <li>
-<p>A <strong>Managed Zone</strong> needs to be setup within the DNS provider. E.g. <em>managed.Globex Mobile.com</em>.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Refer to the <a href="https://developers.redhat.com/articles/2024/06/12/getting-started-red-hat-connectivity-link-openshift">Getting started page</a> to learn how to setup a Managed Zone.</p>
-</li>
-</ul>
-</div>
+<p>A <strong>Managed Zone</strong> needs to be setup within the DNS provider. E.g. <em>managed.sandboxXXXX.opentlc.com</em>.</p>
 </li>
 <li>
 <p>Install cert-manager to manage TLS certificates for your Kuadrant gateways.</p>
 </li>
 <li>
-<p>Integrate Kuadrant with Istio as a Gateway API provider by installing and configuring Istio using the Sail Operator.</p>
+<p>Integrate Kuadrant with Istio as a Gateway API provider by installing and configuring Istio using the Service Mesh.</p>
 </li>
 <li>
 <p>Install the Kuadrant Operator and trigger the deployment of Kuadrant in Red Hat OpenShift cluster.</p>
@@ -363,7 +359,7 @@ However, security is a top priority, as exposing their core service endpoints to
 <p>Sets up a Certificate Issuer to create TLS certificates that are needed to secure communication.</p>
 </li>
 <li>
-<p>In this case, Globex Mobile uses <a href="https://letsencrypt.org/">Let’s Encrypt</a>. This certificate is stored as a secret to be referenced by the Gateways.</p>
+<p>In this case, <em>Toystore Application</em> uses <a href="https://letsencrypt.org/">Let’s Encrypt</a>. This certificate is stored as a secret to be referenced by the Gateways.</p>
 </li>
 </ul>
 </div>
@@ -373,7 +369,7 @@ However, security is a top priority, as exposing their core service endpoints to
 <div class="ulist">
 <ul>
 <li>
-<p>Create a new Gateway (using the Gateway API and <a href="https://istio.io/latest/docs/">Istio</a>-based controllers) as an entrypoint for all requests to Globex Mobile’s system.</p>
+<p>Create a new Gateway (using the Gateway API and <a href="https://istio.io/latest/docs/">Istio</a>-based controllers) as an entrypoint for all requests to Toystore Application’s system.</p>
 </li>
 <li>
 <p>The Gateway uses the TLS Certificates created by the TLS Issuer.</p>
@@ -395,7 +391,7 @@ However, security is a top priority, as exposing their core service endpoints to
 <p>Listeners define the hostname for the various incoming requests and is denoted with a wildcard hostname based on the root domain.</p>
 </li>
 <li>
-<p>These gateways can use a subdomain of the Managed Zone. E.g. <em>*.managed.Globex Mobile.com</em>.</p>
+<p>These gateways can use a subdomain of the Managed Zone. E.g. <em>*.managed.sandboxXXXX.opentlc.com</em>.</p>
 </li>
 </ul>
 </div>
@@ -463,9 +459,6 @@ However, security is a top priority, as exposing their core service endpoints to
 <div class="ulist">
 <ul>
 <li>
-<p>Globex Mobile uses OIDC for authentication.</p>
-</li>
-<li>
 <p>As a developer you creates a policy on the HTTPRoute, overriding the Platform Engineer&#8217;s deny-all policy.</p>
 </li>
 </ul>
@@ -492,7 +485,7 @@ However, security is a top priority, as exposing their core service endpoints to
 </div>
 <nav class="pagination">
   <span class="prev"><a href="../LABENV/index.html">Lab Environment</a></span>
-  <span class="next"><a href="../chapter2/index.html">Infrastructure Engineer Workflow</a></span>
+  <span class="next"><a href="../chapter2/index.html">RHCL Setup Prerequisites</a></span>
 </nav>
 </article>
   </div>
