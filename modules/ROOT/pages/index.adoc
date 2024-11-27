@@ -6,7 +6,7 @@
 Welcome to this quick course on the _**RHCL Installation and Implementation for Multi-Role Use Cases**_.
 This course is the `second` in a series of `two` courses about Red Hat Connectivity Link (RHCL):
 
-* https://training-lms.redhat.com/sso/saml/auth/rhlpint?RelayState=deeplinkoffering%3D68468496[_Introduction to Red Hat Connectivity Link_]
+* https://training-lms.redhat.com/sso/saml/auth/rhlpint?RelayState=deeplinkoffering%3D68468496[_Introduction to Red Hat Connectivity Link_, window=browser]
 * RHCL Installation and Implementation for Multi-Role Use Cases (_This course_)
 
 _Recall_: RHCL is used to **connect, secure and protect** application with a Kubernetes-native solution using Gateway API and Kuadrant’s powerful policy APIs.
@@ -20,7 +20,7 @@ In this hands-on lab training, we shall see all these features of RHCL in action
 
 == What's in this course?
 
-* This lab is designed to install and configure Red Hat Connectivity Link (RHCL) with a specific use case to implement its features, focusing on different user roles:
+* This course is designed to install and configure Red Hat Connectivity Link (RHCL) with a specific use case to implement its features, focusing on different user roles:
 
 ** **Platform Engineer**: As a Platform Engineer, this lab will guide you through deploying a Gateway that ensures secure communication, making it ready for application development teams. You'll learn to route specific traffic while maintaining security through global rate limiting and authentication.
 
@@ -28,7 +28,7 @@ In this hands-on lab training, we shall see all these features of RHCL in action
 
 Overall, in this lab you install RHCL and understand how both platform engineers and application developers can effectively leverage RHCL to achieve their goals.
 
-Duration: 2 hours
+Duration: 45 minutes
 
 == Contributors
 
@@ -36,7 +36,7 @@ The PTL team acknowledges the valuable contributions of the following Red Hat as
 
 * Jaya Christina Baskaran (SME)
 * Stephen McCarthy (SME)
-* Ravi Srinivasan (Contributors)
+* Ravi Srinivasan (Contributor)
 * Yogita Soni (Content Architect)
 * Rutuja Deshmukh (Editor)
 * Anna Swicegood (Learning Product Manager)
@@ -45,16 +45,13 @@ The PTL team acknowledges the valuable contributions of the following Red Hat as
 
 On completing this course, you should be able to:
 
-* Create and configure managed zone using AWS Route53.
-* Install and deploy Kuadrant on a single-node Red Hat OpenShift cluster.
-* Configure DNS and TLS for Gateway API, including AWS credentials and Let’s Encrypt setup.
+* Install, configure and deploy Kuadrant on a single-node Red Hat OpenShift cluster.
 * Implement essential RHCL gateway policies for managing API traffic like:
 ** DNS Policy
 ** TLS Policy
 ** Authentication policy
 ** Rate Limiting Policy
-* Deploy toystore application as a developer.
-* Configure external access via HTTPRoute.
+* Deploy toystore application and configure external access via HTTPRoute.
 * Secure the application using Kuadrant policies for authentication and access control.
 
 == Prerequisites
