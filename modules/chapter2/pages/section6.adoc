@@ -1,23 +1,40 @@
-== Install Gateway API
+== Install Gateway API v1
 
 In this lab, you install Gateway API.
 
-* Switch to the terminal where you had taken access of bastion server. Before you can use Kuadrant, you need to install Gateway API by applying the YAML file provided in the URL shown below:
+* Before you can use Kuadrant, you need to install **Gateway API v1** by applying the YAML file provided in the URL shown below:
 +
-[subs="+quotes,+macros"]
+====
+[source,subs="verbatim,quotes"]
 ----
-[lab-user@bastion ~]$ **oc apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.0.0/standard-install.yaml**
+**oc apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.0.0/standard-install.yaml**
+----
+====
++
+You should see output as follows:
++
+[source,subs="verbatim,quotes"]
+----
 customresourcedefinition.apiextensions.k8s.io/gatewayclasses.gateway.networking.k8s.io created
 customresourcedefinition.apiextensions.k8s.io/gateways.gateway.networking.k8s.io created
 customresourcedefinition.apiextensions.k8s.io/httproutes.gateway.networking.k8s.io created
 customresourcedefinition.apiextensions.k8s.io/referencegrants.gateway.networking.k8s.io created
 ----
 
+
 * Create **gateway-system** namespace where the Gateway components shall be deployed:
 +
-[subs="+quotes,+macros"]
+====
+[source,subs="verbatim,quotes"]
 ----
-[lab-user@bastion ~]$ **oc create ns gateway-system**
+**oc create ns gateway-system**
+----
+====
++
+You should see output as follows:
++
+[source,subs="verbatim,quotes"]
+----
 namespace/gateway-system created
 ----
 

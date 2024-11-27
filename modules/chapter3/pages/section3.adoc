@@ -4,37 +4,37 @@ In this lab, you will set a TLSPolicy for your Gateway to manage secure traffic,
 
 * Set the **TLSPolicy** for your Gateway by running the following command:
 +
-[subs="+quotes,+macros"]
+====
+[source,subs="verbatim,quotes"]
 ----
-[lab-user@bastion ~]$ **curl -s https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-tlspolicy.yaml | envsubst | oc apply -f -**
+**oc apply -f -<<EOF
+apiVersion: kuadrant.io/v1
+kind: TLSPolicy
+metadata:
+ name: external-tls
+ namespace: api-gateway
+spec:
+ targetRef:
+   name: external
+   group: gateway.networking.k8s.io
+   kind: Gateway
+ issuerRef:
+   group: cert-manager.io
+   kind: ClusterIssuer
+   name: lets-encrypt
+EOF**
+----
+====
++
+You should see the output as follows:
++
+[source,subs="verbatim,quotes"]
+----
 tlspolicy.kuadrant.io/external-tls created
 ----
 
-* Verify that the TLS policy has been accepted by the controller:
+* Navigate to the Red Hat Openshift console and select **Kuadrant** -> select **Overview** -> notice the **Policy** section's **external-tls** option:
 +
-[subs="+quotes,+macros"]
-----
-[lab-user@bastion ~]$ **oc get tlspolicy ${gatewayName}-tls -n ${gatewayNS} -o=jsonpath='{.status.conditions[?(@.type=="Accepted")].message}'**
-TLSPolicy has been accepted
-----
-
-* Navigate to the Red Hat Openshift console and select **Operators** -> select **Installed Opertor** -> select **Kuadrant Operator** -> select **TLSPolicy** -> select **external-tls** and notice the **Conditions** section:
+image::new6.png[align="center"]
 +
-image::tls3.png[align="center"]
-+
-Note that the **Enforced** status is set to **False** as certificate **external-api** is not ready.
-
-* Create **aws-credentials** secret under **cert-manager** namespace for **AWS_ACCESS_KEY_ID** and **AWS_SECRET_ACCESS_KEY**:
-+
-[subs="+quotes,+macros"]
-----
-[lab-user@bastion ~]$ oc -n cert-manager create secret generic aws-credentials --type=kuadrant.io/aws --from-literal=AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID --from-literal=AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
-secret/aws-credentials created
-----
-
-* Delete the existing pod to ensure that the secret propagates into the pods.
-Navigate to _Red Hat Openshift console_, select **Workloads** → select **Pods** → select **Project: cert-manager** → choose cert-manager-XXXXX and delete it:
-+
-image::pod.png[align="center"]
-+
-Allow the pod to recreate itself and then wait for 5 minutes for the secrets to propograte in the pod.
+Note the **Status** for **external-tls** is set to **Enforced**.

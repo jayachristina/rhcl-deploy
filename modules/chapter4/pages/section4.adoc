@@ -1,94 +1,88 @@
 == Create HTTP Route
 
-This lab guides you through the process of setting up and verifying an HTTPRoute for your Gateway, enforcing DNSPolicy and other policies, creating AWS credentials, and configuring the Gateway for use by multiple namespaces while ensuring that the connection is secure and functioning as expected.
+This lab guides you through the process of setting up and verifying an HTTPRoute for your Gateway,
+enforcing DNSPolicy and other policies, ensuring that the connection is secure and functioning as expected.
 
 * Create an **HTTPRoute** for your Gateway by running the following command:
 +
+====
+[source,subs="verbatim,quotes"]
+----
+**oc apply -f -<<EOF
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+ name: toystore
+ namespace: toystore
+spec:
+ hostnames:
+   - toystore.managed.<sandboxXXXX.opentlc.com>
+ parentRefs:
+   - group: gateway.networking.k8s.io
+     kind: Gateway
+     name: external
+     namespace: api-gateway
+ rules:
+   - backendRefs:
+       - group: ''
+         kind: Service
+         name: toystore
+         port: 80
+         weight: 1
+     matches:
+       - method: GET
+         path:
+           type: PathPrefix
+           value: /toy
+   - backendRefs:
+       - group: ''
+         kind: Service
+         name: toystore
+         port: 80
+         weight: 1
+     matches:
+       - path:
+           type: PathPrefix
+           value: /admin
+   - backendRefs:
+       - group: ''
+         kind: Service
+         name: toystore
+         port: 80
+         weight: 1
+     matches:
+       - method: GET
+         path:
+           type: PathPrefix
+           value: /test
+EOF**
+----
+====
++
+Substitute the <sandboxXXXX.opentlc.com> with the value as per your environment.
++
+You should see the output as follows:
++
 [subs="+quotes,+macros"]
 ----
-[lab-user@bastion ~]$ **curl -s https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-httproute.yaml | envsubst | oc apply -f -**
-httproute.gateway.networking.k8s.io/test created
+httproute.gateway.networking.k8s.io/toystore created
 ----
 
 * Confirm the **HTTPRoute** for your Gateway is created successfully:
 +
-[subs="+quotes,+macros"]
+====
+[source,subs="verbatim,quotes"]
 ----
-[lab-user@bastion ~]$ **oc get httproute -n ${gatewayNS}**
-NAME   HOSTNAMES                                  AGE
-test   ["test.managed.sandboxXXXX.opentlc.com"]   14m
+**oc get httproute -n toystore**
 ----
-
-* Testing the route using below command:
+====
 +
-[subs="+quotes,+macros"]
-----
-[lab-user@bastion ~]$ curl -k https://test.managed.sandboxXXXX.opentlc.com
---No output--
-----
-
-* Navigate to the _Red Hat Openshift console_ and select **Operators** -> select **Installed Opertor** -> select **Kuadrant Operator** -> select **DNSPolicy** -> select **external-dnspolicy** and notice the **Conditions** section.
-+
-image::dns4.png[align="center"]
-+
-Take note that all DNSPolicy rules are enforced after this step.
-
-* Navigate to the _Red Hat Openshift console_ and select **Operators** -> select **Installed Opertor** -> select **Kuadrant Operator** -> select **All Instances**:
-+
-image::dns5.png[align="center"]
-+
-Take note that the status of all pods shows **Accepted, Enforced**.
-
-* Navigate to the _Red Hat Openshift console_ and select **Operators** -> select **Installed Opertor** -> select **DNS Operator** -> select **DNSRecord**:
-+
-image::all2.png[align="center"]
-+
-Take note that the DNS records has been created.
-
-* Refresh all DNS records in AWS and verify that the records have been successfully created.
-** Navigate to your AWS account → navigate to **Route 53** → select **Hosted Zones** → select **managed.sandboxXXXX.opentlc.com**.
-+
-image::dnsrecord.png[align="center"]
-
-* Verify that your Gateway policies are being enforced after appling HTTP route as follows:
+You should see the output as follows:
 +
 [subs="+quotes,+macros"]
 ----
-[lab-user@bastion ~]$ oc get dnspolicy ${gatewayName}-dnspolicy -n ${gatewayNS} -o=jsonpath='{.status.conditions[?(@.type=="Enforced")].message}'
-DNSPolicy has been successfully enforced
-
-[lab-user@bastion ~]$ oc get authpolicy ${gatewayName}-auth -n ${gatewayNS} -o=jsonpath='{.status.conditions[?(@.type=="Enforced")].message}'
-AuthPolicy has been successfully enforced
-
-[lab-user@bastion ~]$ oc get ratelimitpolicy ${gatewayName}-rlp -n ${gatewayNS} -o=jsonpath='{.status.conditions[?(@.type=="Enforced")].message}'
-RateLimitPolicy has been successfully enforced
+NAME       HOSTNAMES                                      AGE
+toystore   ["toystore.managed.sandboxXXXX.opentlc.com"]   2m30s
 ----
 
-* Test connectivity of **HTTPRoute**
-
-** You can use curl to hit your endpoint. As this lab uses **Let's Encrypt**, you can pass the -k flag:
-+
-[subs="+quotes,+macros"]
-----
-[lab-user@bastion ~]$ **curl -k -w "%{http_code}" https://$(oc get httproute test -n ${gatewayNS} -o=jsonpath='{.spec.hostnames[0]}')**
-403
-----
-+
-Notice the response code is **403** meaning authentication failure.
-
-* Verify that your listener is ready:
-+
-[subs="+quotes,+macros"]
-----
-[lab-user@bastion ~]$ **oc get gateway ${gatewayName} -n ${gatewayNS} -o=jsonpath='{.status.listeners[0].conditions[?(@.type=="Programmed")].message}'**
-No error found
-----
-
-* Open up the Gateway for other namespaces
-** Because you have configured the Gateway, secured it with Kuadrant policies, and tested it, you can now open it up for use by other teams in other namespaces:
-+
-[subs="+quotes,+macros"]
-----
-[lab-user@bastion ~]$ **oc patch gateway ${gatewayName} -n ${gatewayNS} --type='json' -p='[{"op": "replace", "path": "/spec/listeners/0/allowedRoutes/namespaces/from", "value":"All"}]'**
-gateway.gateway.networking.k8s.io/external patched
-----
+* Now that the HTTP routes are successfully setup, proceed with implementing the policies on the routes.

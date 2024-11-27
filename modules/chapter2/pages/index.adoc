@@ -1,6 +1,11 @@
-= Infrastructure Engineer Workflow
+= RHCL Setup Prerequisites
 
-* Before diving into the **Platform engineer and developer** lab workflow, as an **infrastructure engineer** you first need to install and deploy Kuadrant (i.e GatewayClass) on a single-node Red Hat OpenShift cluster to set up the necessary environment for the upcoming tasks.
+* Before diving into the **Platform engineer and developer** lab workflow, as an **infrastructure owner** you first need to install and deploy Kuadrant on a single-node Red Hat OpenShift cluster to set up the necessary environment for the upcoming tasks.
+
+* There are 3 primary dependencies for setting up RHCL:
+. Create Managed Zone on DNS Provider
+. Install and configure **cert-manager** operator
+. Setup Gateway API v1 CRS
 +
 image::role.png[align="center"]
 
@@ -8,24 +13,28 @@ image::role.png[align="center"]
 
 In this chapter, you will:
 
-* Configure Amazon Route53 to manage DNS and direct traffic to your AWS resources effectively.
+* Configure managed zone that will serve as the foundation for routing and managing your API traffic.
 * Install cert-manager to manage TLS certificates for your Kuadrant gateways.
-* Integrate Kuadrant with Istio as a Gateway API provider by installing and configuring Istio using the Sail Operator.
-* Install the Kuadrant Operator and trigger the deployment of Kuadrant in Red Hat OpenShift cluster.
+* Setup Istio as a Gateway API provider by installing and configuring Istio using the Service Mesh.
+* Install the Kuadrant Operator and trigger the deployment of Kuadrant in single node Red Hat OpenShift cluster.
 
 == Prerequisites
 
 In order to complete the upcoming sections in this lab, ensure you perform the following steps to gain the necessary access:
 
-* **Take SSH access to bastion server** by following these steps:
-** Open the lab environment page and navigate to the **Details** tab.
-** Note the ssh command and password details provided to access the bastion server.
-** Open a terminal and execute the SSH command that looks like this:
+* Verify **oc** client installation.
+** Confirm whether the **oc** client is installed on your system by running the following command in your terminal or command prompt:
 +
-[subs="+quotes,+macros"]
+====
+[source,subs="verbatim,quotes",bash]
 ----
-[student@user:~]$ **ssh lab-user@bastion.XXXXX.sandboxXXXX.opentlc.com**
+**oc version**
 ----
+====
+
+** If the **oc** client is not installed, refer to the https://docs.okd.io/4.10/cli_reference/openshift_cli/getting-started-cli.html[official documentation] for installation instructions.
+
+** Once installed, re-run the oc version command to confirm the installation was successful.
 
 * **Log into to _Red Hat OpenShift cluster_** as the __kubeadmin__ user and password provided in the lab environment page and follow below steps:
 ** Locate the **kube-admin** dropdown at the top right corner and select **Copy login command** as shown in the image:
@@ -36,7 +45,7 @@ image::im1.png[align="center"]
 +
 image::im2.png[align="center"]
 
-** Click **Display Token**, and copy the token shown on the next page:
+** Click **Display Token**, and copy the token that should be similar to below image::
 +
 image::im3.png[align="center"]
 

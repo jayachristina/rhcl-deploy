@@ -4,4 +4,5 @@
 ** xref:section3.adoc[Create TLS Policy]
 ** xref:section4.adoc[Create Rate Limit Policy]
 ** xref:section5.adoc[Create DNS Policy]
+** xref:section6.adoc[Configure Gateway]
 ** xref:section7.adoc[Summary]

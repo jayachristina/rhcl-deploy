@@ -13,15 +13,34 @@ image::certoperator.png[align="center"]
 +
 image::certinstall.png[align="center"]
 
-* Once the installation is complete, proceed with next lab.
+* Follow the steps below to configure cert-manager by setting up AWS credentials that will be utilized in subsequent steps.
+** Begin by exporting your AWS credentials as environment variables.
+Replace <YOUR AWS_ACCESS_KEY_ID> and <YOUR AWS_SECRET_ACCESS_KEY> with your actual AWS access key and secret key.
++
+====
+[source,subs="verbatim,quotes"]
+----
+**export AWS_ACCESS_KEY_ID=<YOUR AWS_ACCESS_KEY_ID>**
+**export AWS_SECRET_ACCESS_KEY=<YOUR AWS_SECRET_ACCESS_KEY>**
+----
+====
 
-
-
-
-
-
-
-
-
-
-
+** Create a Red Hat OpenShift secret to store the AWS credentials. This secret will be referenced by cert-manager in the upcoming steps.
+Run the following command:
++
+====
+[source,subs="verbatim,quotes"]
+----
+**oc -n cert-manager create secret generic aws-credentials \
+  --type=kuadrant.io/aws \
+  --from-literal=AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
+  --from-literal=AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY**
+----
+====
++
+You should see the output as follows:
++
+[source,subs="verbatim,quotes"]
+----
+secret/aws-credentials created
+----

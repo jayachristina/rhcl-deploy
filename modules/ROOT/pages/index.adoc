@@ -1,13 +1,13 @@
-= Getting Started with Red Hat Connectivity Link
+= RHCL Installation and Implementation for Multi-Role Use Cases
 :navtitle: Home
 
 == Introduction
 
-Welcome to this quick course on the _Getting Started with Red Hat Connectivity Link_.
+Welcome to this quick course on the _**RHCL Installation and Implementation for Multi-Role Use Cases**_.
 This course is the `second` in a series of `two` courses about Red Hat Connectivity Link (RHCL):
 
-* https://xyz.com/[_Introduction to Red Hat Connectivity Link_]
-* Getting Started with Red Hat Connectivity Link (_This course_)
+* https://training-lms.redhat.com/sso/saml/auth/rhlpint?RelayState=deeplinkoffering%3D68468496[_Introduction to Red Hat Connectivity Link_]
+* RHCL Installation and Implementation for Multi-Role Use Cases (_This course_)
 
 == What's in this course?
 
@@ -27,12 +27,12 @@ Duration: 2 hours
 
 The PTL team acknowledges the valuable contributions of the following Red Hat associates:
 
-* Jaya Christina Baskaran
-* Ravi Srinivasan
-* Yogita Soni
-* Rutuja Deshmukh
-* Stephen McCarthy
-* Anna Swicegood
+* Jaya Christina Baskaran (SME)
+* Stephen McCarthy (SME)
+* Ravi Srinivasan (Contributors)
+* Yogita Soni (Content Architect)
+* Rutuja Deshmukh (Editor)
+* Anna Swicegood (Learning Product Manager)
 
 == Objectives
 

@@ -2,8 +2,8 @@
 
 In this chapter:
 
-* You set up an HTTPRoute for your Gateway.
-
 * You deployed the **toystore** application in a Red Hat OpenShift cluster with necessary configurations.
+
+* You set up an HTTPRoute for your Gateway.
 
 * You created an HTTPRoute for the toystore application to manage incoming traffic and test its functionality.

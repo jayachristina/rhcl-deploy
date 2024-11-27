@@ -6,35 +6,67 @@ In this lab, you install and setup Kuadrant Operator and trigger Kuadrant deploy
 
 . Create **kuadrant-system** namespace as shown below:
 +
-[subs="+quotes,+macros"]
+====
+[source,subs="verbatim,quotes"]
 ----
-[lab-user@bastion ~]$ **oc create ns kuadrant-system**
+**oc create ns kuadrant-system**
+----
+====
++
+You should see output as follows:
++
+[source,subs="verbatim,quotes"]
+----
 namespace/kuadrant-system created
 ----
 
-. Create the **catalog source** by appling the yaml file from URL using below command:
+. Setup **catalog source** for Kuadrant Operator by appling the yaml settings using below command:
 +
-[subs="+quotes,+macros"]
+====
+[source,subs="verbatim,quotes"]
 ----
-[lab-user@bastion ~]$ **oc apply -f https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-catalogsource.yaml**
+**oc apply -f -<<EOF
+apiVersion: operators.coreos.com/v1alpha1
+kind: CatalogSource
+metadata:
+  name: kuadrant-operator-catalog
+  namespace: kuadrant-system
+spec:
+  sourceType: grpc
+  image: quay.io/kuadrant/kuadrant-operator-catalog:v1.0.0-rc8
+  displayName: Kuadrant Operators
+  publisher: grpc
+  updateStrategy:
+    registryPoll:
+      interval: 45m
+EOF**
+----
+====
++
+You should see output as follows:
++
+[source,subs="verbatim,quotes"]
+----
 catalogsource.operators.coreos.com/kuadrant-operator-catalog created
 ----
 
-. Install the **Kuadrant** operator by navigating to the Red Hat OpenShift cluster, select **OperatorHub** from side panel and search **Kuadrant**. Select the **Kuadrant Operator** highlighted in below screenshot and click **Install**
+. Install the **Kuadrant** operator by navigating to the Red Hat OpenShift cluster, select **OperatorHub** from side panel and search **Kuadrant**. 
+Select the **Kuadrant Operator** highlighted in below screenshot and click **Install**
 +
 image::install1.png[align="center"]
 
 * Select **kuadrant-system** namespace as shown in below screenshot and click **Install**.
 +
-image::setting1.png[align="center"]
+image::new2.png[align="center"]
 
 * Check the status of the installation using below command. When ready, the status will change from "installing" to "Complete."
 +
-[subs="+quotes,+macros"]
+====
+[source,subs="verbatim,quotes"]
 ----
-[lab-user@bastion ~]$ **oc get installplan -n kuadrant-system -o=jsonpath='{.items[0].status.phase}'**
-Complete
+**oc get installplan -n kuadrant-system -o=jsonpath='{.items[0].status.phase}'**
 ----
+====
 
 * Observe the **Kuadrant** operator is installed along with it's dependencies in the _Red Hat Openshift_ console's  _Installed Operators_ section.
 +
@@ -45,56 +77,47 @@ image::service4.png[align="center"]
 *** https://docs.kuadrant.io/latest/limitador-operator/#features[Limitador (Enforcement Component for RateLimitPolicy)]
 *** DNS Operator (Enforcement Component for DNSPOlicy)
 
-. Configure AWS Access Key and Secret Key
-* Now set up your AWS access credentials by exporting the access key ID and secret access key.
-Use the following commands in your terminal, replacing xxxxxxx with your actual keys that you can find in your lab environment section:
-+
-[subs="+quotes,+macros"]
-----
-[lab-user@bastion ~]$ export AWS_ACCESS_KEY_ID=XXXXXXX
-[lab-user@bastion ~]$ export AWS_SECRET_ACCESS_KEY=XXXXXX
-----
-
-. Set up a DNSProvider
-* Create a namespace named **ingress-gateway** for this as shown below:
-+
-[subs="+quotes,+macros"]
-----
-[lab-user@bastion ~]$ **oc create ns ingress-gateway**
-namespace/ingress-gateway created
-----
-
-* Create DNS secret Provider that would provide those DNS Provider details that we set in AWS.
-+
-[subs="+quotes,+macros"]
-----
-[lab-user@bastion ~]$ **oc -n ingress-gateway create secret generic aws-credentials \
-  --type=kuadrant.io/aws \
-  --from-literal=AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
-  --from-literal=AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY**
-secret/aws-credentials created
-----
-
 === Deploy Kuadrant
 
-* To trigger your Kuadrant deployment, enter the following command:
+* To trigger your Kuadrant deployment, execute the yaml settings using the following command:
 +
-[subs="+quotes,+macros"]
+====
+[source,subs="verbatim,quotes"]
 ----
-[lab-user@bastion ~]$ **oc apply -f https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-resource.yaml**
+**oc apply -f -<<EOF
+apiVersion: kuadrant.io/v1beta1
+kind: Kuadrant
+metadata:
+  name: kuadrant
+  namespace: kuadrant-system
+EOF**
+----
+====
++
+You should see the output as follows:
++
+[source,subs="verbatim,quotes"]
+----
 kuadrant.kuadrant.io/kuadrant created
 ----
 
 * Wait for Kuadrant to be ready as follows:
 +
-[subs="+quotes,+macros"]
+====
+[source,subs="verbatim,quotes"]
 ----
-[lab-user@bastion ~]$ **oc wait kuadrant/kuadrant --for="condition=Ready=true" -n kuadrant-system --timeout=300s**
+**oc wait kuadrant/kuadrant --for="condition=Ready=true" -n kuadrant-system --timeout=300s**
+----
+====
++
+You should see the output as follows:
++
+[source,subs="verbatim,quotes"]
+----
 kuadrant.kuadrant.io/kuadrant condition met
 ----
 
-
-* Enabling Kuadrant plugin to view components configuration status easily that we would perform in coming sections.
+* Enable Kuadrant plugin to view components configuration status easily that we would perform in coming sections.
 
 . Navigate _Red Hat OpenShift cluster_ and from **Administrator** view, click  on **Home** -> **Overview**.
 . Under **Status** section, click on **Dynamic Plugins** -> **View All**.

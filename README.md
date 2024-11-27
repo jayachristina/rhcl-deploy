@@ -1,4 +1,4 @@
-# Getting Started with Red Hat Connectivity Link
+# RHCL Installation and Implementation for Multi-Role Use Cases
 
 In this hands-on lab, you will learn how to secure, protect, and connect an API through a Gateway based on the Kubernetes Gateway API, all within a single OpenShift cluster with a shared HTTPS listener.
 

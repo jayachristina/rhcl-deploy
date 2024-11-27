@@ -6,24 +6,35 @@ In this lab, you set a **DNSPolicy** for your Gateway, using the previously defi
 
 * Configure the **DNSPolicy** for your Gateway by running the following command:
 +
-[subs="+quotes,+macros"]
+====
+[source,subs="verbatim,quotes"]
 ----
-[lab-user@bastion ~]$ **curl -s https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-dnspolicy.yaml | envsubst | oc apply -f -**
+**oc apply -f -<<EOF
+apiVersion: kuadrant.io/v1
+kind: DNSPolicy
+metadata:
+ name: external-dnspolicy
+ namespace: api-gateway
+spec:
+ targetRef:
+   name: external
+   group: gateway.networking.k8s.io
+   kind: Gateway
+ providerRefs:
+ - name: aws-credentials
+EOF**
+----
+====
++
+You should see the output as follows:
++
+[source,subs="verbatim,quotes"]
+----
 dnspolicy.kuadrant.io/external-dnspolicy created
 ----
-+
-The **DNSPolicy** will use the DNS Provider Secret that you defined earlier.
 
-* Check that your **DNSPolicy** has been accepted as follows:
+* Navigate to the Red Hat Openshift console and select **Kuadrant** -> select **Overview** -> notice the **Policy** section's **external-dnspolicy** option:
 +
-[subs="+quotes,+macros"]
-----
-[lab-user@bastion ~]$ **oc get dnspolicy ${gatewayName}-dnspolicy -n ${gatewayNS} -o=jsonpath='{.status.conditions[?(@.type=="Accepted")].message}'**
-DNSPolicy has been accepted
-----
-
-* Navigate to the _Red Hat Openshift console_ and select **Operators** -> select **Installed Opertor** -> select **Kuadrant Operator** -> select **DNSPolicy** -> select **external-dnspolicy** and notice the **Conditions** section:
+image::new8.png[align="center"]
 +
-image::dns5.png[align="center"]
-+
-Note that the **Enforced** status is set to **False** as there is no routes attached for listeners.
+Note the **Status** for **external-dnspolicy** is set to **Enforced**.

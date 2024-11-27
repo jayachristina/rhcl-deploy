@@ -8,8 +8,8 @@ image::role.png[align="center"]
 
 In this chapter, you will:
 
-* Create HTTPRoute
 * Deploy Toystore Application
+* Create HTTPRoute
 * Deploy the Toystore HTTPRoute
 * Secure the Toystore Application with Kuadrant Policies
 

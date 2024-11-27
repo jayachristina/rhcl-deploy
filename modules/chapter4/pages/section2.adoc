@@ -1,27 +1,133 @@
-== Deploying the Toystore HTTPRoute
+== Test the HTTP Routes
 
-In this lab exercise, you will create an HTTPRoute for the toystore application, allowing it to manage incoming traffic effectively. 
-This will involve defining the routing rules and testing the configuration to ensure proper functionality.
+In this lab exercise, you will test access to various endpoints in the toystore application, which is secured by Kuadrant policies.
 
-. Create the Toystore HTTPRoute:
-* Begin by creating the HTTPRoute for the toystore app using the following command:
+* Test **/test** endpoint without APIKey:
 +
-[subs="+quotes,+macros"]
+====
+[source,subs="verbatim,quotes"]
 ----
-[lab-user@bastion ~]$ **curl -s https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/toystore-http-route.yaml | envsubst | oc apply -f - **
-httproute.gateway.networking.k8s.io/toystore created
+**curl -k -w "%{http_code}" https://toystore.managed.<sandboxXXXX.opentlc.com>/test -i**
 ----
-
-. Test HTTPRoute
-* After creating the HTTPRoute, test its functionality with the following command:
+====
 +
-[subs="+quotes,+macros"]
+You receive output:
++
+[source,subs="verbatim,quotes"]
 ----
-[lab-user@bastion ~]$ **curl -k -w "%{http_code}" https://$(oc get httproute toystore -n toystore  -o=jsonpath='{.spec.hostnames[0]}')/cars**
-403
+www-authenticate: APIKEY realm="api-key-authn"
+x-ext-auth-reason: credential not found
+date: Tue, 26 Nov 2024 17:48:49 GMT
+server: istio-envoy
+401
 ----
 +
-The expected response code is 403, indicating that access is denied due to the absence of authentication or authorization policies.
+This response highlights that the Gateway is configured to enforce API key authentication,
+rejecting requests that do not include a valid key.
+To proceed successfully, you must provide the correct API key in the request headers.
 
-In the next lab exercise, you will configure authentication policies, generate API keys, and test access to various endpoints in the toystore application, which is secured by Kuadrant policies.
+* Test **/test** endpoint with invalid APIKey.
++
+====
+[source,subs="verbatim,quotes"]
+----
+**curl  -H 'Authorization: APIKEY error' https://toystore.managed.sandboxXXXX.opentlc.com/toy -i**
+----
+====
++
+You receive output:
++
+[source,subs="verbatim,quotes"]
+----
+HTTP/2 401
+www-authenticate: APIKEY realm="api-key-authn"
+x-ext-auth-reason: the API Key provided is invalid
+date: Tue, 26 Nov 2024 17:55:37 GMT
+server: istio-envoy
+----
++
+The output shows the server is rejecting the request because the API key provided is incorrect or invalid.
 
+* Test **/toy** endpoint with valid APIKey for regular user.
++
+====
+[source,subs="verbatim,quotes"]
+----
+**curl  -H 'Authorization: APIKEY iamaregularuser' https://toystore.managed.sandboxXXXX.opentlc.com/toy -i**
+----
+====
++
+You receive output:
++
+[source,subs="verbatim,quotes"]
+----
+HTTP/2 200
+content-type: application/json
+server: istio-envoy
+date: Mon, 26 Nov 2024 17:58:37 GMT
+content-length: 1298
+x-envoy-upstream-service-time: 1
+{
+  "method": "GET",
+  "path": "/toy",
+  "query_string": null,
+  "body": "",
+  "headers": { …
+  "uuid": "bf45b225-244f-41c8-abcd-36623f729858"
+}
+----
++
+The request with the valid API key for a regular user was processed successfully, and the response contains the expected data in JSON format.
+
+* Test **/admin/toy** endpoint as regular user.
++
+====
+[source,subs="verbatim,quotes"]
+----
+**curl  -H 'Authorization: APIKEY iamaregularuser' https://toystore.managed.sandboxXXXX.opentlc.com/admin/toy -i**
+----
+====
++
+You receive output:
++
+[source,subs="verbatim,quotes"]
+----
+HTTP/2 403
+x-ext-auth-reason: Unauthorized
+date: Mon, 25 Nov 2024 05:08:54 GMT
+server: istio-envoy
+----
++
+Notice that the regular user accessing an **/admin** URL, is restricted with higher privileges (such as an admin), resulting in a 403 Forbidden error because the regular user does not have the necessary permissions.
+
+* Test **/admin/toy** endpoint with valid APIKey for admin user.
++
+====
+[source,subs="verbatim,quotes"]
+----
+**curl  -H 'Authorization: APIKEY iamanadmin' https://toystore.managed.sandboxXXXX.opentlc.com/admin/toy -i**
+----
+====
++
+You receive output:
++
+[source,subs="verbatim,quotes"]
+----
+HTTP/2 200
+content-type: application/json
+server: istio-envoy
+date: Mon, 25 Nov 2024 05:09:36 GMT
+content-length: 1299
+x-envoy-upstream-service-time: 1
+{
+  "method": "GET",
+  "path": "/admin/toy",
+  "query_string": null,
+  "body": "",
+  "headers": {..
+  },
+  "uuid": "cd459161-46c2-4099-a410-370027d1c070"
+}
+----
++
+In this case, since the user provided a valid API key for an admin user, the server successfully processed the request to access the **/admin** URL and returned the expected response.

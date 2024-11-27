@@ -4,23 +4,39 @@ In this lab you sets a default **RateLimitPolicy** for your Gateway to control t
 
 * Set the default **RateLimitPolicy** for your Gateway by running the following command:
 +
-[subs="+quotes,+macros"]
+====
+[source,subs="verbatim,quotes"]
 ----
-[lab-user@bastion ~]$ **curl -s https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-ratelimitpolicy.yaml | envsubst | oc apply -f -**
+**oc apply -f -<<EOF
+apiVersion: kuadrant.io/v1
+kind: RateLimitPolicy
+metadata:
+ name: external-rlp
+ namespace: api-gateway
+spec:
+ targetRef:
+   group: gateway.networking.k8s.io
+   kind: Gateway
+   name: external
+ defaults:
+   limits:
+     "low-limit":
+       rates:
+       - limit: 5
+         window: 10s
+EOF**
+----
+====
++
+You should see the output as follows:
++
+[source,subs="verbatim,quotes"]
+----
 ratelimitpolicy.kuadrant.io/external-rlp created
 ----
 
-* Navigate to the Red Hat Openshift console and select **Operators** -> select **Installed Opertor** -> select **Kuadrant Operator** -> select **RateLimitPolicy** -> select **external-rip** and notice the **Conditions** section:
+* Navigate to the Red Hat Openshift console and select **Kuadrant** -> select **Overview** -> notice the **Policy** section's **external-rlp** option:
 +
-image::rate3.png[align="center"]
+image::new7.png[align="center"]
 +
-Note that the **Enforced** status is set to **False** as there is no routes available to enforce the policy.
-
-* Verify that the rate limits has been accepted by the controller:
-+
-[subs="+quotes,+macros"]
-----
-[lab-user@bastion ~]$ **oc get ratelimitpolicy ${gatewayName}-rlp -n ${gatewayNS} -o=jsonpath='{.status.conditions[?(@.type=="Accepted")].message}'**
-RateLimitPolicy has been accepted
-----
-
+Note the **Status** is set to **Accepted(not Enforced)** as there is no route to enforce the policy.

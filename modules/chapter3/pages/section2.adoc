@@ -2,25 +2,57 @@
 
 In this lab, you set a **default, deny-all AuthPolicy to start with zero-trust** for your Gateway, ensuring no traffic is allowed unless explicitly permitted, and verifies its acceptance by the Kuadrant controller.
 
-* Set a **default, deny-all AuthPolicy** for your Gateway by running the following command:
+* Set a **default, deny-all AuthPolicy** for your Gateway means that the Gateway will reject all incoming requests by default unless a specific authorization rule allows them.
+This policy enforces strict access control, ensuring that no traffic is unintentionally permitted.
+
+** Execute below yaml setting by running the following command:
 +
-[subs="+quotes,+macros"]
+====
+[source,subs="verbatim,quotes"]
 ----
-[lab-user@bastion ~]$ **curl -s https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/kuadrant-authpolicy.yaml | envsubst | oc apply -f -**
+**oc apply -f -<<EOF
+apiVersion: kuadrant.io/v1
+kind: AuthPolicy
+metadata:
+ name: external-auth
+ namespace: api-gateway
+spec:
+ rules:
+   authorization:
+     deny-all:
+       metrics: false
+       opa:
+         allValues: true
+         rego: allow = true
+       priority: 0
+   response:
+     unauthorized:
+       body:
+         value: |
+           {
+             "error": "Forbidden",
+             "message": "Access denied by default by the gateway operator. If you are the administrator of the service, create a specific auth policy for the route."
+           }
+       headers:
+         content-type:
+           value: application/json
+ targetRef:
+   group: gateway.networking.k8s.io
+   kind: Gateway
+   name: external
+EOF**
+----
+====
++
+You should see the output as follows:
++
+[source,subs="verbatim,quotes"]
+----
 authpolicy.kuadrant.io/external-auth created
 ----
 
-* Navigate to the Red Hat Openshift cluster and select **Operators** -> select **Installed Opertor** -> select **Kuadrant Operator** -> select **AuthPolicy** tab -> select **external-auth** and notice the **Conditions** section:
+* Navigate to the Red Hat Openshift console and select **Kuadrant** -> select **Overview** -> notice the **Policy** section's **external-auth** option:
 +
-image::auth3.png[align="center"]
+image::new5.png[align="center"]
 +
-Note that the **Enforced** status is set to **False** as there is no route to enforce the policy.
-
-* Confirm your auth policy was accepted by the controller as follows:
-+
-[subs="+quotes,+macros"]
-----
-[lab-user@bastion ~]$ **oc get authpolicy ${gatewayName}-auth -n ${gatewayNS} -o=jsonpath='{.status.conditions[?(@.type=="Accepted")].message}'**
-AuthPolicy has been accepted
-----
-
+Note the **Status** is set to **Accepted(not Enforced)** as there is no route to enforce the policy.

@@ -1,5 +1,5 @@
 site:
-  title: Getting Started with Red Hat Connectivity Link
+  title: RHCL Installation and Implementation for Multi-Role Use Cases
   start_page: rhcl-deploy::index.adoc
 
 content:

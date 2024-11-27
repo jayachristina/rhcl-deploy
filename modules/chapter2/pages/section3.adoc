@@ -1,8 +1,8 @@
-== Install and configure Istio with Service Mesh Operator
+== Install and configure Istio with the OpenShift Service Mesh
 
 Kuadrant integrates with **https://istio.io/latest/docs/[Istio]** as a _Gateway API_ provider.
 
-In this lab, you install and set up an https://istio.io/latest/docs/[Istio]-based Gateway API provider by using the Service Mesh Operator.
+In this lab, you install and set up an https://istio.io/latest/docs/[Istio]-based Gateway API provider using the OpenShift Service Mesh Operator.
 
 * Install Red Hat Openshift Service Mesh 3
 
@@ -19,26 +19,53 @@ image::service2.png[align="center"]
 +
 image::service3.png[align="center"]
 
-* Configure Istio
+* Configure Istio Gateway API provider.
 
-. To configure the _Istio Gateway API_ provider, apply the yaml file from URL using below command:
+. To configure the _Istio Gateway API_ provider, apply the yaml settings using below command:
 +
-[subs="+quotes,+macros"]
+====
+[source,subs="verbatim,quotes"]
 ----
-[lab-user@bastion ~]$ **oc apply -f https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/istio-operator-config.yaml**
-istio.operator.istio.io/default created
+**oc apply -f -<<EOF
+apiVersion: sailoperator.io/v1alpha1
+kind: Istio
+metadata:
+  name: default
+spec:
+  namespace: gateway-system
+  updateStrategy:
+    type: InPlace
+    inactiveRevisionDeletionGracePeriodSeconds: 30
+  version: v1.23.0
+  values:
+    pilot:
+      autoscaleEnabled: false
+EOF**
+----
+====
++
+You should see the output as follows:
++
+[source,subs="verbatim,quotes"]
+----
+istio.sailoperator.io/default created
 ----
 
 . Wait for Istio to be ready and confirm the **default** istio provider is available.
 +
+====
 [subs="+quotes,+macros"]
 ----
-[lab-user@bastion ~]$ **oc wait istio/default -n gateway-system --for="condition=Ready=true"**
-istio.operator.istio.io/default condition met
-
-[lab-user@bastion ~]$ **oc get istio -n gateway-system**
+**oc get istio -n gateway-system**
+----
+====
++
+You should see the output as follows:
++
+[source,subs="verbatim,quotes"]
+----
 NAME      REVISIONS   READY   IN USE   ACTIVE REVISION   VERSION   AGE
-default   1           1       0        Healthy           v1.23.0   34s
+default   1           1       0        Healthy           v1.23.0   2m28s
 ----
 +
-Once you notice the _condition met_ output for above command, proceed with next lab.
+Once you notice the **ACTIVE REVISION is _Healthy_** output for above command, proceed with next section.

@@ -1,5 +1,5 @@
 name: rhcl-deploy
-title: Getting Started with Red Hat Connectivity Link
+title: RHCL Installation and Implementation for Multi-Role Use Cases
 version: 1
 nav:
 - modules/ROOT/nav.adoc

@@ -1,105 +1,139 @@
 == Securing the Toystore Application with Kuadrant Policies
 
-In this lab exercise, you will configure authentication policies, generate API keys, and test access to various endpoints in the **toystore** application, which is secured by Kuadrant policies.
+In this lab exercise, you will configure authentication policies and generate API keys in the **toystore** application, which is secured by Kuadrant policies.
 
 . Create AuthPolicy
-* To define and enforce authentication requirements for the toystore application, apply the following **AuthPolicy**:
+* Create policy for regular user by applying below yaml settings:
 +
-[subs="+quotes,+macros"]
+====
+[source,subs="verbatim,quotes"]
 ----
-[lab-user@bastion ~]$ **curl -s https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/toystore-auth-policy.yaml | envsubst | oc apply -f -**
-authpolicy.kuadrant.io/toystore created
+**oc apply -f -<<EOF
+apiVersion: kuadrant.io/v1
+kind: AuthPolicy
+metadata:
+ name: toystore-authn
+ namespace: toystore
+spec:
+ targetRef:
+   group: gateway.networking.k8s.io
+   kind: HTTPRoute
+   name: toystore
+ defaults:
+   strategy: merge
+   rules:
+     authentication:
+       "api-key-authn":
+         apiKey:
+           selector:
+             matchLabels:
+               app: toystore
+         credentials:
+           authorizationHeader:
+             prefix: APIKEY
+EOF**
+----
+====
++
+You should see the output as follows:
++
+[source,subs="verbatim,quotes"]
+----
+authpolicy.kuadrant.io/toystore-authn created
 ----
 
-. Authenticate using API_KEY:
-* The API_KEY is crucial for enforcing the security measures defined in the AuthPolicy and ensuring that the **toystore** application is accessed only by authenticated and authorized users.
+* Create policy for admin user by applying below yaml settings:
++
+====
+[source,subs="verbatim,quotes"]
+----
+**oc apply -f -<<EOF
+apiVersion: kuadrant.io/v1
+kind: AuthPolicy
+metadata:
+ name: toystore-admins
+ namespace: toystore
+spec:
+ targetRef:
+   group: gateway.networking.k8s.io
+   kind: HTTPRoute
+   name: toystore
+   sectionName: rule-2
+ rules:
+   authorization:
+     "only-admins":
+       opa:
+         rego: |
+           groups := split(object.get(input.auth.identity.metadata.annotations, "kuadrant.io/groups", ""), ",")
+           allow { groups[_] == "admins" }
+EOF**
+----
+====
++
+You should see the output as follows:
++
+[source,subs="verbatim,quotes"]
+----
+authpolicy.kuadrant.io/toystore-admins created
+----
 
-* Test without API_KEY
-** After applying the authentication policy, test access to the **/cars** endpoint without an API key:
-+
-[subs="+quotes,+macros"]
-----
-[lab-user@bastion ~]$ **curl -k -w "%{http_code}" https://$(oc get httproute toystore -n toystore  -o=jsonpath='{.spec.hostnames[0]}')/cars**
-401
-----
-+
-The response should return a 401 status code, indicating unauthorized access.
+. Authenticate using API_KEY: The API_KEY is crucial for enforcing the security measures defined in the AuthPolicy and ensuring that the **toystore** application is accessed only by authenticated and authorized users.
 
 * Create API Keys
-** Next, create API keys for different user roles by applying the following YAML file:
+** Create API keys for regular user roles by applying the following YAML file:
 +
-[subs="+quotes,+macros"]
+====
+[source,subs="verbatim,quotes"]
 ----
-[lab-user@bastion ~]$ **curl -s https://raw.githubusercontent.com/RedHatQuickCourses/rhcl-qc-apps/refs/heads/main/toystore-api-key-secrets.yaml | envsubst | oc apply -f - **
+**oc apply -f -<<EOF
+apiVersion: v1
+kind: Secret
+metadata:
+ name: api-key-regular-user
+ namespace: kuadrant-system
+ labels:
+   authorino.kuadrant.io/managed-by: authorino
+   app: toystore
+stringData:
+ api_key: iamaregularuser
+type: Opaque
+EOF**
+----
+====
++
+You should see the output as follows:
++
+[source,subs="verbatim,quotes"]
+----
 secret/api-key-regular-user created
+----
+
+** Next, create API keys for admin user roles by applying the following YAML file:
++
+====
+[source,subs="verbatim,quotes"]
+----
+**oc apply -f -<<EOF
+apiVersion: v1
+kind: Secret
+metadata:
+ name: api-key-admin-user
+ namespace: kuadrant-system
+ labels:
+   authorino.kuadrant.io/managed-by: authorino
+   app: toystore
+ annotations:
+   kuadrant.io/groups: admins
+stringData:
+ api_key: iamanadmin
+type: Opaque
+EOF**
+----
+====
++
+You should see the output as follows:
++
+[source,subs="verbatim,quotes"]
+----
 secret/api-key-admin-user created
 ----
-
-* Test the API with API_KEY
-** Test **/cars** endpoint with **regular user** API Key. Use the API_KEY for the **regular user** to access the **/cars** endpoint:
-+
-[subs="+quotes,+macros"]
-----
-[lab-user@bastion ~]$ **curl -H 'Authorization: APIKEY iamaregularuser'  -k -w "%{http_code}" https://$(oc get httproute toystore -n toystore  -o=jsonpath='{.spec.hostnames[0]}')/cars**
-{
-  "method": "GET",
-  "path": "/cars",
-  "query_string": null,
-  "body": "",
-  "headers": {
-    "HTTP_HOST": "toystore.managed.sandbox1348.opentlc.com",
-    "HTTP_USER_AGENT": "curl/7.76.1",
-    "HTTP_ACCEPT": "*/*",
-    "HTTP_AUTHORIZATION": "APIKEY iamaregularuser",
-    "HTTP_X_FORWARDED_FOR": "100.64.0.2",
-    "HTTP_X_FORWARDED_PROTO": "https",
-    "HTTP_X_ENVOY_EXTERNAL_ADDRESS": "100.64.0.2",
-    "HTTP_X_REQUEST_ID": "e8f614dc-0bba-4063-96bd-6aa7ee39a8bb",
-    "HTTP_X_ENVOY_DECORATOR_OPERATION": "toystore.toystore.svc.cluster.local:80/*",
-    "HTTP_X_ENVOY_PEER_METADATA_ID": "router~10.128.0.143~external-istio-bb79cf74b-8wk7c.api-gateway~api-gateway.svc.cluster.local",
-    "HTTP_X_ENVOY_PEER_METADATA": "ChQKDkFQUF9DT05UQUlORVJTEgIaAAoaCgpDTFVTVEVSX0lEEgwaCkt1YmVybmV0ZXMKHgoMSU5TVEFOQ0VfSVBTEg4aDDEwLjEyOC4wLjE0MwoZCg1JU1RJT19WRVJTSU9OEggaBjEuMjEuMAqSAgoGTEFCRUxTEocCKoQCCjQKJmdhdGV3YXkubmV0d29ya2luZy5rOHMuaW8vZ2F0ZXdheS1uYW1lEgoaCGV4dGVybmFsCiMKFWlzdGlvLmlvL2dhdGV3YXktbmFtZRIKGghleHRlcm5hbAodChNrdWFkcmFudC5pby9nYXRld2F5EgYaBHRydWUKMwofc2VydmljZS5pc3Rpby5pby9jYW5vbmljYWwtbmFtZRIQGg5leHRlcm5hbC1pc3RpbwovCiNzZXJ2aWNlLmlzdGlvLmlvL2Nhbm9uaWNhbC1yZXZpc2lvbhIIGgZsYXRlc3QKIgoXc2lkZWNhci5pc3Rpby5pby9pbmplY3QSBxoFZmFsc2UKGgoHTUVTSF9JRBIPGg1jbHVzdGVyLmxvY2FsCigKBE5BTUUSIBoeZXh0ZXJuYWwtaXN0aW8tYmI3OWNmNzRiLTh3azdjChoKCU5BTUVTUEFDRRINGgthcGktZ2F0ZXdheQpWCgVPV05FUhJNGktrdWJlcm5ldGVzOi8vYXBpcy9hcHBzL3YxL25hbWVzcGFjZXMvYXBpLWdhdGV3YXkvZGVwbG95bWVudHMvZXh0ZXJuYWwtaXN0aW8KIQoNV09SS0xPQURfTkFNRRIQGg5leHRlcm5hbC1pc3Rpbw==",
-    "HTTP_X_ENVOY_ATTEMPT_COUNT": "1",
-    "HTTP_X_B3_TRACEID": "2e267c5b2d860802a8e96743abd05eb7",
-    "HTTP_X_B3_SPANID": "a8e96743abd05eb7",
-    "HTTP_X_B3_SAMPLED": "0",
-    "HTTP_VERSION": "HTTP/1.1"
-  },
-  "uuid": "796a28d0-4e4f-403c-a048-4efc9bd21b72"
-}200
-----
-+
-This will return the expected output from the **/cars** endpoint, confirming successful authentication.
-
-** Test **/admin** endpoint with admin user API Key. Use the API_KEY for the admin user to access the **/admin** endpoint:
-+
-[subs="+quotes,+macros"]
-----
-[lab-user@bastion ~]$ **curl -H 'Authorization: APIKEY iamanadmin' -k -w "%{http_code}" https://$(oc get httproute toystore -n toystore  -o=jsonpath='{.spec.hostnames[0]}')/admin**
-{
-  "method": "GET",
-  "path": "/admin",
-  "query_string": null,
-  "body": "",
-  "headers": {
-    "HTTP_HOST": "toystore.managed.sandbox1348.opentlc.com",
-    "HTTP_USER_AGENT": "curl/7.76.1",
-    "HTTP_ACCEPT": "*/*",
-    "HTTP_AUTHORIZATION": "APIKEY iamanadmin",
-    "HTTP_X_FORWARDED_FOR": "100.64.0.2",
-    "HTTP_X_FORWARDED_PROTO": "https",
-    "HTTP_X_ENVOY_EXTERNAL_ADDRESS": "100.64.0.2",
-    "HTTP_X_REQUEST_ID": "b66a1805-7918-42f5-9a72-e0105ae5f782",
-    "HTTP_X_ENVOY_DECORATOR_OPERATION": "toystore.toystore.svc.cluster.local:80/*",
-    "HTTP_X_ENVOY_PEER_METADATA_ID": "router~10.128.0.143~external-istio-bb79cf74b-8wk7c.api-gateway~api-gateway.svc.cluster.local",
-    "HTTP_X_ENVOY_PEER_METADATA": "ChQKDkFQUF9DT05UQUlORVJTEgIaAAoaCgpDTFVTVEVSX0lEEgwaCkt1YmVybmV0ZXMKHgoMSU5TVEFOQ0VfSVBTEg4aDDEwLjEyOC4wLjE0MwoZCg1JU1RJT19WRVJTSU9OEggaBjEuMjEuMAqSAgoGTEFCRUxTEocCKoQCCjQKJmdhdGV3YXkubmV0d29ya2luZy5rOHMuaW8vZ2F0ZXdheS1uYW1lEgoaCGV4dGVybmFsCiMKFWlzdGlvLmlvL2dhdGV3YXktbmFtZRIKGghleHRlcm5hbAodChNrdWFkcmFudC5pby9nYXRld2F5EgYaBHRydWUKMwofc2VydmljZS5pc3Rpby5pby9jYW5vbmljYWwtbmFtZRIQGg5leHRlcm5hbC1pc3RpbwovCiNzZXJ2aWNlLmlzdGlvLmlvL2Nhbm9uaWNhbC1yZXZpc2lvbhIIGgZsYXRlc3QKIgoXc2lkZWNhci5pc3Rpby5pby9pbmplY3QSBxoFZmFsc2UKGgoHTUVTSF9JRBIPGg1jbHVzdGVyLmxvY2FsCigKBE5BTUUSIBoeZXh0ZXJuYWwtaXN0aW8tYmI3OWNmNzRiLTh3azdjChoKCU5BTUVTUEFDRRINGgthcGktZ2F0ZXdheQpWCgVPV05FUhJNGktrdWJlcm5ldGVzOi8vYXBpcy9hcHBzL3YxL25hbWVzcGFjZXMvYXBpLWdhdGV3YXkvZGVwbG95bWVudHMvZXh0ZXJuYWwtaXN0aW8KIQoNV09SS0xPQURfTkFNRRIQGg5leHRlcm5hbC1pc3Rpbw==",
-    "HTTP_X_ENVOY_ATTEMPT_COUNT": "1",
-    "HTTP_X_B3_TRACEID": "638dab29093b4d6e92c8b1130e4d7b5c",
-    "HTTP_X_B3_SPANID": "92c8b1130e4d7b5c",
-    "HTTP_X_B3_SAMPLED": "0",
-    "HTTP_VERSION": "HTTP/1.1"
-  },
-  "uuid": "1c501532-4cda-4d95-b834-1d70ce942d5a"
-}200
-----
-+
-You should now be able to access the **/admin** endpoint, validating that the API key for the admin user is working correctly.
