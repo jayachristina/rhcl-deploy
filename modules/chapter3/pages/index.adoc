@@ -1,6 +1,6 @@
 = Platform Engineer Workflow
 
-* In this chapter, as a **Platform Engineer**, you'll configure DNS and TLS for the Kuadrant API Gateway. 
+* In this chapter, as a **Platform Engineer**, you'll configure DNS and TLS for the Gateway API.
 You will implement essential policies for managing API traffic like:
 ** DNS Policy
 ** TLS Policy
@@ -13,7 +13,7 @@ image::role.png[align="center"]
 
 In this chapter, you will:
 
-* Set up DNS and TLS for Kuadrant API Gateway
+* Set up DNS and TLS for Gateway API
 * Create Auth Policy
 * Create TLS Policy
 * Create Rate Limit Policy

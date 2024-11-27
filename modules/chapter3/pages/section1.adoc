@@ -1,6 +1,6 @@
-== Setting Up DNS and TLS for Kuadrant API Gateway
+== Setting Up DNS and TLS for Gateway API
 
-This lab covers the steps to configure DNS and TLS for the Kuadrant API Gateway, including setting up AWS credentials, creating necessary Kubernetes secrets, and configuring https://letsencrypt.org/[Let's Encrypt] for secure communication through TLS certificates.
+This lab covers the steps to configure DNS and TLS for the Gateway API, including setting up AWS credentials, creating necessary Kubernetes secrets, and configuring https://letsencrypt.org/[Let's Encrypt] for secure communication through TLS certificates.
 
 . Create a namespace for the API Gateway, which will be used for organizing and managing the resources.
 +

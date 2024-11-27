@@ -1,5 +1,5 @@
 * xref:index.adoc[]
-** xref:section1.adoc[Setting Up DNS and TLS for Kuadrant API Gateway]
+** xref:section1.adoc[Setting Up DNS and TLS for Gateway API]
 ** xref:section2.adoc[Create Auth Policy]
 ** xref:section3.adoc[Create TLS Policy]
 ** xref:section4.adoc[Create Rate Limit Policy]

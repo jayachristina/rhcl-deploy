@@ -117,16 +117,19 @@ You should see the output as follows:
 kuadrant.kuadrant.io/kuadrant condition met
 ----
 
-* Enable Kuadrant plugin to view components configuration status easily that we would perform in coming sections.
+* Enable **Kuadrant** plugin to view components configuration status easily that we would perform in coming sections.
 
-. Navigate _Red Hat OpenShift cluster_ and from **Administrator** view, click  on **Home** -> **Overview**.
-. Under **Status** section, click on **Dynamic Plugins** -> **View All**.
-. You will see **kuadrant-console-plugin** marked  as disabled.
-. Click on the pencil icon and then choose **Enabled** and click **Save**.
-. Refresh the page in a couple of minutes, and you will see the Kuadrant menu on the left hand side menu.
+. You can also refer to https://app.arcade.software/share/e2XOH3IWMRzMEfEVMm8d[this arcade link] to see step by step instructions on enabling the plugin.
+
+. Or you can refer these steps:
+.. Navigate _Red Hat OpenShift cluster_ and from **Administrator** view, click  on **Home** -> **Overview**.
+.. Under **Status** section, click on **Dynamic Plugins** -> **View All**.
+.. You will see **kuadrant-console-plugin** marked  as disabled.
+.. Click on the pencil icon and then choose **Enabled** and click **Save**.
+.. Refresh the page in a couple of minutes, and you will see the Kuadrant menu on the left hand side menu.
 +
 image::kuad2.png[align="center"]
 
-. Click on **Overview** option and you shall see a dashboard that will show you kuadrant's overview. You this dashboard to track status of **policies/gateways/http routes** that we shall configure in upcoming lab sections.
+.. Click on **Overview** option and you shall see a dashboard that will show you kuadrant's overview. You this dashboard to track status of **policies/gateways/http routes** that we shall configure in upcoming lab sections.
 +
 image::kuad3.png[align="center"]

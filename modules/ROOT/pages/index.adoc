@@ -1,4 +1,4 @@
-= RHCL Installation and Implementation for Multi-Role Use Cases
+= Red Hat Connectivity Link Installation and Implementation for Multi-Role Use Cases
 :navtitle: Home
 
 == Introduction
@@ -9,11 +9,18 @@ This course is the `second` in a series of `two` courses about Red Hat Connectiv
 * https://training-lms.redhat.com/sso/saml/auth/rhlpint?RelayState=deeplinkoffering%3D68468496[_Introduction to Red Hat Connectivity Link_]
 * RHCL Installation and Implementation for Multi-Role Use Cases (_This course_)
 
+_Recall_: RHCL is used to **connect, secure and protect** application with a Kubernetes-native solution using Gateway API and Kuadrant’s powerful policy APIs.
+Below is how RHCL performs these feature:
+
+* **Connect**: Setup app connectivity across service endpoints.
+* **Secure**: Secure traffic with automatic TLS integration.
+* **Protect**: AuthPolicy, RateLimitPolicy and related policy management help to protect services with our flexible and powerful policies.
+
+In this hands-on lab training, we shall see all these features of RHCL in action.
+
 == What's in this course?
 
-* This lab is designed to use Red Hat Connectivity Link (RHCL) with a specific use case to implement its features, focusing on three different user roles:
-
-** **Infrastructure Engineer**: As a Infrastructure Engineer, this lab will guide through Kuadrant installation and configuration.
+* This lab is designed to install and configure Red Hat Connectivity Link (RHCL) with a specific use case to implement its features, focusing on different user roles:
 
 ** **Platform Engineer**: As a Platform Engineer, this lab will guide you through deploying a Gateway that ensures secure communication, making it ready for application development teams. You'll learn to route specific traffic while maintaining security through global rate limiting and authentication.
 
@@ -40,7 +47,7 @@ On completing this course, you should be able to:
 
 * Create and configure managed zone using AWS Route53.
 * Install and deploy Kuadrant on a single-node Red Hat OpenShift cluster.
-* Configure DNS and TLS for Kuadrant API Gateway, including AWS credentials and Let’s Encrypt setup.
+* Configure DNS and TLS for Gateway API, including AWS credentials and Let’s Encrypt setup.
 * Implement essential RHCL gateway policies for managing API traffic like:
 ** DNS Policy
 ** TLS Policy
