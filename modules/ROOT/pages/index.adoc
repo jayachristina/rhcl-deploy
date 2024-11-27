@@ -54,7 +54,7 @@ On completing this course, you should be able to:
 
 This course assumes that you have the following prior experience:
 
-1. https://training-lms.redhat.com/lmt/clmsCourseDetails.prMain?in_sessionId=103595A3J0989409&in_from_module=CLMSBROWSEV2.PRMAIN&in_offeringId=57857955[Red Hat OpenShift Container Platform (OCP) Technical Overview] or Kubernetes Basics
+1. https://training-lms.redhat.com/lmt/clmscoursedetails.prmain?in_sessionId=5034892A2J492834&in_selfContained=N&in_offeringId=57857955&in_tab_group=&in_from_module=CLMSBROWSEV2.PRMAIN[Red Hat OpenShift Container Platform (OCP) Technical Overview] or Kubernetes Basics
 2. Basic Understanding of AWS services like EC2 and Route53
 3. Basic knowledge of:
 
