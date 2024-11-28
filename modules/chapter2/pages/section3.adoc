@@ -1,3 +1,5 @@
+:imagesdir: ../images
+
 == Install and configure Istio with the OpenShift Service Mesh
 
 Kuadrant integrates with **https://istio.io/latest/docs/[Istio]** as a _Gateway API_ provider.

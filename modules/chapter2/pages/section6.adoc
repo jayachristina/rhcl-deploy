@@ -1,3 +1,5 @@
+:imagesdir: ../images
+
 == Install Gateway API v1
 
 In this lab, you install Gateway API.

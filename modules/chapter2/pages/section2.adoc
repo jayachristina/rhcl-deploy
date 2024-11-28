@@ -1,6 +1,8 @@
+:imagesdir: ../images
+
 == Install Cert-manager Operator
 
-**Cert-manager** operator is responsible for managing _TLS certificates_ for your gateways in Kuadrant.
+**Cert-manager** operator is responsible for managing _TLS certificates_ for your gateways in Connectivity Link.
 
 In this lab exercise, you will install **cert-manager** operator.
 

@@ -1,6 +1,6 @@
 == Create Auth Policy
 
-In this lab, you set a **default, deny-all AuthPolicy to start with zero-trust** for your Gateway, ensuring no traffic is allowed unless explicitly permitted, and verifies its acceptance by the Kuadrant controller.
+In this lab, you set a **default, deny-all AuthPolicy to start with zero-trust** for your Gateway, ensuring no traffic is allowed unless explicitly permitted, and verifies its acceptance by the Connectivity Link controller.
 
 * Set a **default, deny-all AuthPolicy** for your Gateway means that the Gateway will reject all incoming requests by default unless a specific authorization rule allows them.
 This policy enforces strict access control, ensuring that no traffic is unintentionally permitted.

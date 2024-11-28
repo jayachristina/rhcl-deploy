@@ -1,4 +1,4 @@
-= Red Hat Connectivity Link Setup Prerequisites
+= Setup Prerequisites
 
 * Before diving into the **Platform engineer and developer** lab workflow, as an **infrastructure owner** you first need to install and deploy Kuadrant on a single-node Red Hat OpenShift cluster to set up the necessary environment for the upcoming tasks.
 

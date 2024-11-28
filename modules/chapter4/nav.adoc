@@ -1,6 +1,6 @@
 * xref:index.adoc[]
 ** xref:section1.adoc[Toystore Application Deployment]
 ** xref:section4.adoc[Create HTTP Route]
-** xref:section3.adoc[Securing the Toystore Application with Kuadrant Policies]
+** xref:section3.adoc[Securing the Toystore Application with Connectivity Link Policies]
 ** xref:section2.adoc[Test the HTTP Route]
 ** xref:section5.adoc[Summary]

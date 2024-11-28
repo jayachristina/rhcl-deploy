@@ -18,7 +18,7 @@ You should see the output as follows:
 namespace/api-gateway created
 ----
 
-. Create a secret named **aws-credentials** to store the AWS credentials (AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY) that Kuadrant can use to authenticate and manage DNS configurations in AWS Route 53.
+. Create a secret named **aws-credentials** to store the AWS credentials (AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY) that Connectivity Link can use to authenticate and manage DNS configurations in AWS Route 53.
 +
 ====
 [subs="+quotes,+macros"]
@@ -196,4 +196,4 @@ You should see the output as follows:
 Bad TLS configuration
 ----
 +
-Kuadrant can help with this by using a **TLSPolicy** that we shall see in next section.
+Connectivity Link can help with this by using a **TLSPolicy** that we shall see in next section.

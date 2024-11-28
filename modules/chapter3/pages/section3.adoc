@@ -1,6 +1,6 @@
 == Create TLS Policy
 
-In this lab, you will set a TLSPolicy for your Gateway to manage secure traffic, and verifying its acceptance by the Kuadrant controller.
+In this lab, you will set a TLSPolicy for your Gateway to manage secure traffic, and verifying its acceptance by the Connectivity Link controller.
 
 * Set the **TLSPolicy** for your Gateway by running the following command:
 +

@@ -2,7 +2,7 @@
 
 In this chapter, we configured essential components and policies for managing API traffic in the Kuadrant API Gateway:
 
-* DNS and TLS Setup: Established AWS credentials, created Kubernetes secrets, and secured communication with Let’s Encrypt TLS certificates.
+* DNS and TLS Setup: Established AWS credentials, created Kubernetes secrets, and secured communication with Let's Encrypt TLS certificates.
 * Auth Policy: Implemented a deny-all AuthPolicy for a zero-trust security baseline, ensuring no traffic is allowed without explicit permission.
 * TLS Policy: Configured a TLSPolicy to enforce secure traffic on the Gateway.
 * Rate Limit Policy: Set up a RateLimitPolicy to control API traffic and prevent overloads.
@@ -10,7 +10,7 @@ In this chapter, we configured essential components and policies for managing AP
 
 This chapter has equipped the platform with robust security configurations for efficient API traffic management.
 
-In the next section, we will deploy a sample **toystore** application and configure external access through an HTTPRoute, applying Kuadrant policies for authentication and access control.
+In the next section, we will deploy a sample **toystore** application and configure external access through an HTTPRoute, applying Connectivity Link policies for authentication and access control.
 
 
 

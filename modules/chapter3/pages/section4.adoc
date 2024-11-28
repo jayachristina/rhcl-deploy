@@ -1,6 +1,6 @@
 == Create Rate Limit Policy
 
-In this lab you sets a default **RateLimitPolicy** for your Gateway to control traffic limits, and verifies its acceptance by the Kuadrant controller.
+In this lab you sets a default **RateLimitPolicy** for your Gateway to control traffic limits, and verifies its acceptance by the Connectivity Link controller.
 
 * Set the default **RateLimitPolicy** for your Gateway by running the following command:
 +

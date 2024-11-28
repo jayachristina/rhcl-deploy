@@ -1,6 +1,6 @@
-== Securing the Toystore Application with Kuadrant Policies
+== Securing the Toystore Application with Connectivity Link Policies
 
-In this lab exercise, you will configure authentication policies and generate API keys in the **toystore** application, which is secured by Kuadrant policies.
+In this lab exercise, you will configure authentication policies and generate API keys in the **toystore** application, which is secured by Connectivity Link policies.
 
 . Create AuthPolicy
 * Create policy for regular user by applying below yaml settings:

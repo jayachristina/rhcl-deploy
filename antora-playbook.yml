@@ -1,5 +1,5 @@
 site:
-  title: Red Hat Connectivity Link Installation Installation and Implementation for Multi-Role Use Cases
+  title: Red Hat Connectivity Link Installation and Implementation for Multi-Role Use Cases
   start_page: rhcl-deploy::index.adoc
 
 content:

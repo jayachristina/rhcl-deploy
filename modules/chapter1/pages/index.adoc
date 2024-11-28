@@ -62,8 +62,8 @@ To achieve this a number of components need to be setup:
 
 * A **Managed Zone** needs to be setup within the DNS provider. E.g. _managed.sandboxXXXX.opentlc.com_.
 * Install cert-manager to manage TLS certificates for your Kuadrant gateways.
-* Integrate Kuadrant with Istio as a Gateway API provider by installing and configuring Istio using the Service Mesh.
-* Install the Kuadrant Operator and trigger the deployment of Kuadrant in Red Hat OpenShift cluster.
+* Integrate Connectivity Link with Istio as a Gateway API provider by installing and configuring Istio using the Service Mesh.
+* Install the Connectivity Link Operator and trigger the deployment in Red Hat OpenShift cluster.
 ====
 
 

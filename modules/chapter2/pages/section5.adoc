@@ -4,7 +4,7 @@ This chapter has laid the groundwork for API management in a Red Hat Openshift e
 
 * Setting up managed zone using AWS Route53
 * Install and configure Istio with OpenShift Service Mesh
-* Install Kuadrant operator
+* Install Connectivity Link operator
 * Deploy Kuadrant instance
 
 In the next section, as a Platform Engineer, you’ll configure:

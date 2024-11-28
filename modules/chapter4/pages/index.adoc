@@ -1,6 +1,6 @@
 = Developer Workflow
 
-* As an **Application Developer**, you will deploy a sample **toystore** application and configure external access through an HTTPRoute. Additionally, you would apply Kuadrant policies to secure it with authentication and access control
+* As an **Application Developer**, you will deploy a sample **toystore** application and configure external access through an HTTPRoute. Additionally, you would apply Connectivity Link policies to secure it with authentication and access control
 +
 image::role.png[align="center"]
 
@@ -11,7 +11,7 @@ In this chapter, you will:
 * Deploy Toystore Application
 * Create HTTPRoute
 * Deploy the Toystore HTTPRoute
-* Secure the Toystore Application with Kuadrant Policies
+* Secure the Toystore Application with Connectivity Link Policies
 
 
 

@@ -1,5 +1,5 @@
 name: rhcl-deploy
-title: Red Hat Connectivity Link Installation Installation and Implementation for Multi-Role Use Cases
+title: Red Hat Connectivity Link Installation and Implementation for Multi-Role Use Cases
 version: 1
 nav:
 - modules/ROOT/nav.adoc

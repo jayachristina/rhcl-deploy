@@ -1,6 +1,8 @@
+:imagesdir: ../images
+
 == Setup Route53 in AWS
 
-Before proceeding with the Kuadrant installation, it's essential to set up a **Managed Zone** within your DNS provider. This Managed Zone will serve as the foundation for routing and managing your API traffic.
+Before proceeding with the Connectivity Link installation, it's essential to set up a **Managed Zone** within your DNS provider. This Managed Zone will serve as the foundation for routing and managing your API traffic.
 
 In this lab, we will configure the **Managed Zone** using **AWS Route53**.
 

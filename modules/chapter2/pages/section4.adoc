@@ -1,8 +1,10 @@
-== Install Kuadrant on Red Hat OpenShift cluster
+:imagesdir: ../images
 
-In this lab, you install and setup Kuadrant Operator and trigger Kuadrant deployment.
+== Install Red Hat Connectivity Link  on Red Hat OpenShift cluster
 
-=== Install Kuadrant
+In this lab, you install and setup Red Hat Connectivity Link operator and trigger a Kuadrant deployment.
+
+=== Install Connectivity Link 
 
 . Create **kuadrant-system** namespace as shown below:
 +
@@ -20,7 +22,7 @@ You should see output as follows:
 namespace/kuadrant-system created
 ----
 
-. Setup **catalog source** for Kuadrant Operator by appling the yaml settings using below command:
+. Setup **catalog source** for Red Hat Connectivity Link Operator by applying the yaml settings using below command:
 +
 ====
 [source,subs="verbatim,quotes"]
@@ -50,7 +52,7 @@ You should see output as follows:
 catalogsource.operators.coreos.com/kuadrant-operator-catalog created
 ----
 
-. Install the **Kuadrant** operator by navigating to the Red Hat OpenShift cluster, select **OperatorHub** from side panel and search **Kuadrant**. 
+. Navigate to the Red Hat OpenShift cluster. From the Administrator view, select **Operators > OperatorHub** from side panel and search **Red Hat Connectivity Link**. 
 Select the **Kuadrant Operator** highlighted in below screenshot and click **Install**
 +
 image::install1.png[align="center"]

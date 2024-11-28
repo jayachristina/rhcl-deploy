@@ -20,7 +20,7 @@ In this chapter, you will:
 * Create DNS Policy
 * Create HTTP Route
 
-NOTE: Before starting this lab, ensure you have completed the previous chapter on installing and deploying Kuadrant in _Red Hat OpenShift_ cluster. This step is critical as it sets the foundation for the upcoming exercises by providing you with a properly configured environment.
+NOTE: Before starting this lab, ensure you have completed the previous chapter on installing and deploying Connectivity Link in _Red Hat OpenShift_ cluster. This step is critical as it sets the foundation for the upcoming exercises by providing you with a properly configured environment.
 
 
 

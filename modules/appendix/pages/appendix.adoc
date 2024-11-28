@@ -1,10 +1,10 @@
 = Appendix
 
-You can go through below additional resources, reference materials, and advanced configurations to support your understanding of Kuadrant. 
-Here, you’ll find detailed explanations of key concepts, CLI commands, troubleshooting tips, and configuration examples.
+You can go through below additional resources, reference materials, and advanced configurations to support your understanding of Red Hat Connectivity Link. 
+Here, you'll find detailed explanations of key concepts, CLI commands, troubleshooting tips, and configuration examples.
 This section is intended as a supplement to the main training material, offering deeper insights and quick reference information to enhance your learning experience and help with real-world implementation.
 
 * https://docs.google.com/presentation/d/1KOJeQhhzo-Nie8ESRfp6SqQGz5oZrXi8Xy-ahLK466U/edit#slide=id.g547716335e_0_220[Red Hat Connectivity Link - Technical Deck]
-* https://www.solutionpatterns.io/soln-pattern-connectivity-link/solution-pattern/index.html[Solution Patterns: Connect, Secure and Protect with Red Hat Connectivity Link]
+* https://www.solutionpatterns.io/soln-pattern-connectivity-link/solution-pattern/index.html[Solution Pattern: Connect, Secure and Protect with Red Hat Connectivity Link]
 * https://docs.kuadrant.io/0.11.0/kuadrant-operator/doc/user-guides/secure-protect-connect-single-multi-cluster/#application-developer-workflow[Secure, protect, and connect APIs with Kuadrant on OpenShift]
 * https://docs.kuadrant.io/0.11.0/kuadrant-operator/doc/install/install-openshift/[Install Kuadrant on an OpenShift cluster]
