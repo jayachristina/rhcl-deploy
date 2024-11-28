@@ -62,7 +62,7 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">RHCL Setup Prerequisites</a>
+    <a class="nav-link" href="index.html">Red Hat Connectivity Link Setup Prerequisites</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section1.html">Setup Route53 in AWS</a>
@@ -178,7 +178,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Red Hat Connectivity Link Installation Installation and Implementation for Multi-Role Use Cases</a></li>
-    <li><a href="index.html">RHCL Setup Prerequisites</a></li>
+    <li><a href="index.html">Red Hat Connectivity Link Setup Prerequisites</a></li>
     <li><a href="section4.html">Install Kuadrant on Red Hat OpenShift cluster</a></li>
   </ul>
 </nav>
@@ -283,7 +283,7 @@ Select the <strong>Kuadrant Operator</strong> highlighted in below screenshot an
 </div>
 </li>
 <li>
-<p>Observe the <strong>Kuadrant</strong> operator is installed along with it&#8217;s dependencies in the <em>Red Hat Openshift</em> console&#8217;s  <em>Installed Operators</em> section.</p>
+<p>Observe the <strong>Connectivity Link</strong> operator is installed along with it&#8217;s dependencies in the <em>Red Hat Openshift</em> console&#8217;s  <em>Installed Operators</em> section.</p>
 <div class="imageblock text-center">
 <div class="content">
 <img src="_images/service4.png" alt="service4">
@@ -292,7 +292,7 @@ Select the <strong>Kuadrant Operator</strong> highlighted in below screenshot an
 <div class="ulist">
 <ul>
 <li>
-<p>Below are the dependencies installed:</p>
+<p>Below are the components installed:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -317,11 +317,11 @@ Select the <strong>Kuadrant Operator</strong> highlighted in below screenshot an
 </div>
 </div>
 <div class="sect2">
-<h3 id="_deploy_kuadrant"><a class="anchor" href="#_deploy_kuadrant"></a>Deploy Kuadrant</h3>
+<h3 id="_deploy_connectivity_link"><a class="anchor" href="#_deploy_connectivity_link"></a>Deploy Connectivity Link</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>To trigger your Kuadrant deployment, execute the yaml settings using the following command:</p>
+<p>To trigger your Connectivity Link deployment, create the Custom Resources using the following command:</p>
 <div class="exampleblock">
 <div class="content">
 <div class="listingblock">
@@ -368,6 +368,10 @@ EOF</strong></code></pre>
 </li>
 <li>
 <p>Enable <strong>Kuadrant</strong> plugin to view components configuration status easily that we would perform in coming sections.</p>
+</li>
+</ul>
+</div>
+<!--ARCADE EMBED START--><div style="position: relative; padding-bottom: calc(49.609375% + 41px); height: 0; width: 100%;"><iframe src="https://demo.arcade.software/e2XOH3IWMRzMEfEVMm8d?embed&embed_mobile=inline&embed_desktop=inline&show_copy_link=true" title="Enable Red Hat Connectivity Link&#39;s Kuadrant Dynamic Plugin on Red Hat OpenShift console" frameborder="0" loading="lazy" webkitallowfullscreen mozallowfullscreen allowfullscreen allow="clipboard-write" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; color-scheme: light;" ></iframe></div><!--ARCADE EMBED END-->
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -409,9 +413,6 @@ EOF</strong></code></pre>
 </div>
 </li>
 </ol>
-</div>
-</li>
-</ul>
 </div>
 </div>
 </div>
