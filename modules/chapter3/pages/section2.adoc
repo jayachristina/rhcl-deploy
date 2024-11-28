@@ -1,3 +1,5 @@
+:imagesdir: ../images
+
 == Create Auth Policy
 
 In this lab, you set a **default, deny-all AuthPolicy to start with zero-trust** for your Gateway, ensuring no traffic is allowed unless explicitly permitted, and verifies its acceptance by the Connectivity Link controller.

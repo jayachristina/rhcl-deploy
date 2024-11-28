@@ -1,3 +1,5 @@
+:imagesdir: ../images
+
 == Create HTTP Route
 
 This lab guides you through the process of setting up and verifying an HTTPRoute for your Gateway,

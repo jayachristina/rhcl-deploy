@@ -1,3 +1,5 @@
+:imagesdir: ../images
+
 == Toystore Application Deployment
 
 In this lab exercise, you will deploy the **toystore** application in _Red Hat OpenShift cluster_, and applying the necessary configurations for the app's deployment.

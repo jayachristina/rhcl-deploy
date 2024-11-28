@@ -1,3 +1,5 @@
+:imagesdir: ../images
+
 == Create Rate Limit Policy
 
 In this lab you sets a default **RateLimitPolicy** for your Gateway to control traffic limits, and verifies its acceptance by the Connectivity Link controller.

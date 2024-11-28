@@ -1,3 +1,5 @@
+:imagesdir: ../images
+
 = Developer Workflow
 
 * As an **Application Developer**, you will deploy a sample **toystore** application and configure external access through an HTTPRoute. Additionally, you would apply Connectivity Link policies to secure it with authentication and access control

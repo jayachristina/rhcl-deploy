@@ -1,3 +1,5 @@
+:imagesdir: ../images
+
 == Configure Gateway
 
 This lab guides you open up the Gateway for other namespaces.

@@ -1,3 +1,5 @@
+:imagesdir: ../images
+
 == Securing the Toystore Application with Connectivity Link Policies
 
 In this lab exercise, you will configure authentication policies and generate API keys in the **toystore** application, which is secured by Connectivity Link policies.

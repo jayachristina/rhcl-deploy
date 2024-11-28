@@ -1,3 +1,5 @@
+:imagesdir: ../images
+
 == Setting Up DNS and TLS for Gateway API
 
 This lab covers the steps to configure DNS and TLS for the Gateway API, including setting up AWS credentials, creating necessary Kubernetes secrets, and configuring https://letsencrypt.org/[Let's Encrypt] for secure communication through TLS certificates.

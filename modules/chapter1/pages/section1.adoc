@@ -1,3 +1,5 @@
+:imagesdir: ../images
+
 = What is Red Hat Connectivity Link (RHCL)?
 
 * Red Hat Connectivity Link (RHCL) is an open-source solution designed to facilitate seamless integration between various services and applications across hybrid cloud environments.

@@ -1,3 +1,5 @@
+:imagesdir: ../images
+
 == Test the HTTP Routes
 
 In this lab exercise, you will test access to various endpoints in the toystore application, which is secured by Connectivity Link policies.

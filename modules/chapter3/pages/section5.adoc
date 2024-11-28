@@ -1,3 +1,5 @@
+:imagesdir: ../images
+
 == Create DNS Policy
 
 Now that we have setup a secure, protected application connectivity environment, we are now ready to expose this to the Internet. We will do so by creating a DNSPolicy.

@@ -1,3 +1,5 @@
+:imagesdir: ../images
+
 = Solution's architecture
 
 == Securing Mobile Gateway Connectivity for Globex
