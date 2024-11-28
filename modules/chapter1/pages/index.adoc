@@ -1,3 +1,6 @@
+:imagesdir: ../images
+
+
 = Lab Scenario
 
 == Situation
@@ -21,14 +24,14 @@ Their goals include:
 
 == Solution To The Situation Along With In-depth An Architecture
 
-* _Toystore Application_ development team has built an application Gateway, serving as a single point of entry (a wrapper) in front of the company’s core services, following the gateway-pattern approach.
+* _Toystore Application_ development team has built an application Gateway, serving as a single point of entry (a wrapper) in front of the company's core services, following the gateway-pattern approach.
 This gateway allows _Toystore_ app to access core services, but the endpoint must be secured for safe connectivity.
 +
 image::arch.png[align="center"]
 
-Focus on the RHCL portion of the diagram, which illustrates how RHCL is used to manage and secure the application connectivity.
+Focus on the Connectivity Link portion of the diagram, which illustrates how it is used to manage and secure the application connectivity.
 
-Specifically, RHCL facilitates:
+Specifically, Connectivity Link facilitates:
 
 * **Gateway setup by the platform engineers**, which includes setting up below policies for secure connections to the backend services:
 
@@ -50,10 +53,10 @@ Specifically, RHCL facilitates:
 +
 image::role.png[align="center"]
 
-.**Infrastructure Engineer**: Click to view what you would be doing as infrastructure engineer in this lab
+.**Prerequisites**: Click to view the prerequisites that what you would be setting upin this lab
 [%collapsible]
 ====
-As Infrastructure Engineer you will install, configure and deploy RHCL.
+You will install, configure and deploy Connectivity Link.
 
 To achieve this a number of components need to be setup:
 

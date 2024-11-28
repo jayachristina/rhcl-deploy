@@ -1,8 +1,8 @@
-= RHCL Setup Prerequisites
+= Red Hat Connectivity Link Setup Prerequisites
 
 * Before diving into the **Platform engineer and developer** lab workflow, as an **infrastructure owner** you first need to install and deploy Kuadrant on a single-node Red Hat OpenShift cluster to set up the necessary environment for the upcoming tasks.
 
-* There are 3 primary dependencies for setting up RHCL:
+* There are 3 primary prerequisites for setting up Connectivity Link:
 . Create Managed Zone on DNS Provider
 . Install and configure **cert-manager** operator
 . Setup Gateway API v1 CRS
@@ -16,7 +16,7 @@ In this chapter, you will:
 * Configure managed zone that will serve as the foundation for routing and managing your API traffic.
 * Install cert-manager to manage TLS certificates for your Kuadrant gateways.
 * Setup Istio as a Gateway API provider by installing and configuring Istio using the Service Mesh.
-* Install the Kuadrant Operator and trigger the deployment of Kuadrant in single node Red Hat OpenShift cluster.
+* Install the Connectivity Link Operator and trigger the deployment of Connectivity Link (Kuadrant) in single node Red Hat OpenShift cluster.
 
 == Prerequisites
 

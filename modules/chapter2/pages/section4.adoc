@@ -68,18 +68,18 @@ image::new2.png[align="center"]
 ----
 ====
 
-* Observe the **Kuadrant** operator is installed along with it's dependencies in the _Red Hat Openshift_ console's  _Installed Operators_ section.
+* Observe the **Connectivity Link** operator is installed along with it's dependencies in the _Red Hat Openshift_ console's  _Installed Operators_ section.
 +
 image::service4.png[align="center"]
 +
-** Below are the dependencies installed:
+** Below are the components installed:
 *** https://docs.kuadrant.io/latest/authorino-operator/#the-authorino-custom-resource-definition-crd[Authorino](Enforcement Component for AuthPolicy)
 *** https://docs.kuadrant.io/latest/limitador-operator/#features[Limitador (Enforcement Component for RateLimitPolicy)]
 *** DNS Operator (Enforcement Component for DNSPOlicy)
 
-=== Deploy Kuadrant
+=== Deploy Connectivity Link
 
-* To trigger your Kuadrant deployment, execute the yaml settings using the following command:
+* To trigger your Connectivity Link deployment, create the Custom Resources using the following command:
 +
 ====
 [source,subs="verbatim,quotes"]
